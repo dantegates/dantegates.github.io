@@ -288,7 +288,7 @@ show_side_by_side(test_sample, reconstructions)
 ```
 
 
-![png](/_static/image-search/image-search_31_0.png)
+![reconstructions]({{"/assets/image-search/image-search_31_0.png" | absolute_url}})
 
 
 ## Linear search
@@ -323,7 +323,7 @@ show_side_by_side(QUERY_IMG, top_matches)
 ```
 
 
-![png](/_static/image-search/image-search_35_0.png)
+![linear search]({{ "/assets/image-search/image-search_35_0.png" | absolute_url }})
 
 
     CPU times: user 1.31 s, sys: 13.9 ms, total: 1.33 s
@@ -384,7 +384,7 @@ show_side_by_side(QUERY_IMG, res)
 ```
 
 
-![png](/_static/image-search/image-search_41_0.png)
+![semantic hash search]({{ "/assets/image-search/image-search_41_0.png" | absolute_url }})
 
 
     CPU times: user 404 ms, sys: 8.04 ms, total: 412 ms

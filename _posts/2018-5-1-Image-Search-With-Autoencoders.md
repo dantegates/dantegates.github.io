@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Image Search With Autoencoders
+mathjax: true
 ---
 
 Autoencoders are an architecture that have a variety of applications from [denoising data](http://www.jmlr.org/papers/volume11/vincent10a/vincent10a.pdf) to [generative models](http://kvfrans.com/variational-autoencoders-explained/).

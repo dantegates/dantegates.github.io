@@ -1,6 +1,3 @@
-
-# Image search with autoencoders
-
 Autoencoders are an architecture that have a variety of applications from [denoising data](http://www.jmlr.org/papers/volume11/vincent10a/vincent10a.pdf) to [generative models](http://kvfrans.com/variational-autoencoders-explained/).
 
 In this post we will look at how to search for similar images given a query image with autoencoders and implement one with [keras](http://keras.io). While we will focus on image searches autoencoders have been shown to work well in other settings as well, for example text-based problems such as retrieving for relevant news articles (see the resource section at the end of this post).

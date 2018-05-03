@@ -283,6 +283,18 @@ footer {
   text-align: center;
 }
 
+// for pandas DataFrames
+.dataframe {padding: 5px; margin: 10px; overflow: auto}
+.dataframe * {border-color: #c0c0c0 !important;}
+.dataframe th{background: #eee;}
+.dataframe td{text-align: right; min-width:5em;}
+
+.dataframe-summary-row tr:last-child,
+.dataframe-summary-col td:last-child{
+    background: #eee;
+    font-weight: 500;
+}
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";

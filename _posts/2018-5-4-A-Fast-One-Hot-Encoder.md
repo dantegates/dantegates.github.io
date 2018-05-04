@@ -4,6 +4,8 @@ title: A fast one hot encoder with sklearn and pandas
 mathjax: true
 ---
 
+# A *fast* one hot encoder with sklearn and pandas
+
 If you've worked in data science for any length of time, you've undoubtedly transformed your data into a one hot encoded format before. In this post we'll explore implementing a *fast* one hot encoder with  [scikit-learn](http://scikit-learn.org/stable/) and [pandas](https://pandas.pydata.org/).
 
 # sklearn's one hot encoders
@@ -99,7 +101,7 @@ _ = DictVectorizer(sparse=False).fit_transform(df.to_dict('records'))
     Wall time: 6min 40s
 
 
-It's also informative to notice that although there is some overhead from calling `to_dict()`, `fit_transform()` is the real bottleneck.
+As we can see `pandas.get_dummies()` is *uncomparably* faster. It's also informative to notice that although there is some overhead from calling `to_dict()`, `fit_transform()` is the real bottleneck.
 
 
 ```python
@@ -111,8 +113,6 @@ _ = df.to_dict('records')
     CPU times: user 1min 5s, sys: 997 ms, total: 1min 6s
     Wall time: 1min 17s
 
-
-As we can see `pandas.get_dummies()` is *uncomparably* faster.
 
 # Implemention
 

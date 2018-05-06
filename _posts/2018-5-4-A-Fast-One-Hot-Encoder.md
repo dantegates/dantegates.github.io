@@ -4,8 +4,6 @@ title: A fast one hot encoder with sklearn and pandas
 mathjax: true
 ---
 
-# A *fast* one hot encoder with sklearn and pandas
-
 If you've worked in data science for any length of time, you've undoubtedly transformed your data into a one hot encoded format before. In this post we'll explore implementing a *fast* one hot encoder with  [scikit-learn](http://scikit-learn.org/stable/) and [pandas](https://pandas.pydata.org/).
 
 # sklearn's one hot encoders

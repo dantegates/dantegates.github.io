@@ -14,6 +14,9 @@ layout: default
   <div class="date">
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>
+  <div class="github">
+    Find the source for this post on <a href="{{ page.github }}">GitHub</a>
+  </div>  
 
   {% include disqus.html %}
 </article>

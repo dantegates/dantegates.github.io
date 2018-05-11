@@ -9,9 +9,9 @@ This post attempts to indroduce conjugate priors and give some intuition as to w
 
 Consider the well known equation expressing Bayes' theorem
 
-\begin{equation}
+$$
 P(\theta \ \vert \ D) = \frac{P(D \ \vert \ \theta)P(\theta)}{P(D)}
-\end{equation}
+$$
 
 In the case of Bayesian inference,
 
@@ -23,17 +23,20 @@ In the case of Bayesian inference,
 
 Recall that the goal of Bayesian inference is to treat $\theta$ as a random variable and we typically search for the values of $\theta$ which maximize the posterior probability. Since $P(D)$ is constant for all $\theta$ we usually ignore this term and simply focus on the likelihood times the prior probability (in fact, in this post we'll ignore all constants), i.e.
 
+$$
 \begin{equation}
 P(\theta \ \vert \ D) \propto P(D \ \vert \ \theta)P(\theta)
+\label{eq:likelihood}
 \end{equation}
+$$
 
 Typically this is hard or impossible to calculate analytically so we resort to numeric methods such as markov chain monte carlo methods.
 
 Enter conjugate priors. A conjugate prior is a prior that "fits" our model in such that we _can_ compute the posterior exactly from the values of our data and model parameters. That is, conjugate priors allow us to analytically derive an expression $f$ such that
 
-\begin{equation}
+$$
 P(\theta \ \vert \ D) \propto f(\theta, D)
-\end{equation}
+$$
 
 # Intuition
 
@@ -46,30 +49,28 @@ As an example, we'll consider the Poisson distribution, and it's conjugate prior
 First let's define our model.
 
 $$
-\begin{align}
+\begin{align*}
 &D\sim \text{Poi}(\lambda)\\
 &\lambda\sim \Gamma(\alpha, \beta) \\
 &\alpha,\beta\text{ constants}
-\end{align}
+\end{align*}
 $$
 
 Note that in our model $\alpha,\beta$ are not random variables as is $\lambda$ is, but fixed and defined before we observe $D$.
 
 We begin by calculating the likelihood
 $$
-\begin{align}
-P(D\ \vert \ \lambda)&=\prod_{x_{i}\in D}^{}{\frac{\lambda^{x_{i}}e^{-\lambda}}{\lambda!}} \\
-&\propto\prod_{x_{i}\in D}^{}{\lambda^{x_{i}}e^{-\lambda}} \\
+\begin{align*}
+P(D\ \vert \ \lambda)&=\prod_{x_{i}\in D}^{}{\frac{\lambda^{x_{i}}e^{-\lambda}}{\lambda!}}\nonumber \\
+&\propto\prod_{x_{i}\in D}^{}{\lambda^{x_{i}}e^{-\lambda}}\nonumber \\
 &\propto\lambda^{\sum_{x_{i}}^{n}{x_{i}}}e^{-n\lambda}
-\end{align}
+\end{align*}
 $$
 
-Plugging this into our equation above
+Plugging this into \eqref{eq:likelihood}
 
 $$
-\begin{equation}
 P(\lambda\ \vert \ D)\propto\left(\lambda^{\sum_{i=1}^{n}{x_{i}}}e^{-n\lambda}\right)P(\lambda)
-\end{equation}
 $$
 
 Now we can consider sensible choices for our prior, i.e. any distribution that plays nice with this formula for the posterior probability. As we can see, given a fixed $\lambda$, we'll have two parameters that vary in the equation above, i.e. both of the exponents. Thus a distribution with a pdf like the following should do the trick
@@ -79,26 +80,22 @@ $$f(\lambda;\alpha,\beta)\propto \lambda^{\alpha}e^{-\beta\lambda}$$
 Which, of course, is satisifed by the Gamma distribution and gives us the final calculation of the posterior probability
 
 $$
-\begin{equation}
 P(\lambda\ \vert \ D)\propto\lambda^{\sum_{i=1}^{n}{x_{i}+\alpha}}e^{-(n+\beta)\lambda}
-\end{equation}
 $$
 
 or
 
 $$
-\begin{equation}
 P(\lambda\ \vert \ D)\propto\Gamma(\alpha^{\prime},\beta^{\prime})
-\end{equation}
 $$
 
 where
 
 $$
-\begin{align}
+\begin{align*}
 &\alpha^{\prime}=\sum_{i=1}^{n}{x_{i}+\alpha} \\
 &\beta^{\prime}=n+\beta
-\end{align}
+\end{align*}
 $$
 
 Now let's write some code with that demonstrates how this works.
@@ -136,7 +133,7 @@ utils.plot_pdf(map_posterior, discrete=True, ax=ax)
 
 
 
-![png]({{"a-brief-primer-on-conjugate-priors_files/a-brief-primer-on-conjugate-priors_7_1.png" | absolute_url}})
+![png]({{"/assets/a-brief-primer-on-conjugate-priors/a-brief-primer-on-conjugate-priors_7_1.png" | absolute_url}})
 
 
 # Final remarks

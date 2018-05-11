@@ -38,28 +38,26 @@ For example consider the problem of trying to predict the maximum number of visi
 We begin with modeling the number of requests per minute $D$
 
 $$
-\begin{align}
+\begin{align*}
 &D\sim \text{Poi}(\lambda) \\
 &\lambda\sim \Gamma(\alpha, \beta) \\
 &\alpha,\beta\text{ constants}
-\end{align}
+\end{align*}
 $$
 
 As explained in [my previous post]() the gamma distribution is the conjugate prior of the Poisson distribution. Modeled as such the posterior probability of our model is
 
 $$
-\begin{equation}
 P(\lambda\ \vert \ D)\propto\Gamma(\alpha^{\prime},\beta^{\prime})
-\end{equation}
 $$
 
 where
 
 $$
-\begin{align}
+\begin{align*}
 &\alpha^{\prime}=\sum_{i=1}^{n}{x_{i}+\alpha} \\
 &\beta^{\prime}=n+\beta
-\end{align}
+\end{align*}
 $$
 
 Now that we have a model for the number of site visits per minute we can extract a prediction of the maximum number of visits as follows. First we find $\lambda_{MAP}=\text{median}(\Gamma(\alpha^{\prime},\beta^{\prime}))$. Then we use the CDF of $\text{Poi}(\lambda_{MAP})$ to find the value $k$ (number of requests per minute) such that $P(X<k\ \vert \ \lambda_{MAP})<0.99$ (an arbitrarily chosen threshold).

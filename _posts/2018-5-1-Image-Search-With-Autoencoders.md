@@ -2,6 +2,7 @@
 layout: post
 title: Image Search With Autoencoders
 mathjax: true
+github: https://github.com/dantegates/image-search
 ---
 
 Autoencoders are an architecture that have a variety of applications from [denoising data](http://www.jmlr.org/papers/volume11/vincent10a/vincent10a.pdf) to [generative models](http://kvfrans.com/variational-autoencoders-explained/).
@@ -49,9 +50,26 @@ One such way to do this with an autoencoder is to keep a list of key-value pairs
 
 Now, this method is already more efficient than simply computing the similarity scores over the raw values in $X$ - in the sense that the encoded representations are much smaller in dimmension. Nevertheless, both approaches run in linear time, that is the more images we have in our database, the longer the search will take and the less benefit we see in performance from computing the similarity scores on smaller vectors.
 
-It turns out we can still use the codes to perform a faster search in constant time, we just need to build the autoencoder with one slight modification. Instead of mapping the input to vectors of dimmension $d$, we define the encoder as $\phi:\mathbb{R}^{n}\mapsto\{0,1\}^{d}$ ($d$-bit binary codes). Once again we keep a list of KVPs, but this time the key is a $d$-bit integer representing the $d$-bit code from the encoder.
+It turns out we can still use the codes to perform a faster search in constant time, we just need to build the autoencoder with one slight modification. Instead of mapping the input to vectors of dimmension $d$, we define the encoder as $\phi:\mathbb{R}^{n}\mapsto\{0,1\}^{d}$ ($d$-bit binary codes). To perform the search over these KVPs we implement a data scructure called a ["semantic hashing table"](http://www.cs.utoronto.ca/~rsalakhu/papers/semantic_final.pdf). Don't let the name intimidate you, the data scructure is essentially a hash map where the keys are $d$-bit integers (converted from the output of $\phi$) and the values are lists (at least that's the simple python implementation) and is initialized with the following algorithm.
 
-To complete the search over these KVPs we implement something called [semantic hashing](http://www.cs.utoronto.ca/~rsalakhu/papers/semantic_final.pdf). The idea is simple. For our query image $q$ we now return all images $x\in X$ such that the hamming distince (number of bits that differ) of $\phi(q)$ and $\phi(x)$ is less than some predetermined threshold $t$.
+```python
+A  = collections.defaultdict(list)
+for image in images:
+    code = phi(image)
+    A[code].append(image)
+```
+
+Now, for our query image $q$, we can return all images $x\in X$ such that the hamming distince (number of bits that differ) of $\phi(q)$ and $\phi(x)$ is less than some predetermined threshold $t$. The following python snippet shows how this is done in constant time.
+
+```python
+results = list()
+q_hat = phi(q)
+for key, images in A.items():  # A has no more than 2^d keys
+    if hamming_distance(q_hat, key) < t:
+       results.extend(images)
+```
+
+In this section we've oversimplified the implementation just a bit. To get a full idea of how to implement this search see below.
 
 # A few remarks on building and training the autoencoder
 

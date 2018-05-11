@@ -5,7 +5,7 @@ mathjax: true
 github: https://github.com/dantegates/bayesian-online-learning
 ---
 
-This post attempts to indroduce conjugate priors and give some intuition as to why they work. While this post focuses largely on the technical details of conjugate priors, my next post will focus on conjugate priors in practice.
+This post attempts to indroduce conjugate priors and give some intuition as to why they work. While this post focuses largely on the technical details of conjugate priors, my [next post](https://dantegates.github.io/Bayesian-Online-Learning/) will focus on conjugate priors in practice.
 
 Consider the well known equation expressing Bayes' theorem
 

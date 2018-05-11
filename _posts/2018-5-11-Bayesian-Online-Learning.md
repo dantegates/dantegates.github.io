@@ -10,7 +10,7 @@ This post explores the usefulness of conjugate priors in the context of online l
 1. Making predictions in real time via a bayesian model with conjugate upates.
 2. Making predictions in real time via a bayesian model with conjugate updates when the underlying data "drifts."
 
-Disclaimer: this post assumes some familiarity with bayesian inference. My previous post [A brief primer on conjugate priors]() covers enough details on conjugate priors to grasp this post. For a more in depth look at bayesian inference in general see this excellent [series of posts](http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/) by Jake Vanderplas.
+Disclaimer: this post assumes some familiarity with bayesian inference. My previous post [A brief primer on conjugate priors](https://dantegates.github.io/A-brief-primer-on-conjugate-priors/) covers enough details on conjugate priors to grasp this post. For a more in depth look at bayesian inference in general see this excellent [series of posts](http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/) by Jake Vanderplas.
 
 ## Online learning
 
@@ -45,7 +45,7 @@ $$
 \end{align*}
 $$
 
-As explained in [my previous post]() the gamma distribution is the conjugate prior of the Poisson distribution. Modeled as such the posterior probability of our model is
+As explained in [my previous post](https://dantegates.github.io/A-brief-primer-on-conjugate-priors/) the gamma distribution is the conjugate prior of the Poisson distribution. Modeled as such the posterior probability of our model is
 
 $$
 P(\lambda\ \vert \ D)\propto\Gamma(\alpha^{\prime},\beta^{\prime})

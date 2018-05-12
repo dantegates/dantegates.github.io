@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Husband and Father
-Philly data scientist
+Husband and Father  
+Philly data scientist  
 wrote a haiku once
 
 ### Contact me

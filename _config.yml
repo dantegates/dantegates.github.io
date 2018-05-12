@@ -6,7 +6,7 @@
 name: Dante Gates
 
 # Short bio or description (displayed in the header)
-description: Data scientist in Philadelphia
+description: 
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: 
@@ -18,18 +18,18 @@ avatar:
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email:
-  facebook:
+  email: dantegatesgithubio@gmail.com
+  facebook: 
   flickr:
   github: dantegates
   instagram:
-  linkedin:
+  linkedin: https://www.linkedin.com/in/dante-gates-29b735136/
   pinterest:
-  rss: # just type anything here for a working RSS icon
+  rss: rss
   twitter: 
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
+  stackoverflow: 
+  youtube: 
+  googleplus: 
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts

@@ -4,4 +4,4 @@ ADD . /srv/jekyll
 
 RUN jekyll build
 
-CMD ["jekyll", "server"]
+ENTRYPOINT ["jekyll", "server"]

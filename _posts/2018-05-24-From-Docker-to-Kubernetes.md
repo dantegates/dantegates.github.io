@@ -115,8 +115,8 @@ helm install --name from-docker-to-kubernetes ./from-docker-to-kubernetes-chart 
 The following `git diff` shows all changes made to the default chart created with `helm create`.
 
 
-```python
-!git diff --no-color app-chart
+```shell
+git diff --no-color app-chart
 ```
 
     diff --git a/app-chart/values.yaml b/app-chart/values.yaml

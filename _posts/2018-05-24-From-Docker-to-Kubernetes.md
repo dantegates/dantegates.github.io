@@ -116,33 +116,33 @@ The following `git diff` shows all changes made to the default chart created wit
 
 
 ```python
-!git diff app-chart
+!git diff --no-color app-chart
 ```
 
-    [1mdiff --git a/app-chart/values.yaml b/app-chart/values.yaml[m
-    [1mindex 6d0f0c7..b8cff2a 100644[m
-    [1m--- a/app-chart/values.yaml[m
-    [1m+++ b/app-chart/values.yaml[m
-    [36m@@ -5,13 +5,17 @@[m
-     replicaCount: 1[m
-     [m
-     image:[m
-    [31m-  repository: nginx[m
-    [32m+[m[32m  repository: from-docker-to-kubernetes[m
-       tag: stable[m
-       pullPolicy: IfNotPresent[m
-     [m
-     service:[m
-       type: ClusterIP[m
-    [31m-  port: 80[m
-    [32m+[m[32m  port: 5000[m
-    [32m+[m
-    [32m+[m[32mcontainer:[m
-    [32m+[m[32m  port: 5000[m
-    [32m+[m[32m  aliveEndpoint: /alive[m
-     [m
-     ingress:[m
-       enabled: false[m
+    diff --git a/app-chart/values.yaml b/app-chart/values.yaml
+    index 6d0f0c7..b8cff2a 100644
+    --- a/app-chart/values.yaml
+    +++ b/app-chart/values.yaml
+    @@ -5,13 +5,17 @@
+     replicaCount: 1
+     
+     image:
+    -  repository: nginx
+    +  repository: from-docker-to-kubernetes
+       tag: stable
+       pullPolicy: IfNotPresent
+     
+     service:
+       type: ClusterIP
+    -  port: 80
+    +  port: 5000
+    +
+    +container:
+    +  port: 5000
+    +  aliveEndpoint: /alive
+     
+     ingress:
+       enabled: false
 
 
 And that's it! We can now install and run this Helm chart using the same commands as above and see our app working in the browser.

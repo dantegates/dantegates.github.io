@@ -139,7 +139,6 @@ git diff --no-color app-chart
     +
     +container:
     +  port: 5000
-    +  aliveEndpoint: /alive
      
      ingress:
        enabled: false

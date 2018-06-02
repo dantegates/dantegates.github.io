@@ -1,5 +1,9 @@
-
-# From Docker to Kubernetes with Helm
+---
+layout: post
+title: From Docker to Kubernetes with Helm
+mathjax: true
+github: https://github.com/dantegates/from-docker-to-kubernetes
+---
 
 Docker has been a huge win for deploying software across the board and in particular for deploying machine learning models from my own experience. Perhaps you've already adopted this practice but wonder how to take the next step and deploy your image at scale via Kubernetes. If so this post is for you.
 

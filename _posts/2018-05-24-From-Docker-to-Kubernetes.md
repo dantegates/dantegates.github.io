@@ -1,11 +1,7 @@
----
-layout: post
-title: From Docker to Kubernetes with Helm
-mathjax: true
-github: https://github.com/dantegates/from-docker-to-kubernetes
----
 
-Docker has been a huge win for deploying software across the board and in particular for deploying machine learning models from my own experience. Perhaps you've already adopted this practice but wonder how to take the next step and deploy your image at scale via Kubernetes.
+# From Docker to Kubernetes with Helm
+
+Docker has been a huge win for deploying software across the board and in particular for deploying machine learning models from my own experience. Perhaps you've already adopted this practice but wonder how to take the next step and deploy your image at scale via Kubernetes. If so this post is for you.
 
 ## What this post covers
 
@@ -35,26 +31,26 @@ If you want to follow along with the code in this post
 
 ## The Docker image
 
-First we'll build the Docker image (the container needs to exist on our local machine before installing the helm chart. You can pull images from Dockerhub or a private registry, but for this example we'll keep it simple)
+First we'll build the Docker image (the container needs to exist on our local machine before installing the helm chart. You can pull images from DockerHub or a private registry, but for this example we'll keep it simple and build it locally).
 
 ```shell
 docker build -t from-docker-to-kubernetes:stable .
 ```
 
-Now this container isn't anything special. It's simply a flask app that runs on port 5000 inside the container and returns a randomly generated number every time you visit the root (`/`) endpoint. When we customize the Helm chart we'll see that it's important to give this image a meaningful tag.
+Now this container isn't anything special. It's simply a flask app that runs on port 5000 inside the container and returns a randomly generated number every time you visit the root (`/`) endpoint. When we customize the Helm chart we'll see that it's important that this image has a meaningful tag (i.e., not latest).
 
 ## Writing the Helm chart
 
 `helm create` is the simplest way to create a Helm chart for beginners. It is also recommended as a best practice by the Helm developers as it guarantees you'll be starting your project off with the correct chart structure.
 
 ```shell
-helm create from-docker-to-kubernetes-chart
+helm create app-chart
 ```
 
-You should now have a directory `from-docker-to-kubernetes-chart`. This directory is the Helm chart for your project. The chart is also functional. The chart describes a simple `nginx` server and can be installed to the cluster with
+If you just ran this command you should now have a directory called `app-chart`. This directory is the Helm chart for your project. The chart is also functional out of the box (though not very interesting yet), it chart describes a simple `nginx` server and can be installed to the cluster with
 
 ```shell
-helm install --name example ./from-docker-to-kubernetes-chart --set service.type=NodePort
+helm install --name example ./app-chart --set service.type=NodePort
 ```
 
 You can verify that the installation is working by running the following command in your terminal
@@ -77,12 +73,12 @@ So far, this was pretty easy.
 
 ## Customizing the chart to your project
 
-So how do we customize this default chart to run our flask app. It turns out there are only 2 things we need to add to the chart.
+So how do we customize this default chart to run our flask app. It turns out there are only 2 things we need to add to a single file to complete the chart.
 
 1. Specify our custom docker image.
 2. Specify which port inside the container kubernetes should listen to.
 
-To make the first change we edit the lines in `from-docker-to-kubernetes-chart/values.yml` from
+To make the first change we edit the lines in `app-chart/values.yml` from
 
 ```yml
 image:
@@ -112,10 +108,45 @@ Now we can install our app with
 helm install --name from-docker-to-kubernetes ./from-docker-to-kubernetes-chart --set service.type=NodePort
 ```
 
+The following `git diff` shows all changes made to the default chart created with `helm create`.
+
+
+```python
+!git diff app-chart
+```
+
+    [1mdiff --git a/app-chart/values.yaml b/app-chart/values.yaml[m
+    [1mindex 6d0f0c7..b8cff2a 100644[m
+    [1m--- a/app-chart/values.yaml[m
+    [1m+++ b/app-chart/values.yaml[m
+    [36m@@ -5,13 +5,17 @@[m
+     replicaCount: 1[m
+     [m
+     image:[m
+    [31m-  repository: nginx[m
+    [32m+[m[32m  repository: from-docker-to-kubernetes[m
+       tag: stable[m
+       pullPolicy: IfNotPresent[m
+     [m
+     service:[m
+       type: ClusterIP[m
+    [31m-  port: 80[m
+    [32m+[m[32m  port: 5000[m
+    [32m+[m
+    [32m+[m[32mcontainer:[m
+    [32m+[m[32m  port: 5000[m
+    [32m+[m[32m  aliveEndpoint: /alive[m
+     [m
+     ingress:[m
+       enabled: false[m
+
+
+And that's it! We can now install and run this Helm chart using the same commands as above and see our app working in the browser.
+
 ## Troubleshooting
 
 In this case we have properly installed our flask app. However we overlooked a key element that tripped me up when I was writing my first helm chart.
 
-In `templates/deployments.yml` "liveness" and "readiness" probes are defined. These are descriptions of how to ping the service to know if it is "alive." By default the example in `helm create` simply makes an HTTP GET request to the '/'. If it returns 200 the checks are considered successful. If not, the service will continually be restarted until the check passes. It happened to be that the image I used when first trying out `helm` doesn't define a root endpoint which caused both probes to fail.
+In `templates/deployments.yml` "liveness" and "readiness" probes are defined. These are descriptions of how to ping the service to know if it is "alive." By default the example in `helm create` simply makes an HTTP GET request to the root route - '/'. If it returns 200 the checks are considered successful. If not, the service will continually be restarted until the check passes. It happened to be that the image I used when first trying out `helm` doesn't define a root endpoint which caused both probes to fail.
 
 Fortunately I was able to figure out the issue by reading [this excellent blog post](https://kukulinski.com/10-most-common-reasons-kubernetes-deployments-fail-part-1/) which has greate trouble shooting advice for working with kubernetes.

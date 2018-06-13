@@ -81,33 +81,21 @@ model = make_pipeline(DataMonitorTransformer(), DecisionTreeClassifier())
 logging.basicConfig()
 features = [c for c in df1.columns if c.startswith('feature')]
 response = 'response'
-model.fit(df1[features], df1[response])
+_ = model.fit(df1[features], df1[response])
 ```
 
-
-
-
-    Pipeline(memory=None,
-         steps=[('datamonitortransformer', <monitoring.DataMonitorTransformer object at 0x113b4f0f0>), ('decisiontreeclassifier', DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
-                max_features=None, max_leaf_nodes=None,
-                min_impurity_decrease=0.0, min_impurity_split=None,
-                min_samples_leaf=1, min_samples_split=2,
-                min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-                splitter='best'))])
-
-
+Now that we've fit the model, the instance of `DataMonitorTransformer` is ready to validate data when we predict. Predicting on the data in `df2` we see logs warning us that we are predicting on values we haven't seen before.
 
 
 ```python
 _ = model.predict(df2[features])
 ```
 
-    WARNING:monitoring:found 10 runtime value(s) for feature "feature4" greater than trained max.
-    WARNING:monitoring:found 13 runtime value(s) for feature "feature5" greater than trained max.
-    WARNING:monitoring:found 8 runtime value(s) for feature "feature4" less than trained min.
-    WARNING:monitoring:found 4 runtime value(s) for feature "feature5" less than trained min.
-    WARNING:monitoring:found 32 categorical runtime value(s) for feature "feature1" not in training data: ['6', '5'].
-    WARNING:monitoring:found 12 categorical runtime value(s) for feature "feature3" not in training data: ['-1'].
+    WARNING:monitoring:found 15 runtime value(s) for feature "feature4" greater than trained max.
+    WARNING:monitoring:found 19 runtime value(s) for feature "feature5" greater than trained max.
+    WARNING:monitoring:found 7 runtime value(s) for feature "feature4" less than trained min.
+    WARNING:monitoring:found 31 categorical runtime value(s) for feature "feature1" not in training data: ['5', '6'].
+    WARNING:monitoring:found 17 categorical runtime value(s) for feature "feature3" not in training data: ['-1'].
 
 
 
@@ -120,13 +108,13 @@ data_monitor.schema
 
 
 
-    {'categoricals': {'feature1': array(['2', '4', '0', '1', '3'], dtype=object),
-      'feature2': array(['1', '4', '2', '3', '0'], dtype=object),
-      'feature3': array(['0', '4', '1', '3', '2'], dtype=object)},
-     'numeric': {'maxes': feature4    99.993588
-      feature5    99.857136
-      dtype: float64, 'mins': feature4     0.813071
-      feature5    50.784090
+    {'categoricals': {'feature1': array(['1', '2', '0', '4', '3'], dtype=object),
+      'feature2': array(['3', '2', '0', '4', '1'], dtype=object),
+      'feature3': array(['0', '4', '3', '1', '2'], dtype=object)},
+     'numeric': {'maxes': feature4    99.939672
+      feature5    99.994736
+      dtype: float64, 'mins': feature4     0.880318
+      feature5    50.103870
       dtype: float64}}
 
 

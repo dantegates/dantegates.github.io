@@ -18,7 +18,7 @@ If you are training and deploying models with `tensorflow` stop reading this blo
 The entire [tensorflow extended paper](https://github.com/TensorLab/tensorfx) is worth reading, but the relevant sections on data validation/monitoring can be summarized in two points.
 
 1. Keep validations simple, that is, only check simple facts about the data. Histograms suffice for numeric features and a list of unique values along with their prevalence will do for categorical features.
-- Keep insights actionable. If a categorical value is found at run time that was not in the training data the appropriate response should be clear. If the value is `state=Pennsylvania` when the model was trained on the value `state=PA` then it is clear that there is an integration issue that needs to be addressed. On the other hand if the state initials were used during training then we're seeing a new part of the population at run time that we didn't have at train time and it's likely time to retrain the model.
+2. Keep insights actionable. If a categorical value is found at run time that was not in the training data the appropriate response should be clear. If the value is `state=Pennsylvania` when the model was trained on the value `state=PA` then it is clear that there is an integration issue that needs to be addressed. On the other hand if the state initials were used during training then we're seeing a new part of the population at run time that we didn't have at train time and it's likely time to retrain the model.
 
 To further summarize, as a first pass, simply checking the mins and maxes of numeric features and checking for new values of categorical features is a good place to start.
 

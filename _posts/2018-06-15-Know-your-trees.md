@@ -95,7 +95,7 @@ clf2.fit(Xt, y)
 
 
 
-# Limited Extrapolation
+# Extrapolation
 
 We've covered how to fit a decision tree. Now let's discuss how trees make predictions. At some point during training the algorithm above will terminate. This usually happens when (1) no more splits can be made or (2) all possible splits that remain fail to yield a score from the objective function above a certain threshold.
 
@@ -103,7 +103,7 @@ At predict time, we run a feature vector through the decision trees rules until 
 
 This means trees can only predict values that were seen at train time. This is usually the case for classification. However for regression, many models are capable of predictive values lower or higher than what was seen at train time.
 
-If you think that you may need to predict values at run time above or below what was seen at train time and you want to use a tree based method, you may be able to get away with predicting an increase or decrease in the response value.
+That said, if you think that you may need to predict values at run time above or below what was seen at train time you don't necessarily need to rule out using trees. In that past I've had success using trees in such situations by reframing the problem using [differencing](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing).
 
 # Non linearity
 
@@ -195,7 +195,7 @@ For example if two features are highly correlated, it may be more or less arbitr
 
 Also, feature importance is the total importance of a feature for all splits. However, binary features can only be split on once while numeric features may be split on several times.
 
-# Trees scale well
+# Scalability
 
 For a single instance trees have a prediction time complexity of $\text{log}_{2}(d)$ where $d$ is the depth of the tree, i.e. number of splits learned. Note that if there are $n$ training examples in your data set then $d<n$ as trees are incapable of predicting on more than one example at a time (however the algorithm itself is easily parallelizable). Additionally most implementations include a parameter for setting the maximum depth of the tree allowing you to have control over the time complexity at both train and predict time.
 

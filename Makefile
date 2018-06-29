@@ -11,3 +11,5 @@ build-watch:
 clean:
 	rm -r vendor
 	rm build.sh
+
+.PHONY: build

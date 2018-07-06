@@ -34,7 +34,7 @@ model = keras.models.Sequential([
 ])
 ```
 
-Note that the output of the middle layer `Dense(250)` is the latent representation, or code.
+Note that the output of the middle layer `Dense(64)` is the latent representation, or code.
 
 ## The intuition
 

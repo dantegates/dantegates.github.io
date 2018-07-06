@@ -30,10 +30,10 @@ If you've worked in data science for any length of time, you've undoubtedly tran
 
 `DictVectorizer` has two main blemishes (as related to a specific but common use case, see disclaimer below).
 
-1. Transforming large `DataFrame`s is **slow**.
-2. Transforming large `DataFrame`s sometimes results in `MemoryError`s.
-2. The `.fit()` and `.transform()` signatures do not accept `DataFrame`s. To use `DictVectorizer`
-    a `DataFrame` must first be converted to a `list` of `dict`s (which is also slow), e.g.
+1. Transforming large `DataFrames` is **slow**.
+2. Transforming large `DataFrames` sometimes results in `MemoryErrors`.
+2. The `.fit()` and `.transform()` signatures do not accept `DataFrames`. To use `DictVectorizer`
+    a `DataFrame` must first be converted to a `list` of `dicts` (which is also slow), e.g.
     
 ```python
     DictVectorizer().fit_transform(X.to_dict('records'))
@@ -45,13 +45,13 @@ Before we get started let's compare the speed of `DictVectorizer` with `pandas.g
 
 ## An improved one hot encoder
 
-Our improved implementation will mimic the `DictVectorizer` interface (except that it accepts `DataFrame`s as input) by wrapping the super fast `pandas.get_dummies()` with a subclass of `sklearn.base.TransformerMixin`. Subclassing the `TransformerMixin` makes it easy for our class to integrate with popular `sklearn` paradigms such as their `Pipeline`s.
+Our improved implementation will mimic the `DictVectorizer` interface (except that it accepts `DataFrames` as input) by wrapping the super fast `pandas.get_dummies()` with a subclass of `sklearn.base.TransformerMixin`. Subclassing the `TransformerMixin` makes it easy for our class to integrate with popular `sklearn` paradigms such as their `Pipeline`s.
 
 ## Disclaimer
 
 Note that we are specifically comparing the speed of `DictVectorizer` for the following use case only.
 
-1. We are starting with a `DataFrame` which must be converted to a list of `dict`s
+1. We are starting with a `DataFrame` which must be converted to a list of `dicts`
 2. We are only interested in dense output, e.g. `DictVectorizer(sparse=False)`
 
 # Time trials
@@ -87,7 +87,7 @@ _ = pd.get_dummies(df)
     Wall time: 5.12 s
 
 
-As we can see, `pandas.get_dummies()` is fast. Let's take a look at `DictVectorizer`s speed.
+As we can see, `pandas.get_dummies()` is fast. Let's take a look at `DictVectorizers` speed.
 
 
 ```python
@@ -165,7 +165,7 @@ get_dummies.fit_transform(df)
     Wall time: 9.53 s
 
 
-As we can see the GetDummies implentation has slowed down a bit from the original `pandas.get_dummes()` due to the overhead of making sure it handles train/test splits correctly, however its still super fast (and that overhead is dependent on the number of columns *not* rows, i.e. we don't have to worry about scaling `GetDummies` to larger `DataFrame`s).
+As we can see the GetDummies implentation has slowed down a bit from the original `pandas.get_dummes()` due to the overhead of making sure it handles train/test splits correctly, however its still super fast (and that overhead is dependent on the number of columns *not* rows, i.e. we don't have to worry about scaling `GetDummies` to larger `DataFrames`).
 
 Let's also take a look at some of its other features.
 

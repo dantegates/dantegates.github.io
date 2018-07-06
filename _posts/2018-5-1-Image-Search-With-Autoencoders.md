@@ -130,7 +130,7 @@ help(AutoEncoder.__init__)
         Args:
             input_dim (int): Dimension of the input.
             latent_dim (int): Dimension of the "latent representation" or code.
-            intermediate_dims (list): List of `int`s representing the
+            intermediate_dims (list): List of `ints` representing the
                 dimmension of the hidden layers up to, but not including, the
                 latent layer. See the example below.
             output_activation (str or object): The activation used on the final

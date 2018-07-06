@@ -29,7 +29,7 @@ So how do we integrate these monitoring checks into an `sklearn` workflow? If yo
 1. The monitoring mechanism needs to be present whenever the model is trained. This is satisfied by including an instance of our class in the pipeline.
 2. Similary, the monitoring mechanism must be present whenever the model is used to make predictions on new data. This also is satisfied by including an instance of our class in the pipeline.
 3. Instances of our class really do "fit" just as much as classes like [sklearn.preprocessing.Normalizer](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Normalizer.html)
-4. Our class fits in conceptually with the general idea of a "pipeline" regardless of `sklearn`s implementation that assumes pipelines only chain together transformers.
+4. Our class fits in conceptually with the general idea of a "pipeline" regardless of `sklearns` implementation that assumes pipelines only chain together transformers.
 
 Let's take a look at an example using some dummy data. In this example we'll see how a Transformer class that validates the min/maxes and categorical values works. If you want to see an example of implementing a transformer class see the file [monitoring.py]() or see my other post [A fast one hot encoder with sklearn and pandas](https://dantegates.github.io/A-Fast-One-Hot-Encoder/). I won't cover the details here because the implementation is trivial and boring.
 

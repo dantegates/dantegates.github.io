@@ -18,9 +18,7 @@ Things this post will not cover are:
 
 # Why Helm?
 
-Helm was introduced to standardize how Kubernetes applications are "packaged." The anology that the project uses is that Helm is to `yum` or `apt-get` as Helm charts (the data about your project that the `helm` executable consumes) are analogous to `rpm` or `deb` files.
-
-For the developer who wants to quickly get started with Kubernetes Helm is a great solution. There are many moving pieces and configurations to a Kubernetes app and Helm provides a great way of encapsulating and version controlling all of these details. In this way it is a bit like `docker-compose`, i.e. a single place where you can define your configurations and coordinate services.
+Helm was introduced to standardize how Kubernetes applications are "packaged." The anology that the project uses is that Helm is to `yum` or `apt-get` as Helm charts (the data about your project that the `helm` executable consumes) are analogous to `rpm` or `deb` files. I find this analogy is useful, but also sells Helm short a bit. In addition to being able to say `helm install` the official `redis` chart, Helm is also a means to encapsulating and version controlling the many moving pieces and configurations required to get an app running on Kubernetes. In this way it is also a bit like `docker-compose`, i.e. a single place where you can define your configurations and coordinate services. For the developer who wants to quickly get started with Kubernetes Helm is a great solution.
 
 # Prerequisites
 

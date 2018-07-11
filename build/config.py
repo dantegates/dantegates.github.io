@@ -9,4 +9,5 @@ filenames = [
     'image-search/image-search.ipynb',
     'know-your-trees/Know-your-trees.ipynb',
     'monitoring-ml-models/Monitoring-machine-learning-models-in-production.ipynb',
+    'attention-is-all-you-need-overview/An overview of Attention Is All You Need.ipynb',
 ]

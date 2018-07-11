@@ -46,7 +46,12 @@ class IpynbPost(Post):
         with open(ipynb_file) as f:
             nb = nbformat.reads(f.read(), as_version=4)
         exporter = MarkdownExporter()
-        (body, resources) = exporter.from_notebook_node(nb)
+        body, resources = exporter.from_notebook_node(nb)
+        body = body.strip()
+        print(body)
+        if body.startswith('#'):
+            # if md file starts with title remove it
+            body = '\n'.join(body.split('\n')[1:])
         return body, resources['outputs']
 
     @staticmethod

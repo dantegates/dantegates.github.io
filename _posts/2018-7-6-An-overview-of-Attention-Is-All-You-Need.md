@@ -4,8 +4,9 @@ mathjax: true
 title: An overview of Attention Is All You Need
 github: https://github.com/dantegates/attention-is-all-you-need-overview.git
 creation_date: 2018-07-06 13:31:02
-last_modified: 2018-07-08 18:51:58
+last_modified: 2018-07-11 16:35:43
 ---
+
 
 About a year ago now a paper called [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf) (in this post sometimes referred to as simply "the paper") introduced an architecture called the Transformer model for sequence to sequence problems that achieved state of the art results in machine translation. The name of the paper is a reference to the fact that the Transformer leverages the widely successful attention mechanism within a more traditional "feed forward" framework without using recurrence or convolutions.
 
@@ -95,6 +96,69 @@ $$
 $$
 
 The authors also point out that learned positional embeddings performed just as well, however this particular scheme should allow the model to generalize to sequences of greater length than seen at train time.
+
+We can calculate this efficiently using vectorized operations as follows and take a look at what these positional encodings look like.
+
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+X = np.ones((200, 512))
+d_model = 512
+rows, cols = np.indices(X.shape)
+numerator = np.where(cols % 2, np.cos(rows), np.sin(rows))
+denominator = (10_000**((2*cols)/d_model))
+encodings = numerator / denominator
+# sinusoids along each dimmension of the encoding
+for encoding in encodings.T[::50]:
+    plt.plot(encoding)
+```
+
+
+![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_13_0.png" | asbolute_url }})
+
+
+It's fairly straightforward to calculate this in numpy. The key to implementing this in keras is to use values from `K.shape` to calculate the sequence dimension. In my implementation of the Transformer I implemented positional encoding as a class, however it's illustrative to take a look at the implementation with a more simple `keras.layers.Lambda` instance.
+
+
+```python
+from keras.models import Model
+from keras.layers import Input, Lambda
+from keras import backend as K
+import matplotlib.pyplot as plt
+import numpy as np
+
+def indices(dim1, dim2):
+    rows = K.arange(dim1)
+    cols = K.arange(dim2)
+    col_indices = K.reshape(K.tile(cols, [dim1]), (dim1, dim2))
+    row_indices = K.transpose(K.reshape(K.tile(rows, [dim2]), (dim2, dim1)))
+    return row_indices, col_indices
+
+def positional_encoding(inputs):
+    sequence_dim = K.shape(inputs)[1]
+    d_model_var = K.shape(inputs)[2]
+    d_model_int = K.int_shape(inputs)[2]
+    rows, cols = indices(sequence_dim, d_model_var)
+    rows, cols = K.cast(rows, dtype=K.floatx()), K.cast(cols, dtype=K.floatx())
+    numerator = K.switch(cols % 2, K.cos(rows), K.sin(rows))
+    denominator = 10_000**((2*cols)/d_model_int)
+    return inputs + (numerator / denominator)
+
+input_ = Input((None, 512))
+PositionalEncoding = Lambda(positional_encoding, output_shape=lambda x: x)
+model = Model(inputs=[input_], outputs=[PositionalEncoding(input_)])
+encodings = model.predict(np.zeros((1, 200, 512)))
+for encoding in encodings.T[::50]:
+    plt.plot(encoding)
+```
+
+    Using TensorFlow backend.
+
+
+
+![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_15_1.png" | asbolute_url }})
+
 
 # Attention
 
@@ -241,11 +305,9 @@ class AttentionHead(Layer):
         return K.batch_dot(x, v_p)
 
     def mask(self, x):
-        shape = K.int_shape(x)
-        mask = np.zeros((shape[1], shape[1]))
-        invalid_indices = np.triu_indices(shape[1], 1)
-        mask[invalid_indices] = 1e-15
-        mask = K.variable(mask)
+        shape = K.shape(x)
+        mask = K.zeros((shape[1], shape[2])) + (-1*1e15)
+        mask = tf.matrix_band_part(mask, 0, -1)
         return x + mask
 
     def compute_output_shape(self, input_shape):
@@ -258,7 +320,7 @@ Now we understand multi-head attention. Great. But how does it fit into the Tran
 
 Multi-head attention fits into the transformer as follows. *In the encoder* and the *first sublayer of the decoder* the Transformer applies something called self-attention. That is, $Q=K=V$, which in this case happens to be the encoder/decoder inputs - sequences of word vectors of shape $n\times d_{model}$.
 
-In the *second sublayer of the decoder* $Q=K=\text{encoder output}$ and $V=\text{output of decoder sublayer 1}$.
+In the second sublayer of the decoder, self-attention is modified such that $Q=\textit{output of decoder sublayer 1}$ and $K=V=\textit{encoder output}$.
 
 ## Masking
 
@@ -314,12 +376,12 @@ plt.plot(lr_schedule(np.arange(1, 20_000), d_model=512, warmup_steps=4000))
 
 
 
-    [<matplotlib.lines.Line2D at 0x10c26c518>]
+    [<matplotlib.lines.Line2D at 0x10e3af7f0>]
 
 
 
 
-![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_28_1.png" | asbolute_url }})
+![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_31_1.png" | asbolute_url }})
 
 
 Note that the learning rate is determined by

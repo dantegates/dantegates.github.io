@@ -327,7 +327,7 @@ In the second sublayer of the decoder, self-attention is modified such that $Q=\
 
 Remember above how we noted that the Transformer is an autoregressive model? This has implications for how we implement self-attention in the decoder.
 
-At train time we know all tokens of the target sequence. However at run time we only know the tokens of the target sequence that we have already generated. This means that if we aren't careful with how we implement the product $QK$ information from later tokens in the sequence will "leak" into earlier positions. To prevent this from happening we mask $K$ by setting all values above the diagonal to a really small number - which pushes the corresponding dot products to 0 in the softmax.
+At train time we know all tokens of the target sequence. However at run time we only know the tokens of the target sequence that we have already generated. This means that if we aren't careful with how we implement the product $QK$ information from later tokens in the sequence will "leak" into earlier positions. To prevent this from happening we mask $K$ by setting all values above the diagonal to a very negative number - which pushes the corresponding dot products to 0 in the softmax.
 
 # Other techniques used in the architecture
 

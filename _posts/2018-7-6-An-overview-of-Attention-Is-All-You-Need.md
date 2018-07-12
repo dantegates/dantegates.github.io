@@ -306,9 +306,10 @@ class AttentionHead(Layer):
 
     def mask(self, x):
         shape = K.shape(x)
-        mask = K.zeros((shape[1], shape[2])) + (-1*1e15)
-        mask = tf.matrix_band_part(mask, 0, -1)
-        return x + mask
+        mask = K.zeros((shape[1], shape[2])) + (-1e15)
+        mask = tf.matrix_band_part(mask, 0, -1)  # upper triangle of `mask`
+        mask -= tf.matrix_band_part(mask, 0, 0)  # remove diagonal
+        return x + mask    
 
     def compute_output_shape(self, input_shape):
         ...

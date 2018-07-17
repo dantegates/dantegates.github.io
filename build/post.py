@@ -48,7 +48,6 @@ class IpynbPost(Post):
         exporter = MarkdownExporter()
         body, resources = exporter.from_notebook_node(nb)
         body = body.strip()
-        print(body)
         if body.startswith('#'):
             # if md file starts with title remove it
             body = '\n'.join(body.split('\n')[1:])

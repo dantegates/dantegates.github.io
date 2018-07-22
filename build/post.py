@@ -6,14 +6,18 @@ from nbconvert import MarkdownExporter
 import nbformat
 
 
+POSTS = tuple()
+
+
 class Post:
     def __init__(self, *, content, static_files, date_created, date_modified,
-                 title, github_repo):
+                 title, github_repo, tags=None):
         self.static_files = static_files
         self.date_created = date_created
         self.date_modified = date_modified
         self.title = title
         self.github_repo = github_repo
+        self.tags = [] if tags is None else tags
         self.content = f'{self._front_matter}\n\n{content}'
 
     @property

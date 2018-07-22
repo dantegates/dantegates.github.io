@@ -1,6 +1,6 @@
 import os
 
-from .post import IpynbPost
+from .config import POSTS
 
 
 def build(config):

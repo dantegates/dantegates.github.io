@@ -1,7 +1,3 @@
-from datetime import datetime
-import os
-import subprocess as sp
-
 from nbconvert import MarkdownExporter
 import nbformat
 
@@ -17,7 +13,7 @@ class Post:
         self.date_modified = date_modified
         self.title = title
         self.github_repo = github_repo
-        self.tags = [] if tags is None else tags
+        self._tags = [] if tags is None else tags
         self.content = f'{self._front_matter}\n\n{content}'
 
     @property
@@ -30,20 +26,25 @@ class Post:
             f'github: {self.github_repo}',
             f'creation_date: {self.date_created}',
             f'last_modified: {self.date_modified}',
+            f'tags: {self.tags}'
             '---',
         ))
+
+    @property
+    def tags(self):
+        if self._tags is not None:
+            nl = '\n'
+            tags = f'{nl}  - {f"{nl}  - ".join(self._tags)}{nl}'
+        else:
+            tags = ''
+        return tags
 
 
 class IpynbPost(Post):
     @classmethod
-    def from_file(cls, ipynb_file):
+    def from_file(cls, ipynb_file, **kwargs):
         content, static_files = cls.load_file(ipynb_file)
-        github_repo = cls.get_github_repo(ipynb_file)
-        date_created, date_modified = cls.get_dates(ipynb_file)
-        title = cls.get_title(ipynb_file)
-        return cls(content=content, static_files=static_files,
-            github_repo=github_repo, date_created=date_created,
-            date_modified=date_modified, title=title)
+        return cls(content=content, static_files=static_files, **kwargs)
 
     @staticmethod
     def load_file(ipynb_file):
@@ -56,24 +57,3 @@ class IpynbPost(Post):
             # if md file starts with title remove it
             body = '\n'.join(body.split('\n')[1:])
         return body, resources['outputs']
-
-    @staticmethod
-    def get_dates(ipynb_file):
-        stat = os.stat(ipynb_file)
-        date_created = datetime.fromtimestamp(stat.st_birthtime)
-        date_modified = datetime.fromtimestamp(stat.st_mtime)
-        return date_created, date_modified
-
-    @staticmethod
-    def get_github_repo(ipynb_file):
-        try:
-            current = os.getcwd()
-            os.chdir(os.path.dirname(ipynb_file))
-            url = sp.check_output(['git', 'remote', 'get-url', 'origin'])
-        finally:
-            os.chdir(current)
-        return url.decode('utf-8').strip()
-
-    @staticmethod
-    def get_title(ipynb_file):
-        return os.path.basename(ipynb_file).split('.ipynb')[0].replace('-', ' ')

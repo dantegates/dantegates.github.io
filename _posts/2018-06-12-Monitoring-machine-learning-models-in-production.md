@@ -2,7 +2,7 @@
 layout: post
 mathjax: true
 title: Monitoring Machine Learning Models in Production
-github: https://github.com/dantegates/monitoring-ml-models
+github: https://github.com/dantegates/monitoring-ml
 creation_date: 2018-06-12
 last_modified: 2018-06-12 20:44:32
 tags: 

@@ -73,7 +73,8 @@ Caveat: The Transformer makes use of many ideas that could be covered in an enti
 
 As mentioned above the transformer follows the encoder/decoder pattern. This is explained best with the following picture from the paper.
 
-<img src="./static/transformer-architecture.png" alt="drawing" width="400px"/>
+
+<img src="{{ "/assets/an-overview-of-attention-is-all-you-need/transformer-architecture.png" | asbolute_url }}" alt="drawing" width="400px"/>
 
 Here the left side is the encoder and the right side is the decoder. In the case of translation the input to the encoder is the sentence to translate (technically the sentence converted to a sequence of word vectors) and the input to the decoder is the target sentence (shifted right by one token, this is covered more in the section on Masking).
 

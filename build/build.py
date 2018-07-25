@@ -50,7 +50,7 @@ class BayesianOnlineLearning(PostConfig):
 
 
 class UnderstandingPriors(PostConfig):
-    title = 'A brief primer on conjugate primers'
+    title = 'A brief primer on conjugate priors'
     date_created = '2018-05-11'
     filename = 'bayesian-online-learning/a-brief-primer-on-conjugate-priors.ipynb'
     tags = ['bayesian', 'conjugate priors', 'online learning']

@@ -92,7 +92,7 @@ class PostConfig(metaclass=PostConfigMeta):
     parent_directory = '../'
     post_type = IpynbPost
     extension = 'md'
-    rebuild = True
+    rebuild = False
 
     def __init_subclass__(cls):
         global POSTS

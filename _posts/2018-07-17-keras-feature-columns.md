@@ -1,10 +1,14 @@
 ---
 layout: post
 mathjax: true
-title: keras feature columns
-github: https://github.com/dantegates/keras-feature-columns.git
-creation_date: 2018-07-17 16:33:31
+title: Keras Feature Columns
+github: https://github.com/dantegates/keras-feature-columns
+creation_date: 2018-07-17
 last_modified: 2018-07-18 16:12:41
+tags: 
+  - keras
+  - tensorflow
+  - opinion
 ---
 
 

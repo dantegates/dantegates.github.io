@@ -1,9 +1,16 @@
 ---
 layout: post
-title: Image Search With Autoencoders
 mathjax: true
+title: Image search with autoencoders
 github: https://github.com/dantegates/image-search
+creation_date: 2018-05-01
+last_modified: 2018-07-25 15:22:15
+tags: 
+  - image search
+  - autoencoders
+  - keras
 ---
+
 
 Autoencoders are an architecture that have a variety of applications from [denoising data](http://www.jmlr.org/papers/volume11/vincent10a/vincent10a.pdf) to [generative models](http://kvfrans.com/variational-autoencoders-explained/).
 
@@ -130,7 +137,7 @@ help(AutoEncoder.__init__)
         Args:
             input_dim (int): Dimension of the input.
             latent_dim (int): Dimension of the "latent representation" or code.
-            intermediate_dims (list): List of `ints` representing the
+            intermediate_dims (list): List of `int`s representing the
                 dimmension of the hidden layers up to, but not including, the
                 latent layer. See the example below.
             output_activation (str or object): The activation used on the final
@@ -307,7 +314,7 @@ show_side_by_side(test_sample, reconstructions)
 ```
 
 
-![reconstructions]({{"/assets/image-search/image-search_31_0.png" | absolute_url}})
+![png]({{ "/assets/image-search-with-autoencoders/output_31_0.png" | asbolute_url }})
 
 
 ## Linear search
@@ -329,7 +336,7 @@ kvps = [(code, image) for code, image in zip(encoder.predict(X_train), X_train)]
 %%time
 import random
 # pick on image from test set
-QUERY_IMG = random.choice(X_train).reshape(1, 784)
+q = random.choice(X_train).reshape(1, 784)
 
 # retrieve similar images
 query_code = encoder.predict(QUERY_IMG)
@@ -342,7 +349,7 @@ show_side_by_side(QUERY_IMG, top_matches)
 ```
 
 
-![linear search]({{ "/assets/image-search/image-search_35_0.png" | absolute_url }})
+![png]({{ "/assets/image-search-with-autoencoders/output_35_0.png" | asbolute_url }})
 
 
     CPU times: user 1.31 s, sys: 13.9 ms, total: 1.33 s
@@ -398,12 +405,12 @@ db.describe()
 
 ```python
 %%time
-res = db.search(QUERY_IMG, threshold=1)
-show_side_by_side(QUERY_IMG, res)
+res = db.search(q, threshold=1)
+show_side_by_side(q, res)
 ```
 
 
-![semantic hash search]({{ "/assets/image-search/image-search_41_0.png" | absolute_url }})
+![png]({{ "/assets/image-search-with-autoencoders/output_41_0.png" | asbolute_url }})
 
 
     CPU times: user 404 ms, sys: 8.04 ms, total: 412 ms

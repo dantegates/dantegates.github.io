@@ -1,11 +1,18 @@
 ---
 layout: post
-title: Know Your Trees
 mathjax: true
+title: Know Your Trees
 github: https://github.com/dantegates/know-your-trees
+creation_date: 2018-06-15
+last_modified: 2018-06-16 11:54:29
+tags: 
+  - random forest
+  - decision tree
+  - trees
 ---
 
-Tree based algorithms are among the most widely used algorithms in machine learning. This popularity is due largely to tree based algorithms being capable of achieving good results "out of the box", that is, with little tuning or data processing. Additionally tree based methods are versitile. They can be applied to both classification and regression problems and easily support mixing categorical and numeric values. Additionally algorithms such as the Random Forest inherits all of these benefits and are robust against overfitting making it an ideal candidate for almost any problem. This post will take a look at 8 properties of Decision Trees and offer practical insights on how to use these properties to get the most out of trees.
+
+Tree based algorithms are among the most widely used algorithms in machine learning. This popularity is due largely to tree based algorithms being capable of achieving good results "out of the box", that is, with little tuning or data processing. Additionally tree based methods are versitile. They can be applied to both classification and regression problems and easily support mixing categorical and numeric values. Additionally algorithms such as the Random Forest inherits all of these benefits and are robust against overfitting making it an ideal candidate for almost any problem. This post will take a look at 7 properties of Decision Trees and offer practical insights on how to use these properties to get the most out of trees.
 
 Note: this post is probably most suited to someone who already understands the basic idea of a decision tree and has used trees in practice before. However if you've been doing data science for a while it's unlikely that you will discover anything new from this post.
 
@@ -126,7 +133,7 @@ plt.plot(regressor.predict(X_regression))
 
 
 
-![png]({{"/assets/know-your-trees/Know-your-trees_17_1.png" | absolute_url}})
+![png]({{ "/assets/know-your-trees/output_17_1.png" | asbolute_url }})
 
 
 # Interpretability
@@ -152,7 +159,8 @@ graphviz.Source(dot_graph)
 
 
 
-![svg]({{"/assets/know-your-trees/Know-your-trees_21_0.svg"|absolute_url}})
+
+![svg]({{ "/assets/know-your-trees/output_21_0.svg" | asbolute_url }})
 
 
 
@@ -241,7 +249,7 @@ _ = plt.errorbar(range(10, 4000, 100), predict_times, yerr=predict_times_sd)
 ```
 
 
-![png]({{"/assets/know-your-trees/Know-your-trees_29_0.png" | absolute_url}})
+![png]({{ "/assets/know-your-trees/output_29_0.png" | asbolute_url }})
 
 
 # Feature interactions

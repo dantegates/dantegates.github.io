@@ -1,9 +1,16 @@
 ---
 layout: post
-title: From Docker to Kubernetes with Helm
 mathjax: true
+title: From Docker to Kubernetes
 github: https://github.com/dantegates/from-docker-to-kubernetes
+creation_date: 2018-05-24
+last_modified: 2018-06-02 16:34:39
+tags: 
+  - docker
+  - kubernetes
+  - helm
 ---
+
 
 Docker has been a huge win for deploying software across the board and in particular for deploying machine learning models from my own experience. Perhaps you've already adopted this practice but wonder how to take the next step and deploy your image at scale via Kubernetes. If so this post is for you.
 
@@ -18,7 +25,9 @@ Things this post will not cover are:
 
 # Why Helm?
 
-Helm was introduced to standardize how Kubernetes applications are "packaged." The anology that the project uses is that Helm is to `yum` or `apt-get` as Helm charts (the data about your project that the `helm` executable consumes) are analogous to `rpm` or `deb` files. I find this analogy is useful, but also sells Helm short a bit. In addition to being able to say `helm install` the official `redis` chart, Helm is also a means to encapsulating and version controlling the many moving pieces and configurations required to get an app running on Kubernetes. In this way it is also a bit like `docker-compose`, i.e. a single place where you can define your configurations and coordinate services. For the developer who wants to quickly get started with Kubernetes Helm is a great solution.
+Helm was introduced to standardize how Kubernetes applications are "packaged." The anology that the project uses is that Helm is to `yum` or `apt-get` as Helm charts (the data about your project that the `helm` executable consumes) are analogous to `rpm` or `deb` files.
+
+For the developer who wants to quickly get started with Kubernetes Helm is a great solution. There are many moving pieces and configurations to a Kubernetes app and Helm provides a great way of encapsulating and version controlling all of these details. In this way it is a bit like `docker-compose`, i.e. a single place where you can define your configurations and coordinate services.
 
 # Prerequisites
 
@@ -113,15 +122,15 @@ helm install --name from-docker-to-kubernetes ./from-docker-to-kubernetes-chart 
 The following `git diff` shows all changes made to the default chart created with `helm create`.
 
 
-```shell
-git diff --no-color app-chart
+```python
+!git diff --no-color app-chart
 ```
 
     diff --git a/app-chart/values.yaml b/app-chart/values.yaml
-    index 6d0f0c7..b8cff2a 100644
+    index 6d0f0c7..9fd69ab 100644
     --- a/app-chart/values.yaml
     +++ b/app-chart/values.yaml
-    @@ -5,13 +5,17 @@
+    @@ -5,13 +5,16 @@
      replicaCount: 1
      
      image:

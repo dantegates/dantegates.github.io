@@ -1,15 +1,22 @@
 ---
 layout: post
-title: A fast one hot encoder with sklearn and pandas
 mathjax: true
+title: A fast one hot encoder with sklearn and pandas
 github: https://github.com/dantegates/fast-one-hot-encoder
+creation_date: 2018-05-04
+last_modified: 2018-07-25 15:58:09
+tags: 
+  - one hot encoder
+  - sklearn
+  - pandas
 ---
+
 
 If you've worked in data science for any length of time, you've undoubtedly transformed your data into a one hot encoded format before. In this post we'll explore implementing a *fast* one hot encoder with  [scikit-learn](http://scikit-learn.org/stable/) and [pandas](https://pandas.pydata.org/).
 
 # sklearn's one hot encoders
 
-`sklearn` has implemented several classes for one hot encoding data from various formats (`DictVectorizer`, `OneHotEncoder` and `CategoricalEncoder` - not in current release). In this post we'll compare our implementation to `DictVectorizer` which is the most natural for working with `pandas.DataFrame`s.
+`sklearn` has implemented several classes for one hot encoding data from various formats (`DictVectorizer`, `OneHotEncoder` and `CategoricalEncoder` - not in current release). In this post we'll compare our implementation to `DictVectorizer` which is the most natural for working with `pandas.DataFrames`.
 
 ## The pros of DictVectorizer
 
@@ -33,7 +40,7 @@ If you've worked in data science for any length of time, you've undoubtedly tran
 1. Transforming large `DataFrames` is **slow**.
 2. Transforming large `DataFrames` sometimes results in `MemoryErrors`.
 2. The `.fit()` and `.transform()` signatures do not accept `DataFrames`. To use `DictVectorizer`
-    a `DataFrame` must first be converted to a `list` of `dicts` (which is also slow), e.g.
+    a `DataFrame` must first be converted to a `list` of `dict`s (which is also slow), e.g.
     
 ```python
     DictVectorizer().fit_transform(X.to_dict('records'))
@@ -45,7 +52,7 @@ Before we get started let's compare the speed of `DictVectorizer` with `pandas.g
 
 ## An improved one hot encoder
 
-Our improved implementation will mimic the `DictVectorizer` interface (except that it accepts `DataFrames` as input) by wrapping the super fast `pandas.get_dummies()` with a subclass of `sklearn.base.TransformerMixin`. Subclassing the `TransformerMixin` makes it easy for our class to integrate with popular `sklearn` paradigms such as their `Pipeline`s.
+Our improved implementation will mimic the `DictVectorizer` interface (except that it accepts `DataFrames` as input) by wrapping the super fast `pandas.get_dummies()` with a subclass of `sklearn.base.TransformerMixin`. Subclassing the `TransformerMixin` makes it easy for our class to integrate with popular `sklearn` paradigms such as their `Pipelines`.
 
 ## Disclaimer
 

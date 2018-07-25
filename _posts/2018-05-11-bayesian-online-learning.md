@@ -1,16 +1,23 @@
 ---
 layout: post
-title: Bayesian online learning
 mathjax: true
+title: Bayesian Online Learning
 github: https://github.com/dantegates/bayesian-online-learning
+creation_date: 2018-05-11
+last_modified: 2018-05-11 15:37:35
+tags: 
+  - bayesian
+  - conjugate priors
+  - online learning
 ---
+
 
 This post explores the usefulness of conjugate priors in the context of online learning. Specifically we'll consider the following
 
 1. Making predictions in real time via a bayesian model with conjugate upates.
 2. Making predictions in real time via a bayesian model with conjugate updates when the underlying data "drifts."
 
-Disclaimer: this post assumes some familiarity with bayesian inference. My previous post [A brief primer on conjugate priors](https://dantegates.github.io/A-brief-primer-on-conjugate-priors/) covers enough details on conjugate priors to grasp this post. For a more in depth look at bayesian inference in general see this excellent [series of posts](http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/) by Jake Vanderplas.
+Disclaimer: this post assumes some familiarity with bayesian inference. My previous post [A brief primer on conjugate priors]() covers enough details on conjugate priors to grasp this post. For a more in depth look at bayesian inference in general see this excellent [series of posts](http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/) by Jake Vanderplas.
 
 ## Online learning
 
@@ -38,26 +45,28 @@ For example consider the problem of trying to predict the maximum number of visi
 We begin with modeling the number of requests per minute $D$
 
 $$
-\begin{align*}
+\begin{align}
 &D\sim \text{Poi}(\lambda) \\
 &\lambda\sim \Gamma(\alpha, \beta) \\
 &\alpha,\beta\text{ constants}
-\end{align*}
+\end{align}
 $$
 
-As explained in [my previous post](https://dantegates.github.io/A-brief-primer-on-conjugate-priors/) the gamma distribution is the conjugate prior of the Poisson distribution. Modeled as such the posterior probability of our model is
+As explained in [my previous post]() the gamma distribution is the conjugate prior of the Poisson distribution. Modeled as such the posterior probability of our model is
 
 $$
+\begin{equation}
 P(\lambda\ \vert \ D)\propto\Gamma(\alpha^{\prime},\beta^{\prime})
+\end{equation}
 $$
 
 where
 
 $$
-\begin{align*}
+\begin{align}
 &\alpha^{\prime}=\sum_{i=1}^{n}{x_{i}+\alpha} \\
 &\beta^{\prime}=n+\beta
-\end{align*}
+\end{align}
 $$
 
 Now that we have a model for the number of site visits per minute we can extract a prediction of the maximum number of visits as follows. First we find $\lambda_{MAP}=\text{median}(\Gamma(\alpha^{\prime},\beta^{\prime}))$. Then we use the CDF of $\text{Poi}(\lambda_{MAP})$ to find the value $k$ (number of requests per minute) such that $P(X<k\ \vert \ \lambda_{MAP})<0.99$ (an arbitrarily chosen threshold).
@@ -2339,6 +2348,11 @@ AAEAAAAATGF2ZjU4LjEyLjEwMA==
 ">
   Your browser does not support the video tag.
 </video>
+
+
+
+
+![png]({{ "/assets/bayesian-online-learning/output_16_1.png" | asbolute_url }})
 
 
 We can also calculate a simple evaluation of our model measuring how many observations were larger than our predicted max. Since we've simulated the data, it should line up with our confidence limit of 0.99.
@@ -19898,6 +19912,12 @@ AQAAAABMYXZmNTguMTIuMTAw
 ">
   Your browser does not support the video tag.
 </video>
+
+
+
+
+![png]({{ "/assets/bayesian-online-learning/output_25_1.png" | asbolute_url }})
+
 
 # Conclusion
 

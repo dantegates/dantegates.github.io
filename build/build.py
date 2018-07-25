@@ -30,7 +30,7 @@ class MonitoringML(PostConfig):
     date_created = '2018-06-12'
     filename = 'monitoring-ml-models/Monitoring-machine-learning-models-in-production.ipynb'
     tags = ['monitoring', 'logging', 'machine learning', 'production']
-    github_repo = 'monitoring-ml-models'
+    github_repo = 'monitoring-ml'
 
 
 class FromDockerToKubernetes(PostConfig):

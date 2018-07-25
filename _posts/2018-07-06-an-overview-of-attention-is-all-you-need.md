@@ -1,10 +1,15 @@
 ---
 layout: post
 mathjax: true
-title: An overview of Attention Is All You Need
-github: https://github.com/dantegates/attention-is-all-you-need-overview.git
-creation_date: 2018-07-06 13:31:02
+title: An Overview of Attention Is All You Need
+github: https://github.com/dantegates/attention-is-all-you-need
+creation_date: 2018-07-06
 last_modified: 2018-07-11 16:35:43
+tags: 
+  - attention is all you need
+  - attention
+  - keras
+  - NLP
 ---
 
 
@@ -68,7 +73,7 @@ Caveat: The Transformer makes use of many ideas that could be covered in an enti
 
 As mentioned above the transformer follows the encoder/decoder pattern. This is explained best with the following picture from the paper.
 
-<img src="{{"/assets/An-overview-of-Attention-Is-All-You-Need/transformer-architecture.png" | absolute_url }}" alt="drawing" width="400px"/>
+<img src="{{"/assets/an-overview-of-attention-is-all-you-need/transformer-architecture.png" | absolute_url }}" alt="drawing" width="400px"/>
 
 Here the left side is the encoder and the right side is the decoder. In the case of translation the input to the encoder is the sentence to translate (technically the sentence converted to a sequence of word vectors) and the input to the decoder is the target sentence (shifted right by one token, this is covered more in the section on Masking).
 
@@ -115,7 +120,7 @@ for encoding in encodings.T[::50]:
 ```
 
 
-![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_13_0.png" | asbolute_url }})
+![png]({{ "/assets/an-overview-of-attention-is-all-you-need/output_13_0.png" | asbolute_url }})
 
 
 It's fairly straightforward to calculate this in numpy. The key to implementing this in keras is to use values from `K.shape` to calculate the sequence dimension. In my implementation of the Transformer I implemented positional encoding as a class, however it's illustrative to take a look at the implementation with a more simple `keras.layers.Lambda` instance.
@@ -157,7 +162,7 @@ for encoding in encodings.T[::50]:
 
 
 
-![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_15_1.png" | asbolute_url }})
+![png]({{ "/assets/an-overview-of-attention-is-all-you-need/output_15_1.png" | asbolute_url }})
 
 
 # Attention
@@ -306,10 +311,9 @@ class AttentionHead(Layer):
 
     def mask(self, x):
         shape = K.shape(x)
-        mask = K.zeros((shape[1], shape[2])) + (-1e15)
-        mask = tf.matrix_band_part(mask, 0, -1)  # upper triangle of `mask`
-        mask -= tf.matrix_band_part(mask, 0, 0)  # remove diagonal
-        return x + mask    
+        mask = K.zeros((shape[1], shape[2])) + (-1*1e15)
+        mask = tf.matrix_band_part(mask, 0, -1)
+        return x + mask
 
     def compute_output_shape(self, input_shape):
         ...
@@ -327,7 +331,7 @@ In the second sublayer of the decoder, self-attention is modified such that $Q=\
 
 Remember above how we noted that the Transformer is an autoregressive model? This has implications for how we implement self-attention in the decoder.
 
-At train time we know all tokens of the target sequence. However at run time we only know the tokens of the target sequence that we have already generated. This means that if we aren't careful with how we implement the product $QK$ information from later tokens in the sequence will "leak" into earlier positions. To prevent this from happening we mask $K$ by setting all values above the diagonal to a very negative number - which pushes the corresponding dot products to 0 in the softmax.
+At train time we know all tokens of the target sequence. However at run time we only know the tokens of the target sequence that we have already generated. This means that if we aren't careful with how we implement the product $QK$ information from later tokens in the sequence will "leak" into earlier positions. To prevent this from happening we mask $K$ by setting all values above the diagonal to a really small number - which pushes the corresponding dot products to 0 in the softmax.
 
 # Other techniques used in the architecture
 
@@ -382,7 +386,7 @@ plt.plot(lr_schedule(np.arange(1, 20_000), d_model=512, warmup_steps=4000))
 
 
 
-![png]({{ "/assets/An-overview-of-Attention-Is-All-You-Need/output_31_1.png" | asbolute_url }})
+![png]({{ "/assets/an-overview-of-attention-is-all-you-need/output_31_1.png" | asbolute_url }})
 
 
 Note that the learning rate is determined by

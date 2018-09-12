@@ -1,6 +1,17 @@
 from .config import PostConfig
 
 
+class ImageSearchV2(PostConfig):
+    title = 'Image Search Take 2 - Convolutional Autoencoders'
+    date_created = '2018-09-12'
+    filename = 'image-search/image-search-cnn.ipynb'
+    tags = ['image search', 'autoencoders', 'keras', 'CNN',
+            'Convolutional Neural Networks', 'CIFAR']
+    github_repo = 'image-search'
+    rebuild = False  # if this gets rebuilt the staticc files included
+                     # will be messed up
+
+
 class KerasFeatureColumns(PostConfig):
     title = 'Keras Feature Columns'
     date_created = '2018-07-17'

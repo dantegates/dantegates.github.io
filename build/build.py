@@ -1,6 +1,14 @@
 from .config import PostConfig
 
 
+class HypothesisTestingForHumans(PostConfig):
+    title = 'Hypothesis Testing For Humans - Do The Umps Really Want to Go Home'
+    date_created = '2018-09-17'
+    filename = 'mlb-statcast/Hypothesis Testing For Humans - Do the Umps Really Want to Go Home.ipynb'
+    tags = ['Bayesian Inference', 'Monte Carlo', 'pymc3', 'MLB', 'statcast']
+    github_repo = 'mlb-statcast'
+
+
 class ImageSearchV2(PostConfig):
     title = 'Image Search Take 2 - Convolutional Autoencoders'
     date_created = '2018-09-12'

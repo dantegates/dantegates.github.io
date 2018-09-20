@@ -1,6 +1,15 @@
 from .config import PostConfig
 
 
+class HierarchicalBayesianRanking(PostConfig):
+    title = 'Hierarchical Bayesian Ranking'
+    date_created = '2018-09-20'
+    filename = 'mlb-statcast/ranking-teams-with-priors-post.ipynb'
+    tags = ['Bayesian', 'Ranking', 'pymc3', 'MLB', 'statcast']
+    github_repo = 'mlb-statcast'
+    rebuild = False  # Some code/output was manually deleted from this post
+
+
 class HypothesisTestingForHumans(PostConfig):
     title = 'Hypothesis Testing For Humans - Do The Umps Really Want to Go Home'
     date_created = '2018-09-17'

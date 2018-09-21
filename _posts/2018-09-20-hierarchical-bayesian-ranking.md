@@ -61,7 +61,7 @@ We define the parameters of the Dirichlet distribution as follows the ability of
 
 `pymc3` does have a class for the Dirichlet distribution but I couldn't quite get it to work so I simply implemented it in theano. Note that the parameters of the dirichlet distribution must be greater than zero which means we have to choose priors that support this (or at least make it very unlikely for that to happen).
 
-You can find the data pull for this post [here CHANGE THIS](). Also from this point on a lot of useful information about the code or model fit for the sake of brevity. However, if you want, you can the missing pieces in this [notebook FIX THIS LINK]().
+You can find the data pull for this post [here](https://github.com/dantegates/mlb-statcast/blob/master/ranking-teams-with-priors-data-pull.ipynb). Also from this point on a lot of useful information about the code or model fit for the sake of brevity. However, if you want, you can the missing pieces in this [notebook](https://github.com/dantegates/mlb-statcast/blob/master/ranking-teams-with-priors-full.ipynb).
 
 Let's take a look at the first few rows of data.
 

@@ -1,11 +1,20 @@
 from .config import PostConfig
 
 
+class WorldSeriesProjections(PostConfig):
+    title = 'World Series Projections'
+    date_created = '2018-10-22'
+    filename = 'mlb-statcast/world-series-projections.ipynb'
+    tags = ['pymc3', 'MLB', 'statcast', 'World Series', 'forecasting', 'projections']
+    github_repo = 'mlb-statcast'
+    rebuild = False  # Some code/output was manually deleted from this post
+
+
 class HierarchicalBayesianRanking(PostConfig):
     title = 'Hierarchical Bayesian Ranking'
     date_created = '2018-09-20'
-    filename = 'mlb-statcast/ranking-teams-with-priors-post.ipynb'
-    tags = ['Bayesian', 'Ranking', 'pymc3', 'MLB', 'statcast']
+    filename = 'mlb-statcast/bayesian-ranking-post.ipynb'
+    tags = ['Bayesian', 'Ranking', 'pymc3', 'MLB', 'statcast', 'World Series']
     github_repo = 'mlb-statcast'
     rebuild = False  # Some code/output was manually deleted from this post
 

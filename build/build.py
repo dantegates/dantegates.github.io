@@ -34,7 +34,7 @@ class ImageSearchV2(PostConfig):
     tags = ['image search', 'autoencoders', 'keras', 'CNN',
             'Convolutional Neural Networks', 'CIFAR']
     github_repo = 'image-search'
-    rebuild = False  # if this gets rebuilt the staticc files included
+    rebuild = False  # if this gets rebuilt the static files included
                      # will be messed up
 
 
@@ -52,6 +52,8 @@ class AnOverviewOfAttentionIsAllYouNeed(PostConfig):
     filename = 'attention-is-all-you-need-overview/An overview of Attention Is All You Need.ipynb'
     tags = ['attention is all you need', 'attention', 'keras', 'NLP']
     github_repo = 'attention-is-all-you-need'
+    rebuild = False  # if this gets rebuilt the static files included
+                     # will be messed up
 
 
 class KnowYourTrees(PostConfig):

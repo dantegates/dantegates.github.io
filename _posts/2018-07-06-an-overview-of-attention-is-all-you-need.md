@@ -4,7 +4,7 @@ mathjax: true
 title: An Overview of Attention Is All You Need
 github: https://github.com/dantegates/attention-is-all-you-need
 creation_date: 2018-07-06
-last_modified: 2018-07-11 16:35:43
+last_modified: 2018-11-27 13:15:27
 tags: 
   - attention is all you need
   - attention
@@ -73,8 +73,7 @@ Caveat: The Transformer makes use of many ideas that could be covered in an enti
 
 As mentioned above the transformer follows the encoder/decoder pattern. This is explained best with the following picture from the paper.
 
-
-<img src="{{ "/assets/an-overview-of-attention-is-all-you-need/transformer-architecture.png" | asbolute_url }}" alt="drawing" width="400px"/>
+<img src="/assets/an-overview-of-attention-is-all-you-need/transformer-architecture.png" alt="drawing" width="400px"/>
 
 Here the left side is the encoder and the right side is the decoder. In the case of translation the input to the encoder is the sentence to translate (technically the sentence converted to a sequence of word vectors) and the input to the decoder is the target sentence (shifted right by one token, this is covered more in the section on Masking).
 
@@ -112,9 +111,9 @@ import numpy as np
 X = np.ones((200, 512))
 d_model = 512
 rows, cols = np.indices(X.shape)
-numerator = np.where(cols % 2, np.cos(rows), np.sin(rows))
-denominator = (10_000**((2*cols)/d_model))
-encodings = numerator / denominator
+numerator = rows
+denominator = 10_000**((2*cols)/d_model)
+encodings = np.where(cols % 2, np.cos(numerator / denominator), np.sin(numerator / denominator))
 # sinusoids along each dimmension of the encoding
 for encoding in encodings.T[::50]:
     plt.plot(encoding)
@@ -147,9 +146,10 @@ def positional_encoding(inputs):
     d_model_int = K.int_shape(inputs)[2]
     rows, cols = indices(sequence_dim, d_model_var)
     rows, cols = K.cast(rows, dtype=K.floatx()), K.cast(cols, dtype=K.floatx())
-    numerator = K.switch(cols % 2, K.cos(rows), K.sin(rows))
+    numerator = rows
     denominator = 10_000**((2*cols)/d_model_int)
-    return inputs + (numerator / denominator)
+    encodings = K.switch(cols % 2, K.cos(numerator / denominator), K.sin(numerator / denominator))    
+    return inputs + encodings
 
 input_ = Input((None, 512))
 PositionalEncoding = Lambda(positional_encoding, output_shape=lambda x: x)
@@ -159,11 +159,8 @@ for encoding in encodings.T[::50]:
     plt.plot(encoding)
 ```
 
-    Using TensorFlow backend.
 
-
-
-![png]({{ "/assets/an-overview-of-attention-is-all-you-need/output_15_1.png" | asbolute_url }})
+![png]({{ "/assets/an-overview-of-attention-is-all-you-need/output_15_0.png" | asbolute_url }})
 
 
 # Attention

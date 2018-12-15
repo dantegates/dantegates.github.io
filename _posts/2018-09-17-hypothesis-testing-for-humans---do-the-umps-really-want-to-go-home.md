@@ -4,7 +4,7 @@ mathjax: true
 title: Hypothesis Testing For Humans - Do The Umps Really Want to Go Home
 github: https://github.com/dantegates/mlb-statcast
 creation_date: 2018-09-17
-last_modified: 2018-09-18 03:51:15
+last_modified: 2018-12-15 12:28:16
 tags: 
   - Bayesian Inference
   - Monte Carlo
@@ -48,7 +48,7 @@ In this post we'll run with the gist of this article and perform hypothesis test
 
 Before going any further let's take a quick look at the data.
 
-I used [pybaseball](https://github.com/jldbc/pybaseball) to acquire the data for this post. You can find the entire data pull [HERE - FIX LINK](). The data set consists of the total number of incorrect called strikes for the bottom of each extra inning in the 2018 season and whether the away team was holding onto the lead.
+I used [pybaseball](https://github.com/jldbc/pybaseball) to acquire the data for this post. You can find the entire data pull [here](https://github.com/dantegates/mlb-statcast/blob/master/hypothesis-testing-for-humans-data-pull.ipynb). The data set consists of the total number of incorrect called strikes for the bottom of each extra inning in the 2018 season and whether the away team was holding onto the lead.
 
 Let's read in the data and plot the observations.
 
@@ -245,6 +245,7 @@ with pm.Model() as model:
     mu = pm.Uniform('mu', 0, 5, shape=2)
     tie_game = pm.Poisson('tie_game', mu[0], observed=observations1)
     away_team_leads = pm.Poisson('away_team_leads', mu[1], observed=observations2)
+    delta = pm.Deterministic('delta', mu[0] - mu[1])
     trace = pm.sample(5000)
 ```
 
@@ -252,7 +253,8 @@ with pm.Model() as model:
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [mu]
-    Sampling 2 chains: 100%|██████████| 11000/11000 [00:04<00:00, 2333.91draws/s]
+    Sampling 2 chains: 100%|██████████| 11000/11000 [00:04<00:00, 2589.74draws/s]
+    The acceptance probability does not match the target. It is 0.8816513307323324, but should be close to 0.8. Try to increase the number of tuning steps.
 
 
 The trace shows that the sampling process converged.
@@ -265,8 +267,10 @@ pm.plots.traceplot(trace[-500:])
 
 
 
-    array([[<matplotlib.axes._subplots.AxesSubplot object at 0x11e0621d0>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x11d073be0>]],
+    array([[<matplotlib.axes._subplots.AxesSubplot object at 0x11740c208>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x11743e9b0>],
+           [<matplotlib.axes._subplots.AxesSubplot object at 0x117477588>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x11740cac8>]],
           dtype=object)
 
 
@@ -277,34 +281,22 @@ pm.plots.traceplot(trace[-500:])
 
 We can now observe the mean balls called strikes per inning by sampling from the posterior. We find that both distributions seem to be centered around the same value and the distribution for when the away team has a higher variance as we have less data for that case and thus there is more uncertainty in our parameter estimates.
 
+To answer the question of whether umpires are trying to end the game early we can examine the difference of the model parameters from the posterior. In this case to conclude that umpires are calling balls and strikes differently in cases that might end the game early versus the rest of the game we would need to find a difference of 0 to have occurred in less than 2.5% of the posterior samples. `pymc3` has a convenient function for this called `plot_posterior()` which, in this case, show that 0 is well within the 95% credible region, indicating that the umpires are calling balls and strikes consistently thoughout the game.
+
 
 ```python
-ppc = pm.sample_ppc(trace[-500:], model=model)
-mu1 = ppc['tie_game'].mean(axis=1)
-mu2 = ppc['away_team_leads'].mean(axis=1)
-_ = plt.hist(mu1, color='b', alpha=0.5)
-_ = plt.hist(mu2, color='r', alpha=0.5)
+pm.plot_posterior(trace, varnames=['delta'], ref_val=0)
 ```
 
-    100%|██████████| 500/500 [00:00<00:00, 1189.95it/s]
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x117951780>
+
 
 
 
 ![png]({{ "/assets/hypothesis-testing-for-humans---do-the-umps-really-want-to-go-home/output_21_1.png" | asbolute_url }})
-
-
-Lastly according to our posterior distribution we find that about 40% of the time we would expect the mean balls called strikes to be higher when the away team leads than when the game is tied. Thus we fail to conclude that the data shows the umpires are trying to hurry up the game.
-
-
-```python
-(mu1 > mu2).sum() / len(mu1)
-```
-
-
-
-
-    0.402
-
 
 
 # Summary

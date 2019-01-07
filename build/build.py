@@ -3,7 +3,7 @@ from .config import PostConfig
 
 class ModelEvaluationForHumans(PostConfig):
     title = 'Model Evaluation For Humans'
-    date_created = '2019-01-09'
+    date_created = '2019-01-07'
     filename = 'model-evaluation-for-humans/post.ipynb'
     tags = ['data science', 'machine learning', 'industry', 'model evaluation']
     github_repo = 'model-evaluation-for-humans'

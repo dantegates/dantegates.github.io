@@ -3,7 +3,7 @@ layout: post
 mathjax: true
 title: Model Evaluation For Humans
 github: https://github.com/dantegates/model-evaluation-for-humans
-creation_date: 2019-01-09
+creation_date: 2019-01-07
 last_modified: 2019-01-06 19:08:39
 tags: 
   - data science

@@ -7,6 +7,7 @@ class ModelEvaluationForHumans(PostConfig):
     filename = 'model-evaluation-for-humans/post.ipynb'
     tags = ['data science', 'machine learning', 'industry', 'model evaluation']
     github_repo = 'model-evaluation-for-humans'
+    rebuild = False
 
 
 class WorldSeriesProjections(PostConfig):

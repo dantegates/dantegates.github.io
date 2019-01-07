@@ -12,6 +12,7 @@ tags:
   - model evaluation
 ---
 
+This post is the basis of a talk I gave at PyData Miami 2019. You can find the slides for that talk on my GitHub linked at the bottom of this page.
 
 # All models are wrong
 

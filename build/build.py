@@ -1,6 +1,14 @@
 from .config import PostConfig
 
 
+class DeepProbabalisticEnsembles(PostConfig):
+    title = 'Active learning and deep probabalistic ensembles'
+    date_created = '2019-01-19'
+    filename = 'deep-probabalistic-ensembles/deep-probabalistic-ensembles-cifar.ipynb'
+    tags = ['deep learning', 'active learning', 'bayesian neural networks', 'variational inference']
+    github_repo = 'deep-probabalistic-ensembles'
+
+
 class ModelEvaluationForHumans(PostConfig):
     title = 'Model Evaluation For Humans'
     date_created = '2019-01-07'

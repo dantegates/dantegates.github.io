@@ -215,9 +215,9 @@ import gc
 
 # set to 8 to replicate experiments in paper
 n_ensemble_members = 8
-# set to 4000 or 8000 to replicate experiments in paper
-budget = 4000
-# set to 8 to replicate experiments in paper
+# set to 16000 to replicate experiments in paper
+budget = 16000
+# set to 4 or 8 to replicate experiments in paper
 n_iterations = 8
 # set to 400 to replicate experiments in paper
 max_epochs = 400

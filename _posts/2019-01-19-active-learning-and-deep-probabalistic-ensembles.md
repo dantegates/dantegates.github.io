@@ -13,7 +13,7 @@ tags:
 ---
 
 
-[Active learning](http://www.cs.northwestern.edu/~pardo/courses/mmml/papers/active_learning/improving_generalization_with_active_learning_ML94.pdf), loosely described, is an iterative process for getting the most out of your training data. This is especially useful for cases where you have a lot of unlabeled data that you would like to use for [supervised training](https://en.wikipedia.org/wiki/Supervised_learning) but labeling the data can is extremely time consuming and/or costly. In this case you want to be able choose which data points to label next strategically so that you total training set consists of a rich and diverse set of examples with minimal redundancy.
+[Active learning](http://www.cs.northwestern.edu/~pardo/courses/mmml/papers/active_learning/improving_generalization_with_active_learning_ML94.pdf), loosely described, is an iterative process for getting the most out of your training data. This is especially useful for cases where you have a lot of unlabeled data that you would like to use for [supervised training](https://en.wikipedia.org/wiki/Supervised_learning) but labeling the data is extremely time consuming and/or costly. In this case you want to be able intelligently choose which data points to label next so that you total training set consists of a rich and diverse set of examples with minimal redundancy.
 
 Last week at PyData Miami, Clément Farabet of NVIDIA discussed how this problem relates to the massive amount of training data NVIDIA has collected for their autonomous car project. In particular he mentioned a paper that some of their researchers recently released that introduces "[deep probabalistic ensembles](https://arxiv.org/pdf/1811.03575.pdf)" which they apply alongside active learning as a solution to this problem. In this post we'll take a look at the ideas introduced in the paper.
 
@@ -45,7 +45,7 @@ However, it is well known that training a deep network like this is a difficult,
 
 Since NVIDIA paper is pretty short and self explanitory so I'll only cover the details necessary to grok the code below.
 
-The key is to train an ensemble of neural networks, of existing architectures such as [ResNet](https://arxiv.org/pdf/1512.03385.pdf), together with a single loss function that causes the ensemble to approximate samples from the posterior in \eqref{eq:posterior}.
+The key idea the author's introduce is a loss function that allows us to learn an ensemble of deep neural networks so that the ensemble itself approximates samples from the posterior in \eqref{eq:posterior}.
 
 To derive the objective, the authors begin by defining the usual objective in variational inference
 
@@ -56,7 +56,7 @@ $$
 With some algebra they rewrite the objective as
 
 $$
-KL(q(w)\vert\vert p(w)) - \mathbb{E}\left[\text{log }p(x \ \vert \ w )\right] + \text{log }(p(x)
+KL(q(w)\vert\vert p(w)) - \mathbb{E}\left[\text{log }p(x \ \vert \ w )\right] + \text{log }p(x)
 $$
 
 To make the objective computationally tractable the last term, which is independent of $w$, is removed, resulting in a new objective, the [Evidence Lower Bound](https://en.wikipedia.org/wiki/Evidence_lower_bound),

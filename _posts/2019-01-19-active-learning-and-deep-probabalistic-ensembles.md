@@ -105,8 +105,8 @@ def ensemble_crossentropy(y_true, y_pred):
     """Return the cross entropy for the ensemble.
     
     Args:
-        y_true: Tensor with shape (None, batch_size, n_classes).
-        y_pred: Tensor with shape (None, batch_size, n_ensemble_members, n_classes).
+        y_true: Tensor with shape (None, n_classes).
+        y_pred: Tensor with shape (None, n_ensemble_members, n_classes).
     """
     ensemble_entropy = K.categorical_crossentropy(y_true, y_pred, axis=-1)
     return K.sum(ensemble_entropy, axis=-1)

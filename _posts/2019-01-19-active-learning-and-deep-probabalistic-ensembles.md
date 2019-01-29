@@ -213,15 +213,13 @@ X_test.shape, y_test.shape
 from functools import partial
 import gc
 
-# set to 8 to replicate experiments in paper
+# the parameters below replicate the "linear-4" experiment from the paper
+# with some minor adjustments and shortcuts (e.g. using "h_cat" over "h_ens"
+# and not doing random crops on the images).
 n_ensemble_members = 8
-# set to 16000 to replicate experiments in paper
 budget = 16000
-# set to 4 or 8 to replicate experiments in paper
-n_iterations = 8
-# set to 400 to replicate experiments in paper
+n_iterations = 4
 max_epochs = 400
-# set to 25 to replicate experiments in paper
 patience = 25
 # keras param, if non-zero this can blow up the output in the cell below
 verbosity = 0
@@ -233,6 +231,7 @@ n_acquisitions = b
 idx = np.random.choice(len(X_train), size=len(X_train), replace=False)
 X_labeled, y_labeled = X_train[idx[:b]], y_train[idx[:b]]
 X_unlabeled, y_unlabeled = X_train[idx[b:]], y_train[idx[b:]]
+
 while n_acquisitions < budget:
     print('building ensemble')
     dpe = dpe_builder()
@@ -246,15 +245,16 @@ while n_acquisitions < budget:
         validation_data=(X_test, y_test),
         callbacks=[keras.callbacks.ReduceLROnPlateau(patience=25)],
         verbose=verbosity)
+    print('trained for %d epochs' % len(history.history['val_loss']))
     print('validation loss:', history.history['val_loss'][-1],
           'validation accuracy:', history.history['val_acc'][-1])
 
     # aggregate along the individual model predictions
     print('calculating uncertainty of predictions')
     p = dpe.predict(X_unlabeled).sum(axis=1)
-    h_ens = (-p * np.log(p)).sum(axis=1)  # approximation of paper
-    idx_acquisitions = np.argsort(h_ens)[-b:]
-    idx_rest = np.argsort(h_ens)[:-b]
+    h_cat = (-p * np.log(p)).sum(axis=(1, 2))  # this is "H_cat" in the paper
+    idx_acquisitions = np.argsort(h_cat)[-b:]
+    idx_rest = np.argsort(h_cat)[:-b]
     
     print('adding %d examples to training data' % len(idx_acquisitions))
     X_labeled = np.concatenate([X_labeled, X_unlabeled[idx_acquisitions]])
@@ -264,7 +264,7 @@ while n_acquisitions < budget:
     n_acquisitions += b
     print('%d labeled examples' % len(X_labeled))
     print('%d unlabeled examples' % len(X_unlabeled))
-    
+
     print('releasing ensemble from GPU memory')
     K.clear_session()
     del dpe

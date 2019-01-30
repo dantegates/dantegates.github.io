@@ -1,6 +1,14 @@
 from .config import PostConfig
 
 
+class DeepLearningForTabularData(PostConfig):
+    title = 'Deep learning for tabular data'
+    date_created = '2019-01-30'
+    filename = 'deep-learning-for-tabular-data/post.ipynb'
+    tags = ['deep learning', 'AI', 'tabular data', 'word embeddings', 'LSTM']
+    github_repo = 'deep-learning-for-tabular-data'
+
+
 class DeepProbabalisticEnsembles(PostConfig):
     title = 'Active learning and deep probabalistic ensembles'
     date_created = '2019-01-19'

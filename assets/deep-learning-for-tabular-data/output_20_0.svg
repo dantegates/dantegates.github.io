@@ -1,0 +1,180 @@
+<svg height="702pt" viewBox="0.00 0.00 592.94 702.00" width="593pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 698)">
+<title>G</title>
+<polygon fill="#ffffff" points="-4,4 -4,-698 588.9351,-698 588.9351,4 -4,4" stroke="transparent"/>
+<!-- 4997191496 -->
+<g class="node" id="node1">
+<title>4997191496</title>
+<polygon fill="none" points="0,-657.5 0,-693.5 171.8936,-693.5 171.8936,-657.5 0,-657.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="85.9468" y="-671.3">zip_code_input: InputLayer</text>
+</g>
+<!-- 4997190152 -->
+<g class="node" id="node3">
+<title>4997190152</title>
+<polygon fill="none" points="4.876,-584.5 4.876,-620.5 169.0176,-620.5 169.0176,-584.5 4.876,-584.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="86.9468" y="-598.3">embedding_1: Embedding</text>
+</g>
+<!-- 4997191496&#45;&gt;4997190152 -->
+<g class="edge" id="edge1">
+<title>4997191496-&gt;4997190152</title>
+<path d="M86.194,-657.4551C86.3045,-649.3828 86.4375,-639.6764 86.5607,-630.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="90.0616,-630.6374 86.699,-620.5904 83.0622,-630.5414 90.0616,-630.6374" stroke="#000000"/>
+</g>
+<!-- 4997191552 -->
+<g class="node" id="node2">
+<title>4997191552</title>
+<polygon fill="none" points="190.2139,-657.5 190.2139,-693.5 349.6797,-693.5 349.6797,-657.5 190.2139,-657.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="269.9468" y="-671.3">county_input: InputLayer</text>
+</g>
+<!-- 4997190936 -->
+<g class="node" id="node4">
+<title>4997190936</title>
+<polygon fill="none" points="186.876,-584.5 186.876,-620.5 351.0176,-620.5 351.0176,-584.5 186.876,-584.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="268.9468" y="-598.3">embedding_2: Embedding</text>
+</g>
+<!-- 4997191552&#45;&gt;4997190936 -->
+<g class="edge" id="edge2">
+<title>4997191552-&gt;4997190936</title>
+<path d="M269.6996,-657.4551C269.589,-649.3828 269.456,-639.6764 269.3328,-630.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="272.8313,-630.5414 269.1946,-620.5904 265.832,-630.6374 272.8313,-630.5414" stroke="#000000"/>
+</g>
+<!-- 4998297976 -->
+<g class="node" id="node6">
+<title>4998297976</title>
+<polygon fill="none" points="57.314,-511.5 57.314,-547.5 168.5796,-547.5 168.5796,-511.5 57.314,-511.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="112.9468" y="-525.3">flatten_1: Flatten</text>
+</g>
+<!-- 4997190152&#45;&gt;4998297976 -->
+<g class="edge" id="edge3">
+<title>4997190152-&gt;4998297976</title>
+<path d="M93.3737,-584.4551C96.3113,-576.2074 99.8565,-566.2536 103.118,-557.0962" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="106.4455,-558.185 106.5036,-547.5904 99.8513,-555.8364 106.4455,-558.185" stroke="#000000"/>
+</g>
+<!-- 4998109560 -->
+<g class="node" id="node7">
+<title>4998109560</title>
+<polygon fill="none" points="199.314,-511.5 199.314,-547.5 310.5796,-547.5 310.5796,-511.5 199.314,-511.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="254.9468" y="-525.3">flatten_2: Flatten</text>
+</g>
+<!-- 4997190936&#45;&gt;4998109560 -->
+<g class="edge" id="edge4">
+<title>4997190936-&gt;4998109560</title>
+<path d="M265.4861,-584.4551C263.938,-576.3828 262.0765,-566.6764 260.3515,-557.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="263.7371,-556.7521 258.4162,-547.5904 256.8624,-558.0706 263.7371,-556.7521" stroke="#000000"/>
+</g>
+<!-- 4997190992 -->
+<g class="node" id="node5">
+<title>4997190992</title>
+<polygon fill="none" points="368.3311,-511.5 368.3311,-547.5 535.5625,-547.5 535.5625,-511.5 368.3311,-511.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="451.9468" y="-525.3">numeric_input: InputLayer</text>
+</g>
+<!-- 4997191104 -->
+<g class="node" id="node8">
+<title>4997191104</title>
+<polygon fill="none" points="318.9585,-438.5 318.9585,-474.5 584.9351,-474.5 584.9351,-438.5 318.9585,-438.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="451.9468" y="-452.3">batch_normalization_4: BatchNormalization</text>
+</g>
+<!-- 4997190992&#45;&gt;4997191104 -->
+<g class="edge" id="edge5">
+<title>4997190992-&gt;4997191104</title>
+<path d="M451.9468,-511.4551C451.9468,-503.3828 451.9468,-493.6764 451.9468,-484.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="455.4469,-484.5903 451.9468,-474.5904 448.4469,-484.5904 455.4469,-484.5903" stroke="#000000"/>
+</g>
+<!-- 4997190880 -->
+<g class="node" id="node9">
+<title>4997190880</title>
+<polygon fill="none" points="128.6274,-438.5 128.6274,-474.5 301.2661,-474.5 301.2661,-438.5 128.6274,-438.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="214.9468" y="-452.3">concatenate_1: Concatenate</text>
+</g>
+<!-- 4998297976&#45;&gt;4997190880 -->
+<g class="edge" id="edge6">
+<title>4998297976-&gt;4997190880</title>
+<path d="M138.1603,-511.4551C151.1556,-502.1545 167.1823,-490.6844 181.2264,-480.6332" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="183.5749,-483.2565 189.6698,-474.5904 179.5009,-477.5641 183.5749,-483.2565" stroke="#000000"/>
+</g>
+<!-- 4998109560&#45;&gt;4997190880 -->
+<g class="edge" id="edge7">
+<title>4998109560-&gt;4997190880</title>
+<path d="M245.0591,-511.4551C240.4437,-503.0319 234.8532,-492.8292 229.7483,-483.5128" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="232.7341,-481.6782 224.8593,-474.5904 226.5953,-485.042 232.7341,-481.6782" stroke="#000000"/>
+</g>
+<!-- 4997191384 -->
+<g class="node" id="node10">
+<title>4997191384</title>
+<polygon fill="none" points="246.6274,-365.5 246.6274,-401.5 419.2661,-401.5 419.2661,-365.5 246.6274,-365.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="332.9468" y="-379.3">concatenate_2: Concatenate</text>
+</g>
+<!-- 4997191104&#45;&gt;4997191384 -->
+<g class="edge" id="edge8">
+<title>4997191104-&gt;4997191384</title>
+<path d="M422.531,-438.4551C407.0837,-428.979 387.9652,-417.2508 371.3623,-407.0658" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="372.7907,-403.836 362.4365,-401.5904 369.1303,-409.8028 372.7907,-403.836" stroke="#000000"/>
+</g>
+<!-- 4997190880&#45;&gt;4997191384 -->
+<g class="edge" id="edge9">
+<title>4997190880-&gt;4997191384</title>
+<path d="M244.1153,-438.4551C259.4328,-428.979 278.3907,-417.2508 294.8541,-407.0658" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="297.042,-409.8279 303.7048,-401.5904 293.3592,-403.875 297.042,-409.8279" stroke="#000000"/>
+</g>
+<!-- 4998516576 -->
+<g class="node" id="node11">
+<title>4998516576</title>
+<polygon fill="none" points="280.8208,-292.5 280.8208,-328.5 385.0728,-328.5 385.0728,-292.5 280.8208,-292.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="332.9468" y="-306.3">dense_4: Dense</text>
+</g>
+<!-- 4997191384&#45;&gt;4998516576 -->
+<g class="edge" id="edge10">
+<title>4997191384-&gt;4998516576</title>
+<path d="M332.9468,-365.4551C332.9468,-357.3828 332.9468,-347.6764 332.9468,-338.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="336.4469,-338.5903 332.9468,-328.5904 329.4469,-338.5904 336.4469,-338.5903" stroke="#000000"/>
+</g>
+<!-- 4997750512 -->
+<g class="node" id="node12">
+<title>4997750512</title>
+<polygon fill="none" points="199.9585,-219.5 199.9585,-255.5 465.9351,-255.5 465.9351,-219.5 199.9585,-219.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="332.9468" y="-233.3">batch_normalization_5: BatchNormalization</text>
+</g>
+<!-- 4998516576&#45;&gt;4997750512 -->
+<g class="edge" id="edge11">
+<title>4998516576-&gt;4997750512</title>
+<path d="M332.9468,-292.4551C332.9468,-284.3828 332.9468,-274.6764 332.9468,-265.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="336.4469,-265.5903 332.9468,-255.5904 329.4469,-265.5904 336.4469,-265.5903" stroke="#000000"/>
+</g>
+<!-- 4998708528 -->
+<g class="node" id="node13">
+<title>4998708528</title>
+<polygon fill="none" points="280.8208,-146.5 280.8208,-182.5 385.0728,-182.5 385.0728,-146.5 280.8208,-146.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="332.9468" y="-160.3">dense_5: Dense</text>
+</g>
+<!-- 4997750512&#45;&gt;4998708528 -->
+<g class="edge" id="edge12">
+<title>4997750512-&gt;4998708528</title>
+<path d="M332.9468,-219.4551C332.9468,-211.3828 332.9468,-201.6764 332.9468,-192.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="336.4469,-192.5903 332.9468,-182.5904 329.4469,-192.5904 336.4469,-192.5903" stroke="#000000"/>
+</g>
+<!-- 4998709032 -->
+<g class="node" id="node14">
+<title>4998709032</title>
+<polygon fill="none" points="199.9585,-73.5 199.9585,-109.5 465.9351,-109.5 465.9351,-73.5 199.9585,-73.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="332.9468" y="-87.3">batch_normalization_6: BatchNormalization</text>
+</g>
+<!-- 4998708528&#45;&gt;4998709032 -->
+<g class="edge" id="edge13">
+<title>4998708528-&gt;4998709032</title>
+<path d="M332.9468,-146.4551C332.9468,-138.3828 332.9468,-128.6764 332.9468,-119.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="336.4469,-119.5903 332.9468,-109.5904 329.4469,-119.5904 336.4469,-119.5903" stroke="#000000"/>
+</g>
+<!-- 4998851944 -->
+<g class="node" id="node15">
+<title>4998851944</title>
+<polygon fill="none" points="280.8208,-.5 280.8208,-36.5 385.0728,-36.5 385.0728,-.5 280.8208,-.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="332.9468" y="-14.3">dense_6: Dense</text>
+</g>
+<!-- 4998709032&#45;&gt;4998851944 -->
+<g class="edge" id="edge14">
+<title>4998709032-&gt;4998851944</title>
+<path d="M332.9468,-73.4551C332.9468,-65.3828 332.9468,-55.6764 332.9468,-46.6817" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="336.4469,-46.5903 332.9468,-36.5904 329.4469,-46.5904 336.4469,-46.5903" stroke="#000000"/>
+</g>
+</g>
+</svg>

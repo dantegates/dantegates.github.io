@@ -6,6 +6,9 @@
     collapse; border-spacing: 0;
     padding: 5px;
     margin: 10px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .dataframe thead {

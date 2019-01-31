@@ -619,4 +619,4 @@ We see that including the text data improves the model's error after training fo
 
 # Conclusion
 
-These are just a few ideas to get you started with using deep learning techniques with tabular data. Some of these techniques could even be used to generate features for other algorithms (like using pretrained embeddings as input to a decision tree), however I like to keep everything in `keras`. The possibilities, of course, are endless, but hopefully this post gives you an idea where to start.
+These are just a few ideas to get you started with using deep learning techniques with tabular data. Some of these techniques could even be used to generate features for other algorithms (like using pretrained embeddings to get a "document embedding" as input to a decision tree), however I like to keep everything in `keras`. The possibilities, of course, are endless, but hopefully this post gives you an idea where to start.

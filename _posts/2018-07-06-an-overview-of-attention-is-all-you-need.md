@@ -393,4 +393,4 @@ Note that the learning rate is determined by
 - The number of batches previously trained on
 - The number of warmup batches chosen
 
-The purpose of including $d_{model}$, rather the simply number of steps, is to define a learning rate schedule as a function of the model size so that a single formula can be used for models of all sizes without the need to tune additional parameters in the scheduler. I'd like to include a reference here but I cannot remember where I came accross this - it was either in a comment burried somewhere in the tensor2tensor source or the youtube link referenced above.
+The purpose of including $d_{model}$, rather the simply number of steps, is to define a learning rate schedule as a function of the model size so that a single formula can be used for models of all sizes without the need to tune additional parameters in the scheduler. I'd like to include a reference here but I cannot remember where I came accross this - it was either in a comment buried somewhere in the tensor2tensor source or the youtube link referenced above.

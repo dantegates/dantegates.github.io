@@ -1,6 +1,14 @@
 from .config import PostConfig
 
 
+class DeepLearningForTabularData2(PostConfig):
+    title = 'Deep learning for tabular data 2 - Debunking the myth of the black box'
+    date_created = '2019-06-14'
+    filename = 'mlb-statcast/deep-learning-post.ipynb'
+    tags = ['deep learning', 'AI', 'tabular data', 'MLB', 'statcast']
+    github_repo = 'mlb-statcast'
+
+
 class DeepLearningForTabularData(PostConfig):
     title = 'Deep learning for tabular data'
     date_created = '2019-01-30'

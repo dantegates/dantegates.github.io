@@ -15,13 +15,13 @@ tags:
 
 Not knowing how to apply deep neural networks (DNNs) to the sort of tabular data commonly found in industry is a common reason for not adopting DNNs in production and the topic of my last post. Another common reason for hesitating to use DNNs is what I'll call the "myth of the black box". That is, the idea that unlike simpler models, such as linear regression or decision trees which come with "interpretable" linear coefficients or feature importances, DNNs are hard to understand.
 
-There is a certain sense in which this sentiment is true, and it comes with important implications if the model's predictions come with high stakes such as large monetary investments, decisions regarding a patient's healthcare or whether someone will be denied a home mortgage.
+There is a certain sense in which this sentiment is true, and any inherit features of a model that could decrease our confidence in that model carry important implications - especially if the model's predictions come with high stakes such as decisions regarding a patient's healthcare, whether someone will be denied a home mortgage or large monetary investments. Such cases come with a large responsibility.
 
-This post aims to make a claim that the idea of DNNs being a complete black box is false, despite being much more computationally complex than models such as linear regression. Lastly, we'll take a look at a variety of methods for inspecting a trained DNN and then consider how these methods compare to attempting to interpret linear coefficients or feature importances.
+With that context in mind, this post aims to make a claim that the idea of DNNs being a complete black box is false, even in spite of being much more computationally complex than models such as linear regression. In order to debunk this myth we'll take a look at a variety of methods for inspecting a trained DNN. In particular we'll look at concrete examples of a model trained on a non trivial data set. Lastly we'll consider how these methods compare with attempting to interpret linear coefficients and feature importances.
 
 # Preamble
 
-In this post we'll take a look a few different models trained on the [MLBs statcast data](https://baseballsavant.mlb.com/statcast_search) to predict if a given [plate appearance](https://en.wikipedia.org/wiki/Plate_appearance) resulted in a walk or hit. The data set contains every pitch from every plate appearance in the 2018 season, minus a few PAs where something unusual happend - such as the batter or pitcher injurred mid PA or the PA ended by a runner caught steeling.
+For this post [MLB's statcast data](https://baseballsavant.mlb.com/statcast_search) was used to train several to predict if a given [plate appearance](https://en.wikipedia.org/wiki/Plate_appearance) resulted in a walk or hit. The data set contains every pitch from every plate appearance in the 2018 season, minus a few PAs where something unusual happend - such as the batter or pitcher injurred mid PA or the PA ended by a runner caught steeling.
 
 To keep this post clean, it won't include any code. If you are curious about the data or how the models were trained the notebook can be found on my GitHub account, just keep in mind the models are trained for illustrative purposes for this post.
 
@@ -41,7 +41,7 @@ Let's take a look at the benefit of using embeddings in the context of our probl
 
 The following results are generated from a recurrent neural network (specifically an LSTM) trained on the MLB statcast data to predict if a plate appearance (PA) resulted in the batter reaching base safely (a walk or hit).
 
-A given PA is represented as a sequence of vectors, one for each pitch of the PA. Each vector is made up of around 30 features such as who was batting, who was pitching, the pitch speed, location, and movement, the [count](https://en.wikipedia.org/wiki/Count_(baseball), etc. Batch normalization is applied to the raw numeric features and all categorical features are represented as 1-dimmensional embeddings, except for the batter and pitcher which are encoded into 2-dimmensional embeddings. As mentioned above I'm glazing over the specific details of the model and data but they can be found on GitHub (linked above).
+A given PA is represented as a sequence of vectors, one for each pitch of the PA. Each vector is made up of around 30 features such as who was batting, who was pitching, the pitch speed, location, and movement, the [count](https://en.wikipedia.org/wiki/Count_(baseball)), etc. Batch normalization is applied to the raw numeric features and all categorical features are represented as 1-dimmensional embeddings, except for the batter and pitcher which are encoded into 2-dimmensional embeddings. As mentioned above I'm glazing over the specific details of the model and data but they can be found on GitHub (linked above).
 
 ### Pitcher embeddings
 
@@ -735,15 +735,20 @@ The last approach we will mention is to use a "hybrid" model. That is a model wh
 
 ## Comparision to feature coefficients and feature importances
 
-Before reaching any conclusions about whether or not the "myth of the black box" has been debunked by this post, let's see how the methods discussed in this post compare linear regression. After all, this post is mainly geared towards data scientists already using these models and thinking about taking the leap to methods like DNNs.
+Before reaching any conclusions about whether or not the "myth of the black box" has been debunked by this post, let's see how the methods discussed in this post compare with linear regression. After all, this post is mainly geared towards data scientists already using simpler models but are hesitant to take the leap to methods like DNNs.
 
-With a linear model, and [its variants](https://en.wikipedia.org/wiki/Linear_regression#Generalized_linear_models), we get a set of weights $\beta_{i}$, $i>0$ and an intercept $\beta_{0}$ and our prediction is calculated as
+With a linear model, and [its variants](https://en.wikipedia.org/wiki/Linear_regression#Generalized_linear_models), we get a set of weights
+$\beta_{i}, \ i>0$ and an intercept
+$\beta_{0}$ and our prediction is calculated as
 
 $$
 y = \sum_{i=1}^{n}{\beta_{i}x_{i}} + \beta_{0}
 $$
 
-All of this simply means that we can make certain inferences about features based on their coefficients. For example, it is common to infer that $|\beta_{i}| > |\beta_{j}|$ implies $x_{i}$ is in some sense more important than $x_{j}$ (given certain assumptions, eg. feature scaling).
+All of this simply means that we can make certain inferences about features based on their coefficients. For example, it is common to infer that
+$|\beta_{i}| > |\beta_{j}|$
+implies $x_{i}$ is in some sense more important than
+$x_{j}$ (given certain assumptions, eg. feature scaling).
 
 For example, using a trained logistic regression model on the same statcast data to rank pitchers we find a list topped by the 2018 Cy Young Winners [Blake Snell](https://www.mlb.com/news/blake-snell-wins-al-cy-young-award-c300735402) and [Jacob deGrom](https://www.si.com/mlb/2018/08/29/jacob-degrom-max-scherzer-aaron-nola-nl-cy-young-award) along with Cy Young Candidate (and Philadelphia Phillie!) Arron Nola, 2018 world series pitcher David Price and other elite pitchers of 2018.
 
@@ -829,10 +834,11 @@ For example, using a trained logistic regression model on the same statcast data
 </div>
 
 
+As with the DNNs, inspecting the logistic regression in this way is a great sanity check.
 
-Just as it's difficult to "interpret" the position of specific pitcher embeddingss it's also difficult to interpret why the rankings above aren't led by Blake Snell, who objectively put up better stats than some of those below him. For that matter it's also difficult to interpret why Jacob deGrom's coefficient is exactly 0-.060951. The purpose of pointing these things out is simply to demonstrate that all of the methods discussed in this post have their limitations. Nevertheless, these linear coefficients are still a great sanity check, as long as this list is led by elite pitchers the model seems to be learning useful trends.
+At this point some might argue that feature coefficients still maintain an advantage over the methods we looked at above because they are "interpretable". But is this actually true? For example, what is the interpretation of Nola's -0.094848 coefficient? If this was linear regression we could attempt to interpret it based on its linear relationship with the target variable, but the logistic function gives us no such favors. Or, what is the interpretation as to why the rankings above aren't led by Blake Snell, who objectively put up better stats than some of those below him and interpreting the coefficients on features such as number of strikes/balls in the count is even more grey. As a sanity check inspecting the linear coefficients can be indispensibly useful, but in the context of any machine learning task with more than a modest number of features (such as ours, which is still only a *small* feature set in reality) such interpretations fail to hold up to scrutiny.
 
-It's also worth pointing out that the "complexity" of the LSTM actually gives us more methods of inspecting what the model is linear than linear coefficients.
+Laslty, it's also worth mentioning that the "complexity" of the LSTM actually gives us more methods of inspecting what the model is linear than linear coefficients.
 
 ## The myth of the black box
 

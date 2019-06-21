@@ -7,6 +7,7 @@ class DeepLearningForTabularData2(PostConfig):
     filename = 'mlb-statcast/deep-learning-post.ipynb'
     tags = ['deep learning', 'AI', 'tabular data', 'MLB', 'statcast']
     github_repo = 'mlb-statcast'
+    rebuild = False  # text on this post was edited by hand in the _posts/ file
 
 
 class DeepLearningForTabularData(PostConfig):

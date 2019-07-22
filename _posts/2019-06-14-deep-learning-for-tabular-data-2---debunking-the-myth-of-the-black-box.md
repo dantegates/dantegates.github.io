@@ -11,7 +11,7 @@ tags:
   - tabular data
   - MLB
   - statcast
-hidden: true
+published: false
 ---
 
 Not knowing how to apply deep neural networks (DNNs) to the sort of tabular data commonly found in industry is a common reason for not adopting DNNs in production and the topic of my last post. Another common reason for hesitating to use DNNs is what I'll call the "myth of the black box". That is, the idea that unlike simpler models, such as linear regression or decision trees which come with "interpretable" linear coefficients or feature importances, DNNs are hard to understand.

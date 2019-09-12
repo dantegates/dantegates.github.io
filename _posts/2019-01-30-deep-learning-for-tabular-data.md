@@ -11,7 +11,7 @@ tags:
   - tabular data
   - word embeddings
   - LSTM
-published: false
+published: true
 ---
 
 

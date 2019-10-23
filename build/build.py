@@ -1,6 +1,16 @@
 from .config import PostConfig
 
 
+class WorldSeriesProjections2019(PostConfig):
+    title = '2019 World Series Pitcher Matchups'
+    date_created = '2019-10-22'
+    filename = 'mlb-statcast/player-ranking-post.ipynb'
+    tags = ['pymc3', 'MLB', 'statcast', 'World Series', 'forecasting', 'projections', 'bayesian']
+    github_repo = 'mlb-statcast'
+    rebuild = False  # cell manually removed
+
+
+
 class DeepLearningForTabularData2(PostConfig):
     title = 'Deep learning for tabular data 2 - Debunking the myth of the black box'
     date_created = '2019-06-14'
@@ -39,7 +49,7 @@ class WorldSeriesProjections(PostConfig):
     title = 'World Series Projections'
     date_created = '2018-10-22'
     filename = 'mlb-statcast/world-series-projections.ipynb'
-    tags = ['pymc3', 'MLB', 'statcast', 'World Series', 'forecasting', 'projections']
+    tags = ['pymc3', 'MLB', 'statcast', 'World Series', 'forecasting', 'projections', 'bayesian']
     github_repo = 'mlb-statcast'
     rebuild = False  # Some code/output was manually deleted from this post
 

@@ -1,6 +1,14 @@
 from .config import PostConfig
 
 
+class TensorflowFeatureColumnsKeras(PostConfig):
+    title = 'Tensorflow 2 Feature Columns and Keras'
+    date_created = '2019-10-24'
+    filename = 'keras-feature-columns/tensorflow2-feature-columns.ipynb'
+    tags = ['keras', 'tensorflow', 'tensorflow2', 'feature columns']
+    github_repo = 'keras-feature-columns'
+
+
 class WorldSeriesProjections2019(PostConfig):
     title = '2019 World Series Pitcher Matchups'
     date_created = '2019-10-22'

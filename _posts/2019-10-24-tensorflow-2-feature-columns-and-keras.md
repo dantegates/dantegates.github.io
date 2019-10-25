@@ -4,7 +4,7 @@ mathjax: true
 title: Tensorflow 2 Feature Columns and Keras
 github: https://github.com/dantegates/keras-feature-columns
 creation_date: 2019-10-24
-last_modified: 2019-10-24 16:31:11
+last_modified: 2019-10-25 08:20:53
 tags: 
   - keras
   - tensorflow
@@ -97,7 +97,7 @@ will not, where `feature_inputs` is a dictionary of feature names to `keras.laye
 
 ## Concrete example
 
-Let's implement a simplified version Kaggle's Web Traffic competition's [winning solution](https://www.kaggle.com/c/web-traffic-time-series-forecasting/discussion/43795) as a concrete example.
+Let's implement a simplified version Kaggle's Web Traffic competition's [winning solution](https://www.kaggle.com/c/web-traffic-time-series-forecasting/discussion/43795) as a concrete example. You can find the full working example in a Jupyter notebook [here](https://github.com/dantegates/keras-feature-columns/blob/master/notebooks/lstm-web-traffic-example-tf.ipynb) on my GitHub.
 
 The idea is to build an LSTM whose input vectors are concatenations of
 

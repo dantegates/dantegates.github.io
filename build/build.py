@@ -7,6 +7,7 @@ class TensorflowFeatureColumnsKeras(PostConfig):
     filename = 'keras-feature-columns/tensorflow2-feature-columns.ipynb'
     tags = ['keras', 'tensorflow', 'tensorflow2', 'feature columns']
     github_repo = 'keras-feature-columns'
+    rebuild = True
 
 
 class WorldSeriesProjections2019(PostConfig):

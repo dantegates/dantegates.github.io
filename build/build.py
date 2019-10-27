@@ -1,6 +1,14 @@
 from .config import PostConfig
 
 
+class ClusteringAndImageSegmentation(PostConfig):
+    title = 'Clustering and Image Segmentation'
+    date_created = '2019-10-27'
+    filename = 'clustering-and-image-segmentation/cluster-and-image-segmentation.ipynb'
+    tags = ['image processing', 'image segmentation', 'clustering', 'sklearn', 'KMeans']
+    github_repo = 'clustering-and-image-segmentation'
+
+
 class TensorflowFeatureColumnsKeras(PostConfig):
     title = 'Tensorflow 2 Feature Columns and Keras'
     date_created = '2019-10-24'

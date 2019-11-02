@@ -24,6 +24,8 @@ One of the great ideas behind feature columns is the ability to Specify how to p
 
 The second great idea behind feature columns is it allows you to tie features into your model. For example, you can specify that the model should learn an embedding for a given feature.
 
+**Update**: For a walkthrough of using native `tensorflow` 2.0 feature columns with `keras` see my [newer post](https://dantegates.github.io/2019/10/24/tensorflow-2-feature-columns-and-keras.html).
+
 # keras feature columns
 
 The `keras` implementation itself can be found [here](https://github.com/dantegates/keras-feature-columns/blob/master/feature_columns.py).

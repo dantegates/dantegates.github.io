@@ -8,11 +8,8 @@ last_modified: 2019-10-23 16:32:58
 tags: 
   - pymc3
   - MLB
-  - statcast
-  - World Series
-  - forecasting
-  - projections
-  - bayesian
+  - Projections
+  - Bayesian
 ---
 
 

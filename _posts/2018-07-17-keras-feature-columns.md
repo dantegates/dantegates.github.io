@@ -8,7 +8,7 @@ last_modified: 2018-07-30 16:59:19
 tags: 
   - keras
   - tensorflow
-  - opinion
+  - Opinion
 ---
 
 

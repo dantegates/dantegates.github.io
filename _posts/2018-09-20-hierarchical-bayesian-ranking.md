@@ -7,10 +7,9 @@ creation_date: 2018-09-20
 last_modified: 2018-10-22 14:46:20
 tags: 
   - Bayesian
-  - Ranking
+  - Learning to Rank
   - pymc3
   - MLB
-  - statcast
   - World Series
 ---
 

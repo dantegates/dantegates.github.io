@@ -6,7 +6,6 @@ github: https://github.com/dantegates/fast-one-hot-encoder
 creation_date: 2018-05-04
 last_modified: 2018-07-25 15:58:09
 tags: 
-  - one hot encoder
   - sklearn
   - pandas
 ---

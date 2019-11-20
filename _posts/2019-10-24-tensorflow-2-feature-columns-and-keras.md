@@ -9,7 +9,6 @@ tags:
   - keras
   - tensorflow
   - tensorflow2
-  - feature columns
 ---
 
 

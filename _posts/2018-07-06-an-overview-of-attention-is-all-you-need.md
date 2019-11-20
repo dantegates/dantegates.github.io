@@ -6,10 +6,9 @@ github: https://github.com/dantegates/attention-is-all-you-need
 creation_date: 2018-07-06
 last_modified: 2018-11-27 13:15:27
 tags: 
-  - attention is all you need
-  - attention
+  - Attention
+  - Deep Learning
   - keras
-  - NLP
 ---
 
 

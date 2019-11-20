@@ -6,11 +6,9 @@ github: https://github.com/dantegates/clustering-and-image-segmentation
 creation_date: 2019-10-27
 last_modified: 2019-10-27 11:41:17
 tags: 
-  - image processing
-  - image segmentation
-  - clustering
+  - Images
+  - Machine Learning
   - sklearn
-  - KMeans
 ---
 
 

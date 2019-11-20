@@ -9,6 +9,8 @@ tags:
   - docker
   - kubernetes
   - helm
+  - Software
+  - Industry
 ---
 
 

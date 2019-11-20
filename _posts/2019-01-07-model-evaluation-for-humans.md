@@ -6,10 +6,8 @@ github: https://github.com/dantegates/model-evaluation-for-humans
 creation_date: 2019-01-07
 last_modified: 2019-01-06 19:08:39
 tags: 
-  - data science
-  - machine learning
-  - industry
-  - model evaluation
+  - Industry
+  - Model Evaluation
 ---
 
 This post is the basis of a talk I gave at PyData Miami 2019. You can find the slides for that talk on my GitHub linked at the bottom of this page.

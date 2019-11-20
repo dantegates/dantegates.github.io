@@ -6,10 +6,9 @@ github: https://github.com/dantegates/monitoring-ml
 creation_date: 2018-06-12
 last_modified: 2018-06-12 20:44:32
 tags: 
-  - monitoring
-  - logging
-  - machine learning
-  - production
+  - Industry
+  - Software
+  - Machine Learning
 ---
 
 

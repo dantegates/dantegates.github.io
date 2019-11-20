@@ -6,11 +6,9 @@ github: https://github.com/dantegates/mlb-statcast
 creation_date: 2019-06-14
 last_modified: 2019-06-14 22:19:38
 tags: 
-  - deep learning
-  - AI
-  - tabular data
+  - Deep Learning
   - MLB
-  - statcast
+  - Attention
 published: true
 ---
 

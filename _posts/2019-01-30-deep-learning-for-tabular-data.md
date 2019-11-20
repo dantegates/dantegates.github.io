@@ -6,11 +6,7 @@ github: https://github.com/dantegates/deep-learning-for-tabular-data
 creation_date: 2019-01-30
 last_modified: 2019-01-30 17:30:28
 tags: 
-  - deep learning
-  - AI
-  - tabular data
-  - word embeddings
-  - LSTM
+  - Deep Learning
 published: true
 ---
 

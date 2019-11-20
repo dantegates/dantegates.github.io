@@ -6,12 +6,11 @@ github: https://github.com/dantegates/mlb-statcast
 creation_date: 2018-10-22
 last_modified: 2018-10-23 08:55:29
 tags: 
-  - pymc3
   - MLB
-  - statcast
-  - World Series
-  - forecasting
-  - projections
+  - Bayesian
+  - Projections
+  - Monte Carlo
+  - pymc3
 ---
 
 

@@ -6,12 +6,12 @@ github: https://github.com/dantegates/image-search
 creation_date: 2018-09-12
 last_modified: 2018-09-12 10:09:06
 tags: 
-  - image search
-  - autoencoders
+  - Images
+  - Recommendation Systems
+  - Auto Encoders
+  - Deep Learning
+  - AI
   - keras
-  - CNN
-  - Convolutional Neural Networks
-  - CIFAR
 ---
 
 

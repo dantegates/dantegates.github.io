@@ -6,11 +6,10 @@ github: https://github.com/dantegates/mlb-statcast
 creation_date: 2018-09-17
 last_modified: 2018-12-15 12:28:16
 tags: 
-  - Bayesian Inference
+  - Bayesian
+  - MLB
   - Monte Carlo
   - pymc3
-  - MLB
-  - statcast
 ---
 
 

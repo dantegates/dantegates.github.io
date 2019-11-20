@@ -6,9 +6,8 @@ github: https://github.com/dantegates/bayesian-online-learning
 creation_date: 2018-05-11
 last_modified: 2018-05-11 15:37:35
 tags: 
-  - bayesian
-  - conjugate priors
-  - online learning
+  - Bayesian
+  - Online Learning
 ---
 
 

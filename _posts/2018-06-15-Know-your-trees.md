@@ -6,9 +6,7 @@ github: https://github.com/dantegates/know-your-trees
 creation_date: 2018-06-15
 last_modified: 2018-06-16 11:54:29
 tags: 
-  - random forest
-  - decision tree
-  - trees
+  - Machine Learning
 ---
 
 

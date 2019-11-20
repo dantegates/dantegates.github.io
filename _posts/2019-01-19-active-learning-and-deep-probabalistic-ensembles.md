@@ -6,10 +6,11 @@ github: https://github.com/dantegates/deep-probabalistic-ensembles
 creation_date: 2019-01-19
 last_modified: 2019-01-19 22:02:36
 tags: 
-  - deep learning
-  - active learning
-  - bayesian neural networks
-  - variational inference
+  - Deep Learning
+  - Active Learning
+  - Bayesian
+  - Variational Inference
+  - AI
 ---
 
 

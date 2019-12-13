@@ -1,4 +1,14 @@
 from .config import PostConfig
+from .posts import MarkdownPost
+
+
+class NeuralNetworksExplained(PostConfig):
+    title = 'Neural Networks Explained'
+    date_created = '2019-12-12'
+    filename = 'neural-networks-explained/post.md'
+    tags = ['Deep Learning', 'Beginner', 'Opinion']
+    github_repo = 'neural-networks-explained'
+    post_type = MarkdownPost
 
 
 class ClusteringAndImageSegmentation(PostConfig):

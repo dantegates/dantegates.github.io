@@ -1,6 +1,5 @@
-from nbconvert import MarkdownExporter
 import nbformat
-
+from nbconvert import MarkdownExporter
 
 POSTS = tuple()
 
@@ -57,3 +56,20 @@ class IpynbPost(Post):
             # if md file starts with title remove it
             body = '\n'.join(body.split('\n')[1:])
         return body, resources['outputs']
+
+
+
+class MarkdownPost(Post):
+    @classmethod
+    def from_file(cls, md_file, **kwargs):
+        content = cls.load_file(md_file)
+        return cls(content=content, static_files={}, **kwargs)
+
+    @staticmethod
+    def load_file(md_file):
+        with open(md_file) as f:
+            body = f.read()
+        if body.startswith('#'):
+            # if md file starts with title remove it
+            body = '\n'.join(body.split('\n')[1:])
+        return body

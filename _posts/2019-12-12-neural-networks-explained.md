@@ -4,7 +4,7 @@ mathjax: true
 title: Neural Networks Explained
 github: https://github.com/dantegates/neural-networks-explained
 creation_date: 2019-12-12
-last_modified: 2019-12-12 16:59:50
+last_modified: 2019-12-13 09:13:39
 tags: 
   - Deep Learning
   - Beginner
@@ -18,7 +18,7 @@ Last night - at the first ever [PyData Philly](https://www.meetup.com/PyData-PHL
 
 When I was first starting out in this industry, I found myself at a point where I felt very comfortable, at both a conceptual and working level, with a variety of machine learning models like logistic regression and random forests. This was in 2014, so it naturally wasn't long before I began hearing about neural networks. They sounded cool. They sounded interesting. They sounded mysterious. They sounded intimidating. They sounded like deep magic.
 
-I started reading up on neural networks and consistently came across material that attempted to explain them away with graphical images or biological analogies. All of that is fine, I suppose, but none of it gave me a concrete idea of what a neural network *is*.
+I started reading up on neural networks and consistently came across material that attempted to explain them away by appealing to vague [images](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/1280px-Colored_neural_network.svg.png) or anecdotes of how people thought the brain worked 60 years ago. All of that is fine, I suppose, but none of it gave me a concrete idea of what a neural network *is* or how to even implement one.
 
 Eventually I had a conversation with a coworker that was a real "a ha!" moment. The phrase that stuck with me was "neural networks are matrix multiplication and stochastic gradient descent, nothing more, nothing less", which coming from a background in math was incredibly helpful.
 
@@ -26,7 +26,7 @@ It's this idea that I would like to try and break down in this post for those wh
 
 # Building blocks
 
-Let's start with [linear regression](https://en.wikipedia.org/wiki/Linear_regression). This is a great starting point because it is ubiquitous across so many disciplines and industries and at the same time will lead us to the basic building blocks of neural networks.
+Let's begin with [linear regression](https://en.wikipedia.org/wiki/Linear_regression). This is a great starting point because it is ubiquitous across so many disciplines and industries and at the same time will lead us to the basic building blocks of neural networks.
 
 When I first encountered linear regression it was expressed in an algebraic form such as
 
@@ -58,9 +58,9 @@ To take the leap from the regression models above to a neural network we simply 
 
 Putting it all together we have
 
-$
+$$
 H=f(X^{T}W+b)
-$
+$$
 
 where $f$ is a differentiable function, known as the "activation", is typically non-linear and applied "element-wise" along its input. Commonly used are the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) and [ReLu](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 
@@ -71,10 +71,10 @@ Note that $H$ is what is known as a "hidden layer" with $m$ "units".
 What we have just described a "single (hidden) layer neural network" which we could write more explicitly as
 
 $$
-\begin{align}
+\begin{align*}
 &H=f_{1}(X^{T}W_{1})+b_{1}\\
 &y = f_{2}(HW_{2}+b_{2})
-\end{align}
+\end{align*}
 $$
 
 There we have it, matrix multiplication (with a few twists), "nothing more, nothing less".
@@ -95,9 +95,48 @@ Note that I didn't say "matrix multiplication all the way down." This was intent
 
 # Motivating neural networks
 
-Once we've established the basic mechanisms that make up a neural network we can motivate why these models are so successful without appealing to [pictures](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/1280px-Colored_neural_network.svg.png) or anecdotes of how people thought the brain worked 60 years ago.
+Once we've established the basic mechanisms that make up a neural network we can motivate why these models are so successful without referencing pictures or bilogical analogies.
 
 Though I hesitate to use this description, let's call neural networks linear regression models on steroids. They are both capable of learning many, many more parameters than a simple linear model *as well* as learning non-linear relationships that we know exist in much of our data. Considering the usefulness these much simpler linear models lend to many applications, it should come as no surprise that these more advanced models can work so well.
+
+# A concrete example with keras
+
+Let's connect what we've learned so far to a simple [keras](https://keras.io/) example. We'll use the `keras` Sequential API to create a simple "feed forward" neural network and take a look at what is going on under the hood.
+
+The following code block creates a feed forward neural network with 5 "hidden layers".
+
+```python
+import keras
+
+m = keras.models.Sequential([
+    keras.layers.Dense(32, activation='relu', input_shape=(20,)),
+    keras.layers.Dense(32, activation='relu'),
+    keras.layers.Dense(1, activation='sigmoid'),
+])
+
+m.summary()
+```
+
+In this example our feature space has dimension $20$ (specified by the `input_shape` parameter). Thus the first `Dense` layer is used to project the input from $R^{20}$ to $R^{32}$, since we specified this layer should have $32$ "hidden units" (as specified by the first argument to `Dense()`. Thus when this layer is added to the model a $20\times 32$ matrix is created along with a $32$ dimensional bias vector for a total of $20\cdot 32 + 32 =672$ "trainable" parameters. In turn, the second `Dense` layer creates a $32\times 32$ matrix and bias vector of length $32$ for a total of $32\cdot 32 + 32 = 1056$ parameters. Finally, the last `Dense` layer transforms the $32$ dimensional output of the second hidden layer back to a single value with a $32\times 1$ matrix and single scalar bias term for a total of $33$ parameters represented by this layer. 
+
+Helpfully, `keras` model objects have a `summary()` attribute that can be called to confirm this. Frequently checking the output of this function is a good habit when getting started with this library.
+
+```
+m.summary()
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_36 (Dense)             (None, 32)                672       
+_________________________________________________________________
+dense_37 (Dense)             (None, 32)                1056      
+_________________________________________________________________
+dense_38 (Dense)             (None, 1)                 33        
+=================================================================
+Total params: 1,761
+Trainable params: 1,761
+Non-trainable params: 0
+_________________________________________________________________
+```
 
 # See also
 
@@ -113,4 +152,4 @@ As I mentioned at the beginning of this post, I'm not adding anything original t
 
 I suppose I should conclude this post admitting that, although stochastic gradient descent was mentioned in the beginning of this post I never had any real intent of addressing it again.
 
-I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excecise to the reader :).
+I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excercise to the reader :).

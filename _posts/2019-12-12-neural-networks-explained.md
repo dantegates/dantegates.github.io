@@ -152,7 +152,7 @@ As I mentioned at the beginning of this post, I'm not adding anything original t
 
 [Stanford Tutorials](http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/): Stanford hosts some decent tutorials, which include some really *helpful* pictures like the one linked here.
 
-[Shameless plug](https://dantegates.github.io/tags/): Of course my blog has several other posts on this topic, enjoy!
+[Shameless plug](https://dantegates.github.io/tags/#deep-learning): Of course my blog has several other posts on this topic, enjoy!
 
 # A final note on SGD
 

@@ -4,7 +4,7 @@ mathjax: true
 title: Neural Networks Explained
 github: https://github.com/dantegates/neural-networks-explained
 creation_date: 2019-12-12
-last_modified: 2019-12-13 09:13:39
+last_modified: 2019-12-13 16:44:46
 tags: 
   - Deep Learning
   - Beginner
@@ -144,12 +144,18 @@ As I mentioned at the beginning of this post, I'm not adding anything original t
 
 [An Attempt At Demystifying Bayesian Deep Learning](https://youtu.be/s0S6HFdPtlA): The substance of the first 5-10 minutes of this talk is nearly identical to the conversation we've had here and the speaker goes even further.
 
+[Sequence to Sequence Deep Learning](https://youtu.be/G5RY_SUJih4): This talk covers a more advanced area of deep learning but begins with logistic regression to motivate the approach similar to this post. If you enjoyed this post I would definitely recommend taking a look at this talk.
+
 [Visualizing the Learning of a Neural Network](http://srome.github.io/Visualizing-the-Learning-of-a-Neural-Network-Geometrically/): This is a post from my friend, Scott Rome (and indeed the coworker mentioned at the beginning of this post), who describes what exactly a neural network is learning with some really cool visualizations.
 
 [Universal Approximation Theorem](https://en.wikipedia.org/wiki/Universal_approximation_theorem): If you are really interested in the math, here is a theorem you should know about. The actual practicality of this theorem is debatable, but interesting all at the same time and nevertheless relevant to this discussion.
+
+[Stanford Tutorials](http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/): Stanford hosts some decent tutorials, which include some really *helpful* pictures like the one linked here.
+
+[Shameless plug](https://dantegates.github.io/tags/): Of course my blog has several other posts on this topic, enjoy!
 
 # A final note on SGD
 
 I suppose I should conclude this post admitting that, although stochastic gradient descent was mentioned in the beginning of this post I never had any real intent of addressing it again.
 
-I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excercise to the reader :).
+I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) (er... well, technically an algorithm for calculating the gradient, in certain special cases, for the purpose of SGD) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excercise to the reader :).

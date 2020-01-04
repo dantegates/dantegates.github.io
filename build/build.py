@@ -2,6 +2,15 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class DeepLearningForTimeSeries(PostConfig):
+    title = 'Deep Learning for Time Series'
+    date_created = '2020-01-02'
+    filename = 'deep-ar/post.md'
+    tags = ['Deep Learning', 'Time Series']
+    github_repo = 'deep-ar'
+    post_type = MarkdownPost
+
+
 class NeuralNetworksExplained(PostConfig):
     title = 'Neural Networks Explained'
     date_created = '2019-12-12'

@@ -47,7 +47,7 @@ class WorldSeriesProjections2019(PostConfig):
 
 
 class DeepLearningForTabularData2(PostConfig):
-    title = 'Deep learning for tabular data 2 - Debunking the myth of the black box'
+    title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
     date_created = '2019-06-14'
     filename = 'mlb-statcast/deep-learning-post.ipynb'
     tags = ['Deep Learning', 'MLB', 'Attention']
@@ -55,8 +55,8 @@ class DeepLearningForTabularData2(PostConfig):
     rebuild = False  # text on this post was edited by hand in the _posts/ file
 
 
-class DeepLearningForTabularData(PostConfig):
-    title = 'Deep learning for tabular data'
+class DeepLearningForIndustry(PostConfig):
+    title = 'Deep Learning for Industry - Working With Tabular Data'
     date_created = '2019-01-30'
     filename = 'deep-learning-for-tabular-data/post.ipynb'
     tags = ['Deep Learning']
@@ -64,7 +64,7 @@ class DeepLearningForTabularData(PostConfig):
 
 
 class DeepProbabalisticEnsembles(PostConfig):
-    title = 'Active learning and deep probabalistic ensembles'
+    title = 'Active Learning and Deep Probabalistic Ensembles'
     date_created = '2019-01-19'
     filename = 'deep-probabalistic-ensembles/deep-probabalistic-ensembles-cifar.ipynb'
     tags = ['Deep Learning', 'Active Learning', 'Bayesian', 'Variational Inference', 'AI']
@@ -167,7 +167,7 @@ class BayesianOnlineLearning(PostConfig):
 
 
 class UnderstandingPriors(PostConfig):
-    title = 'A brief primer on conjugate priors'
+    title = 'A Brief Primer on Conjugate Priors'
     date_created = '2018-05-11'
     filename = 'bayesian-online-learning/a-brief-primer-on-conjugate-priors.ipynb'
     tags = ['Bayesian']
@@ -175,7 +175,7 @@ class UnderstandingPriors(PostConfig):
 
 
 class FastOneHotEncoder(PostConfig):
-    title = 'A fast one hot encoder with sklearn and pandas'
+    title = 'A Fast One Hot Encoder With sklearn and pandas'
     date_created = '2018-05-04'
     filename = 'fast-one-hot-encoder/fast-one-hot-encoder.ipynb'
     tags = ['sklearn', 'pandas']
@@ -183,7 +183,7 @@ class FastOneHotEncoder(PostConfig):
 
 
 class ImageSearch(PostConfig):
-    title = 'Image search with autoencoders'
+    title = 'Image Search With Autoencoders'
     date_created = '2018-05-01'
     filename = 'image-search/image-search.ipynb'
     tags = ['Recommendation Systems', 'Images', 'Auto Encoders', 'AI', 'Deep Learning', 'keras']

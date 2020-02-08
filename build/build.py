@@ -2,6 +2,24 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class ScalingPredictions(PostConfig):
+    title = 'Scaling Predictions'
+    date_created = '2020-02-08'
+    filename = 'scaling-predictions/post.md'
+    tags = ['Machine Learning']
+    github_repo = 'scaling-predictions'
+    post_type = MarkdownPost
+
+
+# class DeepLearningForIndustry3(PostConfig):
+#     title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
+#     date_created = '2020-01-06'
+#     filename = 'deep-ar/uncertainty-plots.md'
+#     tags = ['Deep Learning', 'Time Series']
+#     github_repo = 'deep-ar'
+#     post_type = MarkdownPost
+
+
 class DeepLearningForTimeSeries(PostConfig):
     title = 'Deep Learning for Time Series'
     date_created = '2020-01-02'

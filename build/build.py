@@ -2,6 +2,15 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class PredictingPeteAlonso2020(PostConfig):
+    title = 'Predicting Pete Alonso\'s 2020 Performance'
+    date_created = '2020-03-03'
+    filename = 'mlb-statcast/predicting-pete-alonsos-2020-season.md'
+    tags = ['Bayesian Inference', 'MLB']
+    github_repo = 'mlb-statcast'
+    post_type = MarkdownPost
+
+
 class ScalingPredictions(PostConfig):
     title = 'Scaling Predictions'
     date_created = '2020-02-08'
@@ -11,13 +20,13 @@ class ScalingPredictions(PostConfig):
     post_type = MarkdownPost
 
 
-# class DeepLearningForIndustry3(PostConfig):
-#     title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
-#     date_created = '2020-01-06'
-#     filename = 'deep-ar/uncertainty-plots.md'
-#     tags = ['Deep Learning', 'Time Series']
-#     github_repo = 'deep-ar'
-#     post_type = MarkdownPost
+class DeepLearningForIndustry3(PostConfig):
+    title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
+    date_created = '2020-01-06'
+    filename = 'deep-ar/uncertainty-plots.md'
+    tags = ['Deep Learning', 'Time Series']
+    github_repo = 'deep-ar'
+    post_type = MarkdownPost
 
 
 class DeepLearningForTimeSeries(PostConfig):
@@ -64,11 +73,11 @@ class WorldSeriesProjections2019(PostConfig):
 
 
 
-class DeepLearningForTabularData2(PostConfig):
+class DeepLearningForIndustry2(PostConfig):
     title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
     date_created = '2019-06-14'
     filename = 'mlb-statcast/deep-learning-post.ipynb'
-    tags = ['Deep Learning', 'MLB', 'Attention']
+    tags = ['Deep Learning', 'MLB', 'Attention', 'Industry']
     github_repo = 'mlb-statcast'
     rebuild = False  # text on this post was edited by hand in the _posts/ file
 
@@ -77,7 +86,7 @@ class DeepLearningForIndustry(PostConfig):
     title = 'Deep Learning for Industry - Working With Tabular Data'
     date_created = '2019-01-30'
     filename = 'deep-learning-for-tabular-data/post.ipynb'
-    tags = ['Deep Learning']
+    tags = ['Deep Learning', 'Industry']
     github_repo = 'deep-learning-for-tabular-data'
 
 

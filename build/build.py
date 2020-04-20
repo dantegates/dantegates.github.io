@@ -2,6 +2,15 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class MyQuarantinePlaylist(PostConfig):
+    title = 'My Quarantine Playlist'
+    date_created = '2020-04-20'
+    filename = 'my-quarantine-playlist/post.md'
+    tags = ['Bayesian Inference']
+    github_repo = 'my-quarantine-playlist'
+    post_type = MarkdownPost
+
+
 class PredictingPeteAlonso2020(PostConfig):
     title = 'Predicting Pete Alonso\'s 2020 Performance'
     date_created = '2020-03-03'

@@ -2,6 +2,14 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class CollaborativeFilteringTutorial(PostConfig):
+    title = 'A Tutorial on Collaborative Filtering in sklearn'
+    date_created = '2020-04-21'
+    filename = 'practical-collaborative-filtering/collaborative-filtering.ipynb'
+    tags = ['Recommendation Systems', 'sklearn']
+    github_repo = 'collaborative-filtering-tutorial'
+
+
 class MyQuarantinePlaylist(PostConfig):
     title = 'My Quarantine Playlist'
     date_created = '2020-04-20'

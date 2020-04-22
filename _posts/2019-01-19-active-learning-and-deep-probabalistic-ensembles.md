@@ -1,8 +1,8 @@
 ---
 layout: post
 mathjax: true
-title: Active learning and deep probabalistic ensembles
-github: https://github.com/dantegates/deep-probabalistic-ensembles
+title: Active learning and deep probabilistic ensembles
+github: https://github.com/dantegates/deep-probabilistic-ensembles
 creation_date: 2019-01-19
 last_modified: 2019-01-19 22:02:36
 tags: 
@@ -16,11 +16,11 @@ tags:
 
 [Active learning](http://www.cs.northwestern.edu/~pardo/courses/mmml/papers/active_learning/improving_generalization_with_active_learning_ML94.pdf), loosely described, is an iterative process for getting the most out of your training data. This is especially useful for cases where you have a lot of unlabeled data that you would like to use for [supervised training](https://en.wikipedia.org/wiki/Supervised_learning) but labeling the data is extremely time consuming and/or costly. In this case you want to be able intelligently choose which data points to label next so that you total training set consists of a rich and diverse set of examples with minimal redundancy.
 
-Last week at PyData Miami, Clément Farabet of NVIDIA discussed how this problem relates to the massive amount of training data NVIDIA has collected for their autonomous car project. In particular he mentioned a paper that some of their researchers recently released that introduces "[deep probabalistic ensembles](https://arxiv.org/pdf/1811.03575.pdf)" which they apply alongside active learning as a solution to this problem. In this post we'll take a look at the ideas introduced in the paper.
+Last week at PyData Miami, Clément Farabet of NVIDIA discussed how this problem relates to the massive amount of training data NVIDIA has collected for their autonomous car project. In particular he mentioned a paper that some of their researchers recently released that introduces "[deep probabilistic ensembles](https://arxiv.org/pdf/1811.03575.pdf)" which they apply alongside active learning as a solution to this problem. In this post we'll take a look at the ideas introduced in the paper.
 
 ## Motivation
 
-Why "deep probabalistic ensembles"? To answer this question, let's take a step back and consider a common pattern for active learning. Suppose we have two data sets at hand, $D_{L}=\{X_{L}, y_{L}\}$ and $D_{U}=\{X_{U}\}$, where the first data set is labeled and the second is not. Additionally suppose we have a model $f: X\rightarrow y$ and a function $u: f(x)\rightarrow \mathbb{R}$ that measures the uncertainty of a given prediction $f(x)$. We can train $f$ on $D_{L}$ and exploit the uncertainty of the predictions $\{f(x); x\in X_{U}\}$ to determine which data points in $X_{U}$ should be labeled next. For example, a sketch of this algorithm looks like
+Why "deep probabilistic ensembles"? To answer this question, let's take a step back and consider a common pattern for active learning. Suppose we have two data sets at hand, $D_{L}=\{X_{L}, y_{L}\}$ and $D_{U}=\{X_{U}\}$, where the first data set is labeled and the second is not. Additionally suppose we have a model $f: X\rightarrow y$ and a function $u: f(x)\rightarrow \mathbb{R}$ that measures the uncertainty of a given prediction $f(x)$. We can train $f$ on $D_{L}$ and exploit the uncertainty of the predictions $\{f(x); x\in X_{U}\}$ to determine which data points in $X_{U}$ should be labeled next. For example, a sketch of this algorithm looks like
 
 1. Train $f$ on $D_{L}$.
 2. Obtain the predictions $\{f(x); x\in X_{U}\}$.
@@ -29,7 +29,7 @@ Why "deep probabalistic ensembles"? To answer this question, let's take a step b
 
 After labeling these points we can update $D_{L}$ and repeat the process as desired.
 
-Of course, since we've mentioned the word "uncertainty" several times by now it should be clear why we are interested in deep probabalistic networks. Theoretically we can define a deep probabalistic, or bayesian, neural network as
+Of course, since we've mentioned the word "uncertainty" several times by now it should be clear why we are interested in deep probabilistic networks. Theoretically we can define a deep probabilistic, or Bayesian, neural network as
 
 $$
 \begin{equation}
@@ -40,11 +40,11 @@ $$
 
 where $w$ is the set of all weights in the network for which we define the prior $P(w)$. From such a model we could obtain not only predictions of our target variable $y$ but also a measure of uncertainty for those predictions.
 
-However, it is well known that training a deep network like this is a difficult, if not impossible, task. Enter "deep probabalistic ensembles" which approximate of the posterior $P(w \ \vert \ x)$.
+However, it is well known that training a deep network like this is a difficult, if not impossible, task. Enter "deep probabilistic ensembles" which approximate of the posterior $P(w \ \vert \ x)$.
 
-## Approximating deep bayesian neural networks
+## Approximating deep Bayesian neural networks
 
-Since NVIDIA paper is pretty short and self explanitory so I'll only cover the details necessary to grok the code below.
+Since NVIDIA paper is pretty short and self explanatory so I'll only cover the details necessary to grok the code below.
 
 The key idea the author's introduce is a loss function that allows us to learn an ensemble of deep neural networks so that the ensemble itself approximates samples from the posterior in \eqref{eq:posterior}.
 
@@ -76,7 +76,7 @@ where $n_{i}$, $n_{o}$, $w$ and $h$ are the number of inputs and outputs and wid
 
 # keras implementation
 
-Below is an implementation of the "Deep probabalistic ensemble" using `keras` and a simulation of the active learning experiments from the paper. Note that I was able to run the experiments on a [GTX 1060](https://www.nvidia.com/en-in/geforce/products/10series/geforce-gtx-1060/) but it was an overnight job.
+Below is an implementation of the "Deep probabilistic ensemble" using `keras` and a simulation of the active learning experiments from the paper. Note that I was able to run the experiments on a [GTX 1060](https://www.nvidia.com/en-in/geforce/products/10series/geforce-gtx-1060/) but it was an overnight job.
 
 As in the NVIDIA paper, the ensemble consists of several ResNet18s. I used the [keras_contrib implementation](https://github.com/keras-team/keras-contrib/blob/d638cf409f7c8d3d042feac5269c12d507398eeb/keras_contrib/applications/resnet.py#L1) with just a few minor modifications so the returned models could be used as an ensemble.
 
@@ -125,7 +125,7 @@ class Stack(keras.layers.Layer):
         return (input_shape[0][0], len(input_shape), input_shape[0][1])
 
 
-class DeepProbabalisticEnsemble(keras.models.Model):
+class DeepProbabilisticEnseble(keras.models.Model):
     def __init__(self, input_shape, n_classes, n_members, beta=10**-5):
         # instantiate the first member of the ensemble so we can reuse its input layer
         # with the other layers
@@ -162,7 +162,7 @@ class DeepProbabalisticEnsemble(keras.models.Model):
 
 
 ```python
-dpe = DeepProbabalisticEnsemble((32, 32, 3), 10, 8)
+dpe = DeepProbabilisticEnseble((32, 32, 3), 10, 8)
 ```
 
 
@@ -226,7 +226,7 @@ patience = 25
 verbosity = 0
 
 # simulation
-dpe_builder = partial(DeepProbabalisticEnsemble, (32, 32, 3), 10, n_ensemble_members)
+dpe_builder = partial(DeepProbabilisticEnseble, (32, 32, 3), 10, n_ensemble_members)
 b = budget // n_iterations
 n_acquisitions = b
 idx = np.random.choice(len(X_train), size=len(X_train), replace=False)

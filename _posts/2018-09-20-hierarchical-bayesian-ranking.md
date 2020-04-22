@@ -14,11 +14,11 @@ tags:
 ---
 
 
-As the title suggests, this post will examine how to use bayesian models for ranking. As I've been on a kick with the MLB statcast data we'll use this technique to create a ranked list of professional baseball teams and project who will win the world series.
+As the title suggests, this post will examine how to use Bayesian models for ranking. As I've been on a kick with the MLB Statcast data we'll use this technique to create a ranked list of professional baseball teams and project who will win the world series.
 
 # Background
 
-In this section we'll briefly discuss bayesian models and ranking. If you are already familiar with both of these topics you can skip this section.
+In this section we'll briefly discuss Bayesian models and ranking. If you are already familiar with both of these topics you can skip this section.
 
 First, let's cover ranking (in particular ranking with an [item response model](https://en.wikipedia.org/wiki/Item_response_theory)). There are three basic steps to ranking
 
@@ -28,7 +28,7 @@ First, let's cover ranking (in particular ranking with an [item response model](
 
 For example you might fit a simple linear regression that predicts how much an item will sell for where one of the model's features is the vendor (from a list of several vendors) that is selling the item. After fitting a model you can inspect the coefficient for each vendor. Since these coefficients come from a linear model, a larger coefficient implies a larger predicted selling price. Thus we can use these coefficients to rank the vendors.
 
-Hierarchical Bayesian Ranking then is just a catchy phrase that means parameters from a [hierarchical bayesian model](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling) are used to rank the items. One of the advantages of using a bayesian model is that we can include a measure of variance or *uncertainty* in our rankings. Depending on how the model is defined you may also be able to make other interesting inferences from additional model parameters. For example our model that ranks baseball teams can also be used to predict who will win the world series.
+Hierarchical Bayesian Ranking then is just a catchy phrase that means parameters from a [hierarchical Bayesian model](https://en.wikipedia.org/wiki/Bayesian_hierarchical_modeling) are used to rank the items. One of the advantages of using a Bayesian model is that we can include a measure of variance or *uncertainty* in our rankings. Depending on how the model is defined you may also be able to make other interesting inferences from additional model parameters. For example our model that ranks baseball teams can also be used to predict who will win the world series.
 
 # The model
 
@@ -43,7 +43,7 @@ $$
 \end{align*}
 $$
 
-Together the probabilities $p_{1}$, $p_{2}$ are [Dirichlet distributed](https://en.wikipedia.org/wiki/Dirichlet_distribution) where the "concentration" parameters are $a_{1} + h_{1}$ and $a_{2}$ which represents the ability of the home team (note that that these team abilties are used to rank the teams later) plus a parameter representing $team_{1}$'s home field advantage (or disadvantage if you are the Mets) and a parameter representing $team_{2}$'s ability as follows
+Together the probabilities $p_{1}$, $p_{2}$ are [Dirichlet distributed](https://en.wikipedia.org/wiki/Dirichlet_distribution) where the "concentration" parameters are $a_{1} + h_{1}$ and $a_{2}$ which represents the ability of the home team (note that that these team abilities are used to rank the teams later) plus a parameter representing $team_{1}$'s home field advantage (or disadvantage if you are the Mets) and a parameter representing $team_{2}$'s ability as follows
 
 $$
 \begin{align*}
@@ -135,7 +135,7 @@ and League
 
 # Acknowledgement and additional resources
 
-This post was particulary inspired by a few of Andrew Gelman's blog posts in which he [ranked world cup teams](https://andrewgelman.com/2014/07/15/stan-world-cup-update/). You can find a Python implementation of his world cup model on my [githup repo](https://github.com/dantegates/world-cup/blob/master/World%20cup.ipynb). The model in this post bears some resemblance to Gelman's world cup model with a few differences noted here
+This post was particularly inspired by a few of Andrew Gelman's blog posts in which he [ranked world cup teams](https://andrewgelman.com/2014/07/15/stan-world-cup-update/). You can find a Python implementation of his world cup model on my [githup repo](https://github.com/dantegates/world-cup/blob/master/World%20cup.ipynb). The model in this post bears some resemblance to Gelman's world cup model with a few differences noted here
 
 - Gelman models the difference in goals scored by each team in a given game whereas we'll model the number of wins a team earns in a series. Thus our response variables belong to different distributions.
 - Gelman uses [FiveThirtyEight](https://fivethirtyeight.com/) soccer rankings in his model as prior. We didn't use rankings in this fashion but we did use FiveThirtyEight's published [Elo](https://en.wikipedia.org/wiki/Elo_rating_system) scores to compare against our learned rankings.

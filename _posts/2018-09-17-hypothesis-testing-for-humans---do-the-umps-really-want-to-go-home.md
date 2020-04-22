@@ -28,13 +28,13 @@ If any of these buzzwords interest you, keep reading.
 
 Hypothesis testing methods such as the [z-test](https://en.wikipedia.org/wiki/Z-test) and [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test) are ubiquitous in introductory statistics courses. I would wager that nearly all STEM majors have seen this approach at one time or another and that many students of other disciplines such as psychology, sociology, etc. have also been exposed to this kind of hypothesis testing.
 
-However these classic methods are not the only tools at our disposal. In this post we'll deomonstrate how to use [resampling](https://en.wikipedia.org/wiki/Resampling_(statistics) and [bayesian inference](https://en.wikipedia.org/wiki/Bayesian_inference#Probability_of_a_hypothesis) for hypothesis testing. For a discussion of why you might prefer to use one of the methods discussed in this post over the traditional methods see the summary below.
+However these classic methods are not the only tools at our disposal. In this post we'll demonstrate how to use [resampling](https://en.wikipedia.org/wiki/Resampling_(statistics) and [bayesian inference](https://en.wikipedia.org/wiki/Bayesian_inference#Probability_of_a_hypothesis) for hypothesis testing. For a discussion of why you might prefer to use one of the methods discussed in this post over the traditional methods see the summary below.
 
 # Do the umps really want to go home?
 
 Now that we've established the methods we want to demonstrate let's consider the problem at hand.
 
-Ealier this year in April FiveThirtyEight put out an article titled [Everyone Wants To Go Home During Extra Innings — Maybe Even The Umps](https://fivethirtyeight.com/features/everyone-wants-to-go-home-during-extra-innings-maybe-even-the-umps/). The article suggests that umpires are more likely to mis-call balls/strikes in situations could help end a game that has gone into extra innings. In particular the article questions the following scenarios occuring in the bottom of an extra inning
+Earlier this year in April FiveThirtyEight put out an article titled [Everyone Wants To Go Home During Extra Innings — Maybe Even The Umps](https://fivethirtyeight.com/features/everyone-wants-to-go-home-during-extra-innings-maybe-even-the-umps/). The article suggests that umpires are more likely to mis-call balls/strikes in situations could help end a game that has gone into extra innings. In particular the article questions the following scenarios occurring in the bottom of an extra inning
 
 1. The away team holds the lead and a pitch that was actually a ball is called a strike (thus limiting the opportunity for the home team to tie the away team's score and prolong the game).
 2. A pitch that was actually a strike is called a ball when the home team has runners on base (thus extending the opportunity for the home team to score a [walk-off](https://en.wikipedia.org/wiki/Walk-off_home_run) hit).
@@ -232,7 +232,7 @@ assert idx2 / len(deltas) < 0.975
 
 We will now use Bayesian Inference to test whether umpires are more likely to incorrectly call a strike when the away team leads in the bottom of an extra inning. This approach can be outlined roughly as follows
 
-- First the problem is described as a probabalistic model. In our case the distribution of incorrect strike calls when the away team leads and when the game is tied will each be modelled as individual Poisson distributions. Each distribution has its own prior on the value of the parameter `mu` but each prior distribution has the same parameters.
+- First the problem is described as a probabilistic model. In our case the distribution of incorrect strike calls when the away team leads and when the game is tied will each be modeled as individual Poisson distributions. Each distribution has its own prior on the value of the parameter `mu` but each prior distribution has the same parameters.
 - Next, we use `pymc3` to obtain a posterior distributions of the model parameters.
 - Lastly, using estimates of the model parameters obtained from the posterior we simulate the differences of the two distributions, similar to above.
 
@@ -280,7 +280,7 @@ pm.plots.traceplot(trace[-500:])
 
 We can now observe the mean balls called strikes per inning by sampling from the posterior. We find that both distributions seem to be centered around the same value and the distribution for when the away team has a higher variance as we have less data for that case and thus there is more uncertainty in our parameter estimates.
 
-To answer the question of whether umpires are trying to end the game early we can examine the difference of the model parameters from the posterior. In this case to conclude that umpires are calling balls and strikes differently in cases that might end the game early versus the rest of the game we would need to find a difference of 0 to have occurred in less than 2.5% of the posterior samples. `pymc3` has a convenient function for this called `plot_posterior()` which, in this case, show that 0 is well within the 95% credible region, indicating that the umpires are calling balls and strikes consistently thoughout the game.
+To answer the question of whether umpires are trying to end the game early we can examine the difference of the model parameters from the posterior. In this case to conclude that umpires are calling balls and strikes differently in cases that might end the game early versus the rest of the game we would need to find a difference of 0 to have occurred in less than 2.5% of the posterior samples. `pymc3` has a convenient function for this called `plot_posterior()` which, in this case, show that 0 is well within the 95% credible region, indicating that the umpires are calling balls and strikes consistently throughout the game.
 
 
 ```python

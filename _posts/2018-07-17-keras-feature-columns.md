@@ -14,7 +14,7 @@ tags:
 
 `tensorflow's` [feature columns](https://www.tensorflow.org/guide/feature_columns) are a great idea. However the implementation leaves much to be desired.
 
-In this post we'll discuss what makes feature columns a great idea and suggest using an alternative `keras` implemention that exposes a much more user-friendly interface. We'll also show how examples of how to use the keras implementation.
+In this post we'll discuss what makes feature columns a great idea and suggest using an alternative `keras` implementation that exposes a much more user-friendly interface. We'll also show how examples of how to use the keras implementation.
 
 # Why feature columns?
 
@@ -24,7 +24,7 @@ One of the great ideas behind feature columns is the ability to Specify how to p
 
 The second great idea behind feature columns is it allows you to tie features into your model. For example, you can specify that the model should learn an embedding for a given feature.
 
-**Update**: For a walkthrough of using native `tensorflow` 2.0 feature columns with `keras` see my [newer post](https://dantegates.github.io/2019/10/24/tensorflow-2-feature-columns-and-keras.html).
+**Update**: For a walk through of using native `tensorflow` 2.0 feature columns with `keras` see my [newer post](https://dantegates.github.io/2019/10/24/tensorflow-2-feature-columns-and-keras.html).
 
 # keras feature columns
 

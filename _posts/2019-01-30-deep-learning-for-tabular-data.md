@@ -13,22 +13,22 @@ published: true
 
 There's no shortage of hype surrounding deep learning these days. And for good reason. Advances in AI are crossing frontiers that many didn't expect to see crossed for decades with the advent of new algorithms and the hardware that makes training these models feasible.
 
-Most of the discussion surrounding deep learning retains a focus on artificial intelligence, such as NLP and computer vision where the model inputs are images or free text. This is in contrast to many of the problems in industry where the data at hand follows the more tradditional "tabular" structure. This tabular structure is characterized by the following traits
+Most of the discussion surrounding deep learning retains a focus on artificial intelligence, such as NLP and computer vision where the model inputs are images or free text. This is in contrast to many of the problems in industry where the data at hand follows the more traditional "tabular" structure. This tabular structure is characterized by the following traits
 
-- The data set is 2-dimmensional, i.e. rows and columns.
-- The dimmensionality of the feature space (the columns) is fixed.
+- The data set is 2-dimensional, i.e. rows and columns.
+- The dimensionality of the feature space (the columns) is fixed.
 - The features are made up of mixed types including numeric and categorical values.
 - The scales of the numeric values differ from feature to feature.
 
 In this post we will explore how to apply deep learning to the sort of tabular data that many of us work with on a day to day basis. Some of the concepts we'll take a look at in particular include
 
-- Handling categorical features (of varying dimmensionality)
+- Handling categorical features (of varying dimensionality)
 - Augmenting a tabular data set with non-tabular features (such as text, image, etc.)
-- Augmenting a tabular data set with features of variable dimmensionality (such as time series, free text, video, etc.)
+- Augmenting a tabular data set with features of variable dimensionality (such as time series, free text, video, etc.)
 
 # The data
 
-In this post we'll work with the [california housing data set](https://scikit-learn.org/stable/datasets/index.html#california-housing-dataset). The base data set that you can import from `sklearn` only contains numeric features. For the purpose of this post I enriched the base data set with zip codes, counties and free text scraped from the wikipedia article of each county. The data was encriched with [this notebook](https://github.com/dantegates/deep-learning-for-tabular-data/blob/master/enrich-california-housing-data.ipynb).
+In this post we'll work with the [california housing data set](https://scikit-learn.org/stable/datasets/index.html#california-housing-dataset). The base data set that you can import from `sklearn` only contains numeric features. For the purpose of this post I enriched the base data set with zip codes, counties and free text scraped from the wikipedia article of each county. The data was enriched with [this notebook](https://github.com/dantegates/deep-learning-for-tabular-data/blob/master/enrich-california-housing-data.ipynb).
 
 Before getting started I want to point at that this post is meant to be illustrative. The data set is rather small and limits how "deep" out models can be. I also don't claim that the modeling approaches in this notebook are the optimal way to solve this problem, but hopefully demonstrate some principles that can be generalized to other problems.
 
@@ -356,7 +356,7 @@ df.zip_code.nunique(), df.county.nunique()
 
 
 
-There aren't too many counties. If we wanted we could one-hot encode these and include it as a feature that way. However, zip code is much bigger. One hot encoding this feature would significantly increase the size of our network (the first layer will have at least $1,725\times h_1$ weights, where $h_1$ is the number of outputs in the first hidden layer). It turns out that categorical features like this can be represented with embeddings to keep the size of our model down. An embedding is simply a *learned* mapping from a categorical input to a feature space of a chosen size. Typically these are used to convert words or characters in text data into features suitable for a neural network but they work for our purposes here as well. In this case we'll embed both zip codes and counties into 3 dimmensions. Note that there are [pretrained word embeddings](https://radimrehurek.com/gensim/models/word2vec.html) available that can be used instead of learning embeddings as part of your model if desired.
+There aren't too many counties. If we wanted we could one-hot encode these and include it as a feature that way. However, zip code is much bigger. One hot encoding this feature would significantly increase the size of our network (the first layer will have at least $1,725\times h_1$ weights, where $h_1$ is the number of outputs in the first hidden layer). It turns out that categorical features like this can be represented with embeddings to keep the size of our model down. An embedding is simply a *learned* mapping from a categorical input to a feature space of a chosen size. Typically these are used to convert words or characters in text data into features suitable for a neural network but they work for our purposes here as well. In this case we'll embed both zip codes and counties into 3 dimensions. Note that there are [pretrained word embeddings](https://radimrehurek.com/gensim/models/word2vec.html) available that can be used instead of learning embeddings as part of your model if desired.
 
 The code to do this in `keras` gives the appearance that more is going on than there actually is. All we are doing here is adding 6 additional features (3 for both categorical values) to the numeric input and then building a basic feed forward neural network on top of that just as we did above. The graphical representation below is helpful.
 
@@ -458,9 +458,9 @@ Not bad. 5 epochs later and we are already outperforming our first model and are
 
 In the final model we'll build in this post we'll demonstrate how to include free text as a feature alongside the numeric and embedding features we used above.
 
-The key idea here is to include a component in our model that takes a sequence of variable length (in this case an LSTM) and projects that sequence into a feature space with fixed dimmension. Then we'll concatenate this feature representation alongside the numeric features just as we did with the embeddings above. Note that this approach could also work for other non-tabular data sources such as image or video or time series.
+The key idea here is to include a component in our model that takes a sequence of variable length (in this case an LSTM) and projects that sequence into a feature space with fixed dimension. Then we'll concatenate this feature representation alongside the numeric features just as we did with the embeddings above. Note that this approach could also work for other non-tabular data sources such as image or video or time series.
 
-Note that to keep the implementation in this post simple we're actually going to restrict the wikipedia descriptions to 250 characters, and if the description has fewer characters we will just pad the sequence to get the full 250. This has the effect of treating the free text data as having a fixed, and not variable, length as promised. However the code below can be easily adjusted to accomodate this by using a batch generator and padding the batches rather than the entire data set once. Again the graphical representation of the model below is helpful.
+Note that to keep the implementation in this post simple we're actually going to restrict the wikipedia descriptions to 250 characters, and if the description has fewer characters we will just pad the sequence to get the full 250. This has the effect of treating the free text data as having a fixed, and not variable, length as promised. However the code below can be easily adjusted to accommodate this by using a batch generator and padding the batches rather than the entire data set once. Again the graphical representation of the model below is helpful.
 
 Out of curiosity we'll get a rough count of about how many words are in each wiki page.
 

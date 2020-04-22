@@ -23,7 +23,7 @@ In this post we'll build a container around a simple [flask](flask.pocoo.org) ap
 Things this post will not cover are:
 
 - The ins and outs of all that Helm is and what it can do
-- How to stand up a real (not local) kubernetes cluster
+- How to stand up a real (not local) Kubernetes cluster
 
 # Why Helm?
 
@@ -35,10 +35,10 @@ For the developer who wants to quickly get started with Kubernetes Helm is a gre
 
 If you want to follow along with the code in this post
 
-1. Install [minikube](https://github.com/kubernetes/minikube) (an app that lets your run a local kubernetes cluster) and start it up with `minikube start`.
-2. Install [helm](https://github.com/kubernetes/helm) and initialize it on your minikube cluster. I recommend uising `helm init --upgrade --service-account default`.
+1. Install [minikube](https://github.com/kubernetes/minikube) (an app that lets your run a local Kubernetes cluster) and start it up with `minikube start`.
+2. Install [helm](https://github.com/kubernetes/helm) and initialize it on your minikube cluster. I recommend using `helm init --upgrade --service-account default`.
 3. Clone this [GitHub repository](https://github.com/dantegates/from-docker-to-kubernetes). This repo contains the flask app, Dockerfile and Helm chart that we'll be using.
-4. If at any point you experience errors and can't follow along, skip to the Troubleshooting  section at the bottom of this page for a link to an excellent blog post on diagnosing errors when deploying to kubernetes.
+4. If at any point you experience errors and can't follow along, skip to the Troubleshooting  section at the bottom of this page for a link to an excellent blog post on diagnosing errors when deploying to Kubernetes.
 
 # To Kubernetes!
 
@@ -77,9 +77,9 @@ The "Welcome to nginx!" page should have opened in your browser.
 
 To recap, in only 4 lines of code we
 
-1. We fired up a local kubernetes cluster.
+1. We fired up a local Kubernetes cluster.
 2. We used the built in `helm create` tool to give us a basic Helm chart template.
-3. We installed the nginx Helm chart to the cluster with `helm install`. The service type was set to `NodePort` to expose the service outside of the cluster. The bitnami tutorial contains for details on this.
+3. We installed the nginx Helm chart to the cluster with `helm install`. The service type was set to `NodePort` to expose the service outside of the cluster. The Bitnami tutorial contains for details on this.
 4. We verified that we could interact with the service.
 
 So far, this was pretty easy.
@@ -89,7 +89,7 @@ So far, this was pretty easy.
 So how do we customize this default chart to run our flask app. It turns out there are only 2 things we need to add to a single file to complete the chart.
 
 1. Specify our custom docker image.
-2. Specify which port inside the container kubernetes should listen to.
+2. Specify which port inside the container Kubernetes should listen to.
 
 To make the first change we edit the lines in `app-chart/values.yml` from
 
@@ -161,4 +161,4 @@ In this case we have properly installed our flask app. However we overlooked a k
 
 In `templates/deployments.yml` "liveness" and "readiness" probes are defined. These are descriptions of how to ping the service to know if it is "alive." By default the example in `helm create` simply makes an HTTP GET request to the root route - '/'. If it returns 200 the checks are considered successful. If not, the service will continually be restarted until the check passes. It happened to be that the image I used when first trying out `helm` doesn't define a root endpoint which caused both probes to fail.
 
-Fortunately I was able to figure out the issue by reading [this excellent blog post](https://kukulinski.com/10-most-common-reasons-kubernetes-deployments-fail-part-1/) which has greate trouble shooting advice for working with kubernetes.
+Fortunately I was able to figure out the issue by reading [this excellent blog post](https://kukulinski.com/10-most-common-reasons-kubernetes-deployments-fail-part-1/) which has great trouble shooting advice for working with Kubernetes.

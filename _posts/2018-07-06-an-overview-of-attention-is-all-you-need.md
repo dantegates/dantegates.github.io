@@ -26,7 +26,7 @@ This post is pretty lengthy. The goal of this post is to be useful to read along
 
 Before going in depth, let's cover some preliminaries. If you are unfamiliar with the topics covered here you may want to do some additional research before continuing.
 
-**Sequence to sequence (seq2seq)**: Seq2seq models map input of an arbitrary length to an output of arbitrary length. This is different from the conventional notion of machine learning models which are trained on a feature space of *fixed* dimmension to predict an output of *fixed* dimmension. A positive example is translating sentences from English to French where both the input and output sentence could be of any length. As a negative example consider the classic MNIST dataset (see the [keras MNIST tutorial](https://github.com/keras-team/keras/blob/master/examples/mnist_mlp.py) as an example) where one classifies an image as one of **10** categories given the **784** pixels of the image. The traditional approach is a natural fit for many applications but for tasks such as machine translation seq2seq models are more intuitive.
+**Sequence to sequence (seq2seq)**: Seq2seq models map input of an arbitrary length to an output of arbitrary length. This is different from the conventional notion of machine learning models which are trained on a feature space of *fixed* dimmension to predict an output of *fixed* dimension. A positive example is translating sentences from English to French where both the input and output sentence could be of any length. As a negative example consider the classic MNIST dataset (see the [keras MNIST tutorial](https://github.com/keras-team/keras/blob/master/examples/mnist_mlp.py) as an example) where one classifies an image as one of **10** categories given the **784** pixels of the image. The traditional approach is a natural fit for many applications but for tasks such as machine translation seq2seq models are more intuitive.
 
 **Recurrent Neural Networks (RNNs)**: We won't discuss RNNs in much detail in this post. However to appreciate the Transformer model you should understand that RNNs, such as [LSTMs](https://en.wikipedia.org/wiki/Long_short-term_memory), have been the leaders in the seq2seq space for a while. However, they have some limitations which are discussed in more detail in Attention Is All You Need.
 
@@ -80,7 +80,7 @@ As we can see from the picture the encoding is brought into the middle of the de
 
 ## Embeddings
 
-Like many approaches to NLP the first step of the Transformer is to convert the sequences of tokens to learned word embeddings. The dimmension of the embeddings is referred to as $d_{model}$ in the Attention Is All You Need paper but you may see this referred to as the "hidden size" elsewhere, e.g. [in tensor2tensor](https://github.com/tensorflow/tensor2tensor/blob/342e214dea360a7f472fc82f3dd0775d7e224c52/tensor2tensor/models/transformer.py#L1474). In the paper $d_{model}=512$.
+Like many approaches to NLP the first step of the Transformer is to convert the sequences of tokens to learned word embeddings. The dimension of the embeddings is referred to as $d_{model}$ in the Attention Is All You Need paper but you may see this referred to as the "hidden size" elsewhere, e.g. [in tensor2tensor](https://github.com/tensorflow/tensor2tensor/blob/342e214dea360a7f472fc82f3dd0775d7e224c52/tensor2tensor/models/transformer.py#L1474). In the paper $d_{model}=512$.
 
 Keep in mind that the output of the embedding layers is a matrix in $R^{n\times d_{model}}$, where $n$ is the sequence length. This is straightforward but will come up again.
 
@@ -338,7 +338,7 @@ The Transformer makes use of residual connections. That is, the input of each su
 
 ## Layer normalization
 
-[Batch normalization](https://arxiv.org/pdf/1502.03167.pdf) is a method that has been shown to significantly decrease the amount of time needed during training for deep neural networks to converge. The name of the method is self explanatory. To implement batch normalization one simply normalizes each batch by substracting of the mean value of the batch and dividing by the variance (additionally learned "gain" and "bias" parameters are applied to each batch). This prevents what is known as "internal covariate shift"
+[Batch normalization](https://arxiv.org/pdf/1502.03167.pdf) is a method that has been shown to significantly decrease the amount of time needed during training for deep neural networks to converge. The name of the method is self explanatory. To implement batch normalization one simply normalizes each batch by subtracting of the mean value of the batch and dividing by the variance (additionally learned "gain" and "bias" parameters are applied to each batch). This prevents what is known as "internal covariate shift"
 
 Layer normalization was introduced as an improvement to batch normalization, namely it could be applied to RNNs and 
 https://arxiv.org/pdf/1607.06450.pdf
@@ -350,7 +350,7 @@ https://arxiv.org/pdf/1607.06450.pdf
 Training batches for the Transformer are constructed as follows
 
 - Training examples (sentences) are "batched" together according to the number of tokens in each sentence.
-- From these "batches" training "steps" are constructed by grouping examples together to reach an approximate number of tokens desired per step - this is a shift from the typical notion when training on features of fixed dimmension where batches contain a *fixed* number of examples.
+- From these "batches" training "steps" are constructed by grouping examples together to reach an approximate number of tokens desired per step - this is a shift from the typical notion when training on features of fixed dimension where batches contain a *fixed* number of examples.
 
 It is important to take note of the following details.
 1. A gradient update is performed at each "step" - thus in this case what the paper refers to as training steps is more similar to a training batch in other contexts. Indeed, even in the tensor2tensor [source](https://github.com/tensorflow/tensor2tensor/blob/342e214dea360a7f472fc82f3dd0775d7e224c52/tensor2tensor/layers/common_hparams.py#L34) the word "batch_size" is used to describe what would be called a "step" size in the paper.
@@ -392,4 +392,4 @@ Note that the learning rate is determined by
 - The number of batches previously trained on
 - The number of warmup batches chosen
 
-The purpose of including $d_{model}$, rather the simply number of steps, is to define a learning rate schedule as a function of the model size so that a single formula can be used for models of all sizes without the need to tune additional parameters in the scheduler. I'd like to include a reference here but I cannot remember where I came accross this - it was either in a comment buried somewhere in the tensor2tensor source or the youtube link referenced above.
+The purpose of including $d_{model}$, rather the simply number of steps, is to define a learning rate schedule as a function of the model size so that a single formula can be used for models of all sizes without the need to tune additional parameters in the scheduler. I'd like to include a reference here but I cannot remember where I came across this - it was either in a comment buried somewhere in the tensor2tensor source or the youtube link referenced above.

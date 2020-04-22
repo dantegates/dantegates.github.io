@@ -36,7 +36,7 @@ For example, without listening to the entire playlist, can I estimate
 # Where are we?
 
 [Bagging](https://en.wikipedia.org/wiki/Bootstrap_aggregating),
-the generalization of Random Forests and which stands for "bootsrap aggregating",
+the generalization of Random Forests and which stands for "bootstrap aggregating",
 is not a bad place to start when thinking about answering the first question above.
 In bagging, one samples with replacement from a given data set to create $m$ new data sets,
 trains a model on each of these new trainings sets and then aggregates the results.

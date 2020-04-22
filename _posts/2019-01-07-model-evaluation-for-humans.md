@@ -18,7 +18,7 @@ There is a well known saying in machine learning: ["all models are wrong, some a
 
 Observing a model's error on a test set is only a small part of our evaluations. The rest consists of a proper understanding of the broader context of the problem at hand and determining if the results we find on a held out set will generalize to production (where we realize the usefulness of a model). This post aims to discuss generic guidelines and practices for model evaluation that can help deliver useful models quickly and confidently.
 
-# Model evaluation throughout the product lifecycle
+# Model evaluation throughout the product life cycle
 
 For the purpose of this post, we'll discuss model evaluation as it relates throughout three stages of a project's life cycle: *before development*, *during development* and *deployment*.
 
@@ -30,7 +30,7 @@ As a reference point we can relate these categories to [CRISP-DM](https://en.wik
 
 # Before development
 
-Model evaluation should be part of the conversation even before development begins. With respsect to model evaluation, the objective of this phase should be to emerge with a clearly defined goal that can be measured once a model has been released. This phase is usually the most context dependent phase and thus the most difficult to offer concrete advice for. Nevertheless, some suggestions to keep in mind during the early stages of a project are below. Keep in mind these are just a few examples not an exhaustive list.
+Model evaluation should be part of the conversation even before development begins. With respect to model evaluation, the objective of this phase should be to emerge with a clearly defined goal that can be measured once a model has been released. This phase is usually the most context dependent phase and thus the most difficult to offer concrete advice for. Nevertheless, some suggestions to keep in mind during the early stages of a project are below. Keep in mind these are just a few examples not an exhaustive list.
 
 ## Think about framing the problem
 
@@ -58,7 +58,7 @@ For example, suppose you want to perform A/B tests to evaluate whether future it
 
 ## Think about the feedback loop
 
-Lastly, start thinking about a feedback loop during the business and data understanding phases. How will outcomes from the model be collected and evalauted? Will the model's use case affect how it will be evaluated and/or the training data available in future iterations?
+Lastly, start thinking about a feedback loop during the business and data understanding phases. How will outcomes from the model be collected and evaluated? Will the model's use case affect how it will be evaluated and/or the training data available in future iterations?
 
 This second point is incredibly important to consider and has been true of a large number of projects I've personally worked on. For illustration, examples of this interplay between model use case and evaluations follow.
 
@@ -88,7 +88,7 @@ A simple heuristic can serve as an excellent baseline and there's a good chance 
 
 ### An interpretable model
 
-Sure, deep learning is all of the rage right now and it's fun to build deep neural networks. However, starting with a simple model with parameters you can interpret (e.g. linear regression, random forest, a probabalistic model) will help give you confidence that you are on the right track. Inspecting the parameters a model is learning also helps you test your assumptions and serves as a good sanity check (see sections above and below).
+Sure, deep learning is all of the rage right now and it's fun to build deep neural networks. However, starting with a simple model with parameters you can interpret (e.g. linear regression, random forest, a probabilistic model) will help give you confidence that you are on the right track. Inspecting the parameters a model is learning also helps you test your assumptions and serves as a good sanity check (see sections above and below).
 
 ### The existing model or methodology
 
@@ -98,7 +98,7 @@ As an aside, I would recommend, from my own experience that if the model is old,
 
 ### Acceptance criteria
 
-Perhaps you know that any model with a precision less than $x$ won't be useful. Then this metric should be used as a baseline. If another baseline mentioned above outperforms this criteria than obviously that baseline's performance supercedes this.
+Perhaps you know that any model with a precision less than $x$ won't be useful. Then this metric should be used as a baseline. If another baseline mentioned above outperforms this criteria than obviously that baseline's performance supersedes this.
 
 ## Sanity checks
 
@@ -106,13 +106,13 @@ Incorporating sanity checks as part of your modeling workflow can help catch iss
 
 One particularly useful and simple sanity check to incorporate is making a habit of inspecting the learned coefficients. Has anyone else ever discovered that response variable was left in the training set as a feature this way? I've also seen a cases where features were unexpectedly ranked at the top of the [feature importances](https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html). After looking further into why this was the case it was realized that these features were leaking information about the target variable.
 
-Another important sanity check is to validate any algorithm specific assumptions that your model might have. For example if you are using a probabalistic model you need to check it's error on a test set per ML-101. However you should also perform [posterior predictive checks](https://docs.pymc.io/notebooks/posterior_predictive.html) to be sure that the model is logically consistent with its own assumptions. If this assumption fails, you should be dubious of counting on the performance observed on the test set generalizing into production.
+Another important sanity check is to validate any algorithm specific assumptions that your model might have. For example if you are using a probabilistic model you need to check it's error on a test set per ML-101. However you should also perform [posterior predictive checks](https://docs.pymc.io/notebooks/posterior_predictive.html) to be sure that the model is logically consistent with its own assumptions. If this assumption fails, you should be dubious of counting on the performance observed on the test set generalizing into production.
 
 These checks also might be useful later on during deployment (see section below) which is another reason to begin using them early in the development cycle.
 
 ## Cross validation
 
-Cross validation is a ubuquitous technique for evaluating how well a model will generalize to new data. Typically cross validation is introduced as the [$K$-fold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html), leave one out pattern.
+Cross validation is a ubiquitous technique for evaluating how well a model will generalize to new data. Typically cross validation is introduced as the [$K$-fold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html), leave one out pattern.
 
 In industry however, an approach more similar to [backtesting](https://en.wikipedia.org/wiki/Backtesting) may represent the production workflow more closely.
 
@@ -133,13 +133,13 @@ In this case it may be helpful to validate your approach on a cleaner data set i
 
 # Deployment and beyond
 
-After deploying a model to production its standard practice to evalaute the model by comparing predictions to outcomes. Below I'd like to discuss two other types of model evaluation you can incorporate post-deployment to help ensure that your model is (and stays) useful.
+After deploying a model to production its standard practice to evaluate the model by comparing predictions to outcomes. Below I'd like to discuss two other types of model evaluation you can incorporate post-deployment to help ensure that your model is (and stays) useful.
 
 ## A/B Testing
 
 When you have a new update or iteration of a model, how can you be confident that it will outperform the existing model? [A/B testing](https://en.wikipedia.org/wiki/A/B_testing) is a great practice to help you deploy with confidence.
 
-One particularly useful pattern is to deploy the new iteration alongside the current method (this could be a model or heuristic) and begin directing some small percentage of traffic to the new model. After obseving a number of predictions and outcomes an A/B test can be performed to compare the new iteration to the old. If the result favors the new model then the amount of traffic handled by the new model can be gradually ramped up until it handles all of the traffic.
+One particularly useful pattern is to deploy the new iteration alongside the current method (this could be a model or heuristic) and begin directing some small percentage of traffic to the new model. After observing a number of predictions and outcomes an A/B test can be performed to compare the new iteration to the old. If the result favors the new model then the amount of traffic handled by the new model can be gradually ramped up until it handles all of the traffic.
 
 A/B tests, and more generally hypothesis tests, are helpful for addressing other questions as well such as
 
@@ -180,7 +180,7 @@ Another key item to monitor are sanity checks. This is especially true if you ar
 
 ## The zen of model evaluation
 
-This post was the basis of a talk I gave at [PyData Miami](https://pydata.org/miami2019/). Since I didn't have any code to share during the talk I felt the need to incorporate some other Pythonism into the talk. The result was bestowing the label "The Zen of Model Evlaution" to the George Box quote above:  "All models are wrong, some are useful." I summarized the quote into several bullet points listed below.
+This post was the basis of a talk I gave at [PyData Miami](https://pydata.org/miami2019/). Since I didn't have any code to share during the talk I felt the need to incorporate some other Pythonism into the talk. The result was bestowing the label "The Zen of Model Evaluation" to the George Box quote above:  "All models are wrong, some are useful." I summarized the quote into several bullet points listed below.
 
 - All models are wrong
 - Some are useful
@@ -203,7 +203,7 @@ Similarly consider a model that classifies transactions as fraudulent or not. Al
 
 ### Comparability
 
-Useful metrics should be campatible across time, data sets and iterations.
+Useful metrics should be compatible across time, data sets and iterations.
 
 As an example of a metric that fails to meet this criteria consider [R-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination), defined as
 

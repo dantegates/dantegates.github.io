@@ -54,7 +54,7 @@ where $\sigma(x)=\frac{1}{1+e^{-x}}$.
 
 # Taking the leap to neural networks
 
-To take the leap from the regression models above to a neural network we simply add a dimmension to each of our model parameters above. That is, we replace the coefficient vector $\beta\in{R^{n}}$ with a "weight" matrix $W\in{R^{n\times m}}$. Similary, the scalar $\alpha$ is replaced with a "bias" vector $b\in{R^{m}}$.
+To take the leap from the regression models above to a neural network we simply add a dimension to each of our model parameters above. That is, we replace the coefficient vector $\beta\in{R^{n}}$ with a "weight" matrix $W\in{R^{n\times m}}$. Similarly, the scalar $\alpha$ is replaced with a "bias" vector $b\in{R^{m}}$.
 
 Putting it all together we have
 
@@ -95,7 +95,7 @@ Note that I didn't say "matrix multiplication all the way down." This was intent
 
 # Motivating neural networks
 
-Once we've established the basic mechanisms that make up a neural network we can motivate why these models are so successful without referencing pictures or bilogical analogies.
+Once we've established the basic mechanisms that make up a neural network we can motivate why these models are so successful without referencing pictures or biological analogies.
 
 Though I hesitate to use this description, let's call neural networks linear regression models on steroids. They are both capable of learning many, many more parameters than a simple linear model *as well* as learning non-linear relationships that we know exist in much of our data. Considering the usefulness these much simpler linear models lend to many applications, it should come as no surprise that these more advanced models can work so well.
 
@@ -158,4 +158,4 @@ As I mentioned at the beginning of this post, I'm not adding anything original t
 
 I suppose I should conclude this post admitting that, although stochastic gradient descent was mentioned in the beginning of this post I never had any real intent of addressing it again.
 
-I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) (er... well, technically an algorithm for calculating the gradient, in certain special cases, for the purpose of SGD) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an excercise to the reader :).
+I'll simply say that when you read "backpropogation" in the literature it is really referring to [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) (er... well, technically an algorithm for calculating the gradient, in certain special cases, for the purpose of SGD) or extensions thereof. Additionally, where I've explicitly pointed out in this post that a function should be differentiable it's because this is a requirement for leveraging SGD. The rest, at this time, I will leave as an exercise to the reader :).

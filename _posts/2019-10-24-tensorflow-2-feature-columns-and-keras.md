@@ -12,7 +12,7 @@ tags:
 ---
 
 
-[tensorflow 2.0](https://www.tensorflow.org/guide/effective_tf2) was just recently introduced and one of the most anticipated features, in my opininion, was the revamping its feature columns. [Last July](https://dantegates.github.io/2018/07/17/keras-feature-columns.html) I published a blog post which was enthusiastic about the idea of `tensorflow's` [feature columns](https://www.tensorflow.org/guide/feature_columns) but disappointed by the actual implementation. Mainly because they weren't compatible with `keras` even though `tensorflow` had already adopted the `keras` API.
+[tensorflow 2.0](https://www.tensorflow.org/guide/effective_tf2) was just recently introduced and one of the most anticipated features, in my opinion, was the revamping its feature columns. [Last July](https://dantegates.github.io/2018/07/17/keras-feature-columns.html) I published a blog post which was enthusiastic about the idea of `tensorflow's` [feature columns](https://www.tensorflow.org/guide/feature_columns) but disappointed by the actual implementation. Mainly because they weren't compatible with `keras` even though `tensorflow` had already adopted the `keras` API.
 
 Fortunately the implementation I posted about last July is, well, so last year, and `tensorflow 2.0` introduces some considerable improvements.
 
@@ -58,11 +58,11 @@ model.fit(df.to_dict('series'), ...)
 
 Yes, handling categorical columns can be a little awkward. It takes *at least* two function calls and five underscores to create an embedding column. `tensorflow` has never been afraid of verbosity.
 
-Another implementation detail worth pointing out is that `DenseFeatures` layers won't infer shapes until they have a) been called with a `keras` `Input` layer or actual data (i.e. at `model.fit`). This means that in the example above `model.summary()` would raise an `Exception` if called before `model.fit()` (because the layer has not been built yet). This will come up again when we look at the functional API but it's probably worth noting now since it's likely suprising behavior for users who are familiar with the standard `keras` implementation.
+Another implementation detail worth pointing out is that `DenseFeatures` layers won't infer shapes until they have a) been called with a `keras` `Input` layer or actual data (i.e. at `model.fit`). This means that in the example above `model.summary()` would raise an `Exception` if called before `model.fit()` (because the layer has not been built yet). This will come up again when we look at the functional API but it's probably worth noting now since it's likely surprising behavior for users who are familiar with the standard `keras` implementation.
 
 # Feature Columns and the keras functional API
 
-If you are reading this section I'm going to assume that you are already familar with `keras` [functiona API](https://keras.io/getting-started/functional-api-guide/).
+If you are reading this section I'm going to assume that you are already familiar with `keras` [functional API](https://keras.io/getting-started/functional-api-guide/).
 
 The key to understanding how to use feature columns with the functional API boils down to this: the object created by
 
@@ -105,7 +105,7 @@ The idea is to build an LSTM whose input vectors are concatenations of
 - An embedding representing the wikipedia project visited
 - Log of total page visits at that time step
 
-For this excercise we'll limit the number of time steps input to the LSTM to a fixed window of 30 days.
+For this exercise we'll limit the number of time steps input to the LSTM to a fixed window of 30 days.
 
 Let's start with the categorical columns, first we need to create the feature columns and corresponding feature layer.
 

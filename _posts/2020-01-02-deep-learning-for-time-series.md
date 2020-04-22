@@ -11,7 +11,7 @@ tags:
 ---
 
 
-[Recurrent Neural Networks](https://en.wikipedia.org/wiki/Recurrent_neural_network) (RNNs), a deep learning architecture designed to operate on sequences of data, seem like a natural fit for modeling time series. Most of the literature, however, has focussed on applying RNNs strictly within the realm of natural language proccessing (NLP). In this post we'll dive into [a model that introduces a framework that bridges this gap](https://arxiv.org/abs/1704.04110).
+[Recurrent Neural Networks](https://en.wikipedia.org/wiki/Recurrent_neural_network) (RNNs), a deep learning architecture designed to operate on sequences of data, seem like a natural fit for modeling time series. Most of the literature, however, has focused on applying RNNs strictly within the realm of natural language processing (NLP). In this post we'll dive into [a model that introduces a framework that bridges this gap](https://arxiv.org/abs/1704.04110).
 
 # Overview
 
@@ -21,13 +21,13 @@ The essential components of the model, referred to as *DeepAR* by the authors, c
 
 One of the things I really like about this paper is that it doesn't introduce anything new - assuming a familiarity with mainstream deep learning techniques in NLP and basic ideas from probability such as maximum likelihood estimation, that is. Rather DeepAR is just a vanilla encoder/decoder (built with vanilla LSTMs) combined with some other well known ideas.
 
-**Aside**: Explaining enocoder/decoders is beyond the scope of this post. For an introduction to this topic, I highly recommend [this talk](https://www.youtube.com/watch?v=G5RY_SUJih4) which gives one of the best introductions to the topic, in my opinion. The talk is thorough and correspondingly over an hour long. For readers interested in a reference that requires less time commitment, [this ten-minute introduction to sequence to sequence learning](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html) on the keras blog is a good place to start.
+**Aside**: Explaining encoder/decoders is beyond the scope of this post. For an introduction to this topic, I highly recommend [this talk](https://www.youtube.com/watch?v=G5RY_SUJih4) which gives one of the best introductions to the topic, in my opinion. The talk is thorough and correspondingly over an hour long. For readers interested in a reference that requires less time commitment, [this ten-minute introduction to sequence to sequence learning](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html) on the keras blog is a good place to start.
 
 ## Thinking probabilistically
 
 The second thing to understand about DeepAR is what the model outputs.
 
-Although DeepAR is a framework for time series it doesn't attempt to predict scalar values. Rather it outputs scalar values that are interpreted as parameters of a user specified taraget distribution. For example, if the data is real valued the user may choose to output two values representing the mean and standard deviation of a [guassian distribution](https://en.wikipedia.org/wiki/Normal_distribution). Alternatively parameters of a [negative binomial distribution](https://en.wikipedia.org/wiki/Negative_binomial_distribution) might be the outputs of the model if the underlying data represents counts. While these two distributions are mentioned specifically in the paper, the authors suggest that there is no reason to assume that other distributions couldn't be used just as readily.
+Although DeepAR is a framework for time series it doesn't attempt to predict scalar values. Rather it outputs scalar values that are interpreted as parameters of a user specified target distribution. For example, if the data is real valued the user may choose to output two values representing the mean and standard deviation of a [guassian distribution](https://en.wikipedia.org/wiki/Normal_distribution). Alternatively parameters of a [negative binomial distribution](https://en.wikipedia.org/wiki/Negative_binomial_distribution) might be the outputs of the model if the underlying data represents counts. While these two distributions are mentioned specifically in the paper, the authors suggest that there is no reason to assume that other distributions couldn't be used just as readily.
 
 Given this setup, the model learns to maximize the corresponding likelihood (technically negative log likelihood) function given the "predicted" parameters and actual values of the time series $z_{i}$.
 
@@ -58,7 +58,7 @@ Lastly, DeepAR introduces a scheme for scaling the inputs and outputs of the mod
 
 The rationale for scaling the inputs/outputs is as follows (quoting directly from the paper)
 
-*"[D]ue to the autoregressive nature of the model, both the autoregressive input $z_{i,t-1}$ as well as the output of the network (e.g. $\mu$) directly sccale with the observations $z_{i, t}$, but the non-linearities of the network in between have a limited operating range. Without further modifications, the network thus has to learn to scale the input to an appropriate range in the input layer, and then invert this scaling at the output.*
+*"[D]ue to the autoregressive nature of the model, both the autoregressive input $z_{i,t-1}$ as well as the output of the network (e.g. $\mu$) directly scale with the observations $z_{i, t}$, but the non-linearities of the network in between have a limited operating range. Without further modifications, the network thus has to learn to scale the input to an appropriate range in the input layer, and then invert this scaling at the output.*
     
 *This sort of scaling is a common problem in regression. To address this issue the time series inputs to both the encoder and decoder are scaled by the average value of the time series inputs of the encoder (remember the inputs to the decoder are only known at train time, hence we compute the scaling factor, denoted $\nu_{i}$ from the encoder inputs only)."*
 
@@ -66,15 +66,15 @@ Additionally, this scaling factor serves another purpose: selecting which exampl
 
 In my opinion this is a really important feature of the framework because it was introduced to address real world concerns that are encountered in industry. Quoting from the paper
 
-*"[D]ue to the imbalance in the data, a stochastic optimization procedure that picks training instances uniformly at random will visit the small number time series with a large scale very infrequently, which result in underrfitting those time series. This could be especially problematic in the demand forecasting setting, where high-velocity items can exhibit qualitatively different behavior than low-velocity items, and having an acccurate forecast for high-velocity items might be more important for meeting certain business objectives. To counteract this effect, we sample the examples non-uniformly during training."*
+*"[D]ue to the imbalance in the data, a stochastic optimization procedure that picks training instances uniformly at random will visit the small number time series with a large scale very infrequently, which result in underfitting those time series. This could be especially problematic in the demand forecasting setting, where high-velocity items can exhibit qualitatively different behavior than low-velocity items, and having an accurate forecast for high-velocity items might be more important for meeting certain business objectives. To counteract this effect, we sample the examples non-uniformly during training."*
 
-Considering the paper is written by researchers at Amazon it shouldn't be a surprise that business implications were explicity accounted for.
+Considering the paper is written by researchers at Amazon it shouldn't be a surprise that business implications were explicitly accounted for.
 
 ## Downsides
 
 To conclude the overview, it should be noted that deploying this model into a real-time forecast environment is nontrivial. This is a feature of the autoregressive and probabilistic nature of the model.
 
-The autoregressive component requires the model to make a prediction for each time step in the prediction range *sequentially* while the probabalistic component requires us to run through this process several times. Thus in practice obtaining a "final" prediction, whether point estimates or confidence intervals or both, requires us to through the entire *decoder* (and depending on your deep learning framework, the entire *encoder* as well if you don't want to write custom code) $nm$ times where $n$ is the number of time steps and $m$ is the number of traces you want to generate. Here, a trace is the sequence of outputs from the decoder obtaained by using samples from the predicted distribution parameters at each time step as the autoregressive inputs to the model at the next step.
+The autoregressive component requires the model to make a prediction for each time step in the prediction range *sequentially* while the probabilistic component requires us to run through this process several times. Thus in practice obtaining a "final" prediction, whether point estimates or confidence intervals or both, requires us to through the entire *decoder* (and depending on your deep learning framework, the entire *encoder* as well if you don't want to write custom code) $nm$ times where $n$ is the number of time steps and $m$ is the number of traces you want to generate. Here, a trace is the sequence of outputs from the decoder obtained by using samples from the predicted distribution parameters at each time step as the autoregressive inputs to the model at the next step.
 
 While we can easily "parallelize out" $m$ in theory, it is not so for $n$. Moreover parallelizing the traces would require deploying multiple machines, or one *very* large machine - keep in mind that the results published in the paper use 200 traces. In my experiments 30 was "pretty good" and 100 was "good enough."
 

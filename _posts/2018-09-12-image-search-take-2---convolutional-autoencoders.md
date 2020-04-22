@@ -19,7 +19,7 @@ This post continues the discussion of an earlier post [Image search with autoenc
 
 Let's quickly recap how searching works with autoencoders.
 
-1. A nueral network with successively smaller and smaller layers followed by successively larger and larger layers is trained to learn to reconstruct its input even though the network is *designed* to lose information (the smaller and smaller layers). In the case of image retrieval the inputs to the network are pixels.
+1. A neural network with successively smaller and smaller layers followed by successively larger and larger layers is trained to learn to reconstruct its input even though the network is *designed* to lose information (the smaller and smaller layers). In the case of image retrieval the inputs to the network are pixels.
 2. The inner most layer of this network contains significantly fewer nodes than the number of pixels. Furthermore all outputs of this layer should be either 0 or 1.
 3. The binary output is converted to an $n$ bit integer where $n$ is the size of the hidden layer.
 4. These $n$ bit integers are used to determine the similarity between two images.

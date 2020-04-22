@@ -10,7 +10,7 @@ tags:
 ---
 
 
-This post attempts to indroduce conjugate priors and give some intuition as to why they work. While this post focuses largely on the technical details of conjugate priors, my next post will focus on conjugate priors in practice.
+This post attempts to introduce conjugate priors and give some intuition as to why they work. While this post focuses largely on the technical details of conjugate priors, my next post will focus on conjugate priors in practice.
 
 Consider the well known equation expressing Bayes' theorem
 
@@ -79,7 +79,7 @@ Now we can consider sensible choices for our prior, i.e. any distribution that p
 
 $$f(\lambda;\alpha,\beta)\propto \lambda^{\alpha}e^{-\beta\lambda}$$
 
-Which, of course, is satisifed by the Gamma distribution and gives us the final calculation of the posterior probability
+Which, of course, is satisfied by the Gamma distribution and gives us the final calculation of the posterior probability
 
 $$
 \begin{equation}
@@ -148,4 +148,4 @@ There a few things to consider in conclusion.
 
 Having a closed form expression for the posterior probability of a model that can be updated with new data can be very useful, see my next post for an example. However, it is important to note that it is not always appropriate to define our models in such a way.
 
-I'll give two reasons explaining why. The first is that the conjugate prior was only determined because of its analytical convenience _not_ because it seemed appropriate given a specific problem or specific data. The second is that we can only find conjugate priors for simple models. I suppose this is why some people, for example why the stan authors, [don't care much for conjugate prios](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations#general-principles).
+I'll give two reasons explaining why. The first is that the conjugate prior was only determined because of its analytical convenience _not_ because it seemed appropriate given a specific problem or specific data. The second is that we can only find conjugate priors for simple models. I suppose this is why some people, for example why the Stan authors, [don't care much for conjugate priors](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations#general-principles).

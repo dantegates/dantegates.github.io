@@ -12,7 +12,7 @@ tags:
 ---
 
 
-Earlier this week I wrote a post on [pitching matchups for this year's world series](https://dantegates.github.io/2019/10/22/2019-world-series-pitcher-matchups.html). As I was working on the post, I needed to remove grey backgrounds from headshots of the players so that the images wouldn't overlap in the scatter plot I was working on. During the process of removing these backgrounds I came across an application of [clustering](https://en.wikipedia.org/wiki/Cluster_analysis) that I thought was worth writing about on its own.
+Earlier this week I wrote a post on [pitching matchups for this year's world series](https://dantegates.github.io/2019/10/22/2019-world-series-pitcher-matchups.html). As I was working on the post, I needed to remove gray backgrounds from headshots of the players so that the images wouldn't overlap in the scatter plot I was working on. During the process of removing these backgrounds I came across an application of [clustering](https://en.wikipedia.org/wiki/Cluster_analysis) that I thought was worth writing about on its own.
 
 My first approach at removing the background was a slightly modified version of the wisdom of the sages [I found on stackoverflow](https://stackoverflow.com/questions/765736/using-pil-to-make-all-white-pixels-transparent): set the alpha channel to 0 for all pixels that are "close" to the RGB value of the first pixel. Something like this
 
@@ -119,4 +119,4 @@ pixels[:, -1] = np.where(np.max(np.abs(pixels - pixels[0]), axis=1) <= 20, 0, 25
 
 It took several iterations of guess and check to determine that 20 was a number that worked decently well for all players.
 
-The third thing I like about this solution is probably the one like that most, and that is, that clustering feels very intutive here. In fact, the code I originally wrote is very similar to clustering. Although there are still some technical differences that eventually cause the analogy to break down, you could think about it as clustering with a precomputed centroid (the first pixel which I knew would be the background) and [Chebyshev distance](https://en.wikipedia.org/wiki/Chebyshev_distance) as the distance metric. It's pretty cool that the heuristic I used at first is only a few steps away from a more elegant approach leveraging machine learning.
+The third thing I like about this solution is probably the one like that most, and that is, that clustering feels very intuitive here. In fact, the code I originally wrote is very similar to clustering. Although there are still some technical differences that eventually cause the analogy to break down, you could think about it as clustering with a precomputed centroid (the first pixel which I knew would be the background) and [Chebyshev distance](https://en.wikipedia.org/wiki/Chebyshev_distance) as the distance metric. It's pretty cool that the heuristic I used at first is only a few steps away from a more elegant approach leveraging machine learning.

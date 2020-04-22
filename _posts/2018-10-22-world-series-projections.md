@@ -39,7 +39,7 @@ Obtaining the projection with the fit model is as simple performing a monte carl
 3. Record the outcome and repeat $n$ times.
 4. After $n$ trials compute the number of outcomes where boston won over $n$.
 
-While a single iteration of the simulation gives us an estimate of what the probability the Red Sox will win is like, performing several iterations of the simulation can be used to obtain bounds on what that probability is with a 95% [credible interval](https://en.wikipedia.org/wiki/Credible_interval). Remeber the definition of the model posterior $P(\theta \ \vert \ D)\propto P(D \ \vert \ \theta)P(\theta)$ where $\theta=\{wins_{1}, wins_{2}, a_{i}, h_{i}, \mu, \sigma\}$ means that this estimate *is* an actually probability.
+While a single iteration of the simulation gives us an estimate of what the probability the Red Sox will win is like, performing several iterations of the simulation can be used to obtain bounds on what that probability is with a 95% [credible interval](https://en.wikipedia.org/wiki/Credible_interval). Remember the definition of the model posterior $P(\theta \ \vert \ D)\propto P(D \ \vert \ \theta)P(\theta)$ where $\theta=\{wins_{1}, wins_{2}, a_{i}, h_{i}, \mu, \sigma\}$ means that this estimate *is* an actually probability.
 
 I took the model fit from my previous post and ran the experiment described above to obtain the probability the Red Sox will win the world series is between 0.54 and 0.73 with the median probability 0.63 (side note: interestingly enough this estimate is close to [FiveThirtyEight's](https://projects.fivethirtyeight.com/2018-mlb-predictions/) projection from their own simulation).
 

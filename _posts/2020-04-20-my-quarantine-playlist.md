@@ -256,7 +256,7 @@ Recalling the identity for $P(D)$ mentioned previously, we can plug these values
 and simplify to get
 
 $$
-P(p\vert D)=\frac{{n\choose s}p^{\alpha+s-1}(1-p)^{\beta+n-s-1}}{B(s,n-s)B(\alpha,\beta)}
+P(p\vert D)=\frac{ {n\choose s}p^{\alpha+s-1}(1-p)^{\beta+n-s-1}}{B(s,n-s)B(\alpha,\beta)}
 $$
 
 The algebra here is not terrible difficult. The challenge is understanding what we do and

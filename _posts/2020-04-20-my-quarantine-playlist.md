@@ -127,7 +127,7 @@ has a special relationship with the binomial distribution which makes
 Second, and more importantly, the prior easily expresses the belief that few, if any, *bad*
 songs remain in the playlist, as seen in the following plot.
 
-![]({{ "/assets/my-quarantine-playlist/beta-pdf.png" | absolute_url)
+![]({{ "/assets/my-quarantine-playlist/beta-pdf.png" | absolute_url }})
 
 The second important distinction to make from how we treated the sampling process above
 is that we are now considering a binomial trial where the number of successes (when a *bad*

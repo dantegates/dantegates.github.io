@@ -1,5 +1,3 @@
-# Resources
-
 For those interested in other resources, this is a running list
 blogs, articles or talks that have either been foundational in how I think about
 data science and software or something that I routinely visit to stay

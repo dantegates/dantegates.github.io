@@ -4,7 +4,7 @@ mathjax: true
 title: My Quarantine Playlist
 github: https://github.com/dantegates/my-quarantine-playlist
 creation_date: 2020-04-20
-last_modified: 2020-04-23 11:31:21
+last_modified: 2020-04-23 11:50:43
 tags: 
   - Bayesian Inference
 ---
@@ -144,7 +144,10 @@ E[P(p|n,\alpha=1,\beta=20)]=\frac{1}{21 + n}
 $$
 
 The following plot shows how our estimate of $p$ is updated after $n$ consecutive "not *bad*"
-songs play.
+songs play. The expectation of the prior probability is included here, which gives us a nice
+visual of what John Krusche means when he says Bayesian inference is about ["reallocation of
+belief"](https://pdfs.semanticscholar.org/dea6/0927efbd1f284b4132eae3461ea7ce0fb62a.pdf).
+Keep in mind the axes here have completely different meanings than the plots above.
 
 ![](./beta.png)
 

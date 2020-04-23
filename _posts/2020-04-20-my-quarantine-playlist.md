@@ -25,7 +25,7 @@ songs should be included.
 
 After a few weeks my wife was surprised to see that I was still removing songs
 from the playlist and that there were yet songs which hadn't been played. Since
-my "curation process" is probabalistic this prompted some interesting questions.
+my "curation process" is probabilistic this prompted some interesting questions.
 
 For example, without listening to the entire playlist, can I estimate
 
@@ -274,7 +274,7 @@ $$
 
 Why is this useful? Because [PDFs](https://en.wikipedia.org/wiki/Probability_density_function) represent *relative probabilities*. Since we have just demonstrated that the PDF above
 is *proportional to* the PDF of the beta distribution $\text{Beta}(\alpha^{\prime},\beta^{\prime})$, where
-$\alpha^{\prime}=\alpha+s$ and $\beta^{\prime}=\beta+n-s$, we can safely ingore
+$\alpha^{\prime}=\alpha+s$ and $\beta^{\prime}=\beta+n-s$, we can safely ignore
 the term ${n\choose s}(B(s,n-s)B(\alpha,\beta))^{-1}$ since it contributes nothing in terms of *relative*
 probability. This is why $P(D)$ is often referred to as simply a normalizing constant since
 it guarantees that $\int_{0}^{1}{P(p\vert D)\ \text{d}p}=1$ but contributes nothing else to the

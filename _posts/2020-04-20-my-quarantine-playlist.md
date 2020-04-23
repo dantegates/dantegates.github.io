@@ -4,7 +4,7 @@ mathjax: true
 title: My Quarantine Playlist
 github: https://github.com/dantegates/my-quarantine-playlist
 creation_date: 2020-04-20
-last_modified: 2020-04-22 14:17:36
+last_modified: 2020-04-23 11:31:21
 tags: 
   - Bayesian Inference
 ---
@@ -95,7 +95,7 @@ $$
 
 from which we can obtain obtain the following posterior probability for $p$.
 
-![]({{ "/assets/my-quarantine-playlist/how-much-longer.png" | absolute_url }})
+![](how-much-longer.png)
 
 This shows the mode is centered at the maximum likelihood estimate of $6/21\approx .28$, but
 also suggests that values in the neighborhood of $[.2, .5]$ are also likely estimates for the proportion
@@ -127,7 +127,7 @@ has a special relationship with the binomial distribution which makes
 Second, and more importantly, the prior easily expresses the belief that few, if any, *bad*
 songs remain in the playlist, as seen in the following plot.
 
-![]({{ "/assets/my-quarantine-playlist/beta-pdf.png" | absolute_url }})
+![](./beta-pdf.png)
 
 The second important distinction to make from how we treated the sampling process above
 is that we are now considering a binomial trial where the number of successes (when a *bad*
@@ -146,7 +146,7 @@ $$
 The following plot shows how our estimate of $p$ is updated after $n$ consecutive "not *bad*"
 songs play.
 
-![]({{ "/assets/my-quarantine-playlist/beta.png" | absolute_url }})
+![](./beta.png)
 
 Of course, we can never know for sure that $p=0$ without listening to the entire playlist.
 However, the plot shows that with a little algebra we can easily develop a criteria that
@@ -284,3 +284,7 @@ $$
 $$
 
 which reduces to the our running estimate of $p$ as $n$ increases above when $s=0$.
+
+This same reasoning is why we could safely ignore the uniform prior, $P(p)=c$, when
+we worked out the posterior probability of the proportion of *bad* songs remaining in
+the playlist.

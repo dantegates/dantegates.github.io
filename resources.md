@@ -56,6 +56,8 @@ you something new about Python.
 [Raymond Hettinger](https://www.youtube.com/watch?v=HTLu2DFOdTg&list=PLRVdut2KPAguz3xcd22i_o_onnmDKj3MA)'s talks
 are great for those new to learning Python.
 
+[How to Write Deployment-friendly Applications - Hynek Schlawack](youtube.com/watch?v=wuCpCkrfeMs&t=1817s) contains some great advice for thinking about deployments.
+
 
 ### Microservices
 

@@ -6,7 +6,7 @@ github: https://github.com/dantegates/mlb-statcast
 creation_date: 2020-03-03
 last_modified: 2020-03-03 22:26:15
 tags: 
-  - Bayesian
+  - Bayesian Inference
   - MLB
 ---
 

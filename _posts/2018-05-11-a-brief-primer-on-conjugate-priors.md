@@ -6,7 +6,7 @@ github: https://github.com/dantegates/bayesian-online-learning
 creation_date: 2018-05-11
 last_modified: 2018-05-11 15:35:42
 tags: 
-  - Bayesian
+  - Bayesian Inference
 ---
 
 

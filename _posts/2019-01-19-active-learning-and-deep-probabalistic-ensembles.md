@@ -8,7 +8,7 @@ last_modified: 2019-01-19 22:02:36
 tags: 
   - Deep Learning
   - Active Learning
-  - Bayesian
+  - Bayesian Inference
   - Variational Inference
   - AI
 ---

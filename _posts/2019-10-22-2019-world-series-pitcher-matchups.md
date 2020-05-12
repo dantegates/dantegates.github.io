@@ -9,7 +9,7 @@ tags:
   - pymc3
   - MLB
   - Projections
-  - Bayesian
+  - Bayesian Inference
 ---
 
 

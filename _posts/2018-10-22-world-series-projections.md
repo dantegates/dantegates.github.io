@@ -7,7 +7,7 @@ creation_date: 2018-10-22
 last_modified: 2018-10-23 08:55:29
 tags: 
   - MLB
-  - Bayesian
+  - Bayesian Inference
   - Projections
   - Monte Carlo
   - pymc3

@@ -7,8 +7,9 @@ class WhyKuberenetes(PostConfig):
     date_created = '2020-08-07'
     filename = 'why-kubernetes/post.md'
     tags = ['Opinion', 'kubernetes']
+    github_repo  = 'why-kubernetes'
     post_type = MarkdownPost
-    
+
 
 class CollaborativeFilteringTutorial(PostConfig):
     title = 'A Tutorial on Collaborative Filtering in sklearn'

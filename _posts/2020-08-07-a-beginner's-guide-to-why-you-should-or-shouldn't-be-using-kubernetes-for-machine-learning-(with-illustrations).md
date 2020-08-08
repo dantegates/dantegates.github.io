@@ -2,7 +2,7 @@
 layout: post
 mathjax: true
 title: A Beginner's Guide to Why You Should or Shouldn't Be Using Kubernetes for Machine Learning (With Illustrations)
-github: https://dantegates@github.com/dantegates/why-kubernetes.git
+github: https://github.com/dantegates/why-kubernetes
 creation_date: 2020-08-07
 last_modified: 2020-08-07 22:41:34
 tags: 

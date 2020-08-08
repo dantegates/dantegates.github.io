@@ -2,6 +2,14 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class WhyKuberenetes(PostConfig):
+    title = "A Beginner's Guide to Why You Should or Shouldn't Be Using Kubernetes for Machine Learning (With Illustrations)"
+    date_created = '2020-08-07'
+    filename = 'why-kubernetes/post.md'
+    tags = ['Opinion', 'kubernetes']
+    post_type = MarkdownPost
+    
+
 class CollaborativeFilteringTutorial(PostConfig):
     title = 'A Tutorial on Collaborative Filtering in sklearn'
     date_created = '2020-04-21'
@@ -84,7 +92,7 @@ class WorldSeriesProjections2019(PostConfig):
     title = '2019 World Series Pitcher Matchups'
     date_created = '2019-10-22'
     filename = 'mlb-statcast/player-ranking-post.ipynb'
-    tags = ['pymc3', 'MLB', 'Projections', 'Bayesian']
+    tags = ['pymc3', 'MLB', 'Projections', 'Bayesian Inference']
     github_repo = 'mlb-statcast'
     rebuild = False  # cell manually removed
 
@@ -108,10 +116,10 @@ class DeepLearningForIndustry(PostConfig):
 
 
 class DeepProbabalisticEnsembles(PostConfig):
-    title = 'Active Learning and Deep Probabalistic Ensembles'
+    title = 'Active Learning and Deep Probabilistic Ensembles'
     date_created = '2019-01-19'
     filename = 'deep-probabalistic-ensembles/deep-probabalistic-ensembles-cifar.ipynb'
-    tags = ['Deep Learning', 'Active Learning', 'Bayesian', 'Variational Inference', 'AI']
+    tags = ['Deep Learning', 'Active Learning', 'Bayesian Inference', 'Variational Inference', 'AI']
     github_repo = 'deep-probabalistic-ensembles'
 
 
@@ -128,7 +136,7 @@ class WorldSeriesProjections(PostConfig):
     title = 'World Series Projections'
     date_created = '2018-10-22'
     filename = 'mlb-statcast/world-series-projections.ipynb'
-    tags = ['MLB', 'Bayesian', 'Projections', 'Monte Carlo', 'pymc3']
+    tags = ['MLB', 'Bayesian Inference', 'Projections', 'Monte Carlo', 'pymc3']
     github_repo = 'mlb-statcast'
     rebuild = False  # Some code/output was manually deleted from this post
 
@@ -137,7 +145,7 @@ class HierarchicalBayesianRanking(PostConfig):
     title = 'Hierarchical Bayesian Ranking'
     date_created = '2018-09-20'
     filename = 'mlb-statcast/bayesian-ranking-post.ipynb'
-    tags = ['Bayesian', 'Learning to Rank', 'pymc3', 'MLB']
+    tags = ['Bayesian Inference', 'Learning to Rank', 'pymc3', 'MLB']
     github_repo = 'mlb-statcast'
     rebuild = False  # Some code/output was manually deleted from this post
 
@@ -146,7 +154,7 @@ class HypothesisTestingForHumans(PostConfig):
     title = 'Hypothesis Testing For Humans - Do The Umps Really Want to Go Home'
     date_created = '2018-09-17'
     filename = 'mlb-statcast/hypothesis-testing-for-humans.ipynb'
-    tags = ['Bayesian', 'MLB', 'Monte Carlo', 'pymc3']
+    tags = ['Bayesian Inference', 'MLB', 'Monte Carlo', 'pymc3']
     github_repo = 'mlb-statcast'
 
 
@@ -206,7 +214,7 @@ class BayesianOnlineLearning(PostConfig):
     title = 'Bayesian Online Learning'
     date_created = '2018-05-11'
     filename = 'bayesian-online-learning/bayesian-online-learning.ipynb'
-    tags = ['Bayesian', 'Online Learning']
+    tags = ['Bayesian Inference', 'Online Learning']
     github_repo = 'bayesian-online-learning'
 
 
@@ -214,7 +222,7 @@ class UnderstandingPriors(PostConfig):
     title = 'A Brief Primer on Conjugate Priors'
     date_created = '2018-05-11'
     filename = 'bayesian-online-learning/a-brief-primer-on-conjugate-priors.ipynb'
-    tags = ['Bayesian']
+    tags = ['Bayesian Inference']
     github_repo = 'bayesian-online-learning'
 
 

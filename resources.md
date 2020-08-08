@@ -28,6 +28,17 @@ posted new content in a while).
 - [Thomas Wiecki](https://twiecki.io/)
 - [538](https://fivethirtyeight.com/)
 
+## Bayesian Inference
+
+Below are some great resources on getting started with Bayesian Inference.
+
+- Jake Vanderplaas has an excellent [talk](https://www.youtube.com/watch?v=KhAUfqhLakw) and corresponding [blog post](http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/) on
+    highlighting the differences between statistics traditionally taught in undergraduate
+    courses and Bayesian inference.
+- 
+
+- [Wikipedia's Conjugate Pior Cheat Sheet](https://en.wikipedia.org/wiki/Conjugate_prior)
+- [Stan has a great reference for choosing priors](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations)
 
 ## Industry leaders
 

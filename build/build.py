@@ -2,6 +2,15 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class MLBPostseasonProjections2020(PostConfig):
+    title = 'MLB 2020 Postseason Projections'
+    date_created = '2020-09-29'
+    filename = 'mlb-statcast/2020-postseason-post.ipynb'
+    tags = ['MLB', 'Bayesian Inference']
+    github_repo  = 'mlb-statcast'
+    
+
+
 class WhyKuberenetes(PostConfig):
     title = "A Beginner's Guide to Why You Should or Shouldn't Be Using Kubernetes for Machine Learning (With Illustrations)"
     date_created = '2020-08-07'

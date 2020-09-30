@@ -872,8 +872,11 @@ For further context, you can compare my projections with [mlb.com's](https://www
 
 The model is relatively straightforward. For each team, we learn a latent factor, $a_{t}$, representing their ability to win based on the outcomes of every series in the 2020 regular season. Technically this is a probabilistic model, so the latent factors are really distributions. The distributions are fit such that
 
+
 $$
+\begin{equation}
 \frac{\text{exp}(a_{t1})}{\text{exp}(a_{t_{1}}) + \text{exp}(a_{t_{2}})}
+\end{equation}
 $$
 
 represents the probability that team $t_{1}$ will beat $t_{2}$ in a given game. The code looks like

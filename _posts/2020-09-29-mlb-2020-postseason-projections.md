@@ -11,7 +11,7 @@ tags:
 ---
 
 
-Just over 6 months after the 2020 MLB season was postponed indefinitely and just under 3 months after the 60-game schedule was announced the 2020 postseason begins today. While MLB postseason results are often compared to a crapshoot, it doesn't stop us from trying.
+Just over 6 months after the 2020 MLB season was postponed indefinitely and just under 3 months after the 60-game schedule was announced the 2020 postseason begins today. While MLB postseason results are often compared to a crapshoot, it doesn't stop us from trying to predict the outcome.
 
 In 2018 [I posted projections](https://dantegates.github.io/2018/10/22/world-series-projections.html) for the Dodgers-Red Sox series based on [an even earlier post](https://dantegates.github.io/2018/09/20/hierarchical-bayesian-ranking.html) on probabilistic ranking.
 

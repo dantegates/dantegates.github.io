@@ -2,6 +2,25 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class EvaluatingMLBProjectionsPart2(PostConfig):
+    title = 'Evaluating my 2020 MLB Predictions - Part 2, The Postseason'
+    date_created = '2020-11-10'
+    filename = 'mlb-statcast/evaluating-2020-predictions-part2.md'
+    tags = ['MLB', 'Model Evaluations']
+    github_repo = 'mlb-statcast'
+    post_type = MarkdownPost
+
+
+class EvaluatingMLBProjectionsPart1(PostConfig):
+    title = 'Evaluating my 2020 MLB Predictions - Part 1, Pete Alonso'
+    date_created = '2020-11-10'
+    filename = 'mlb-statcast/evaluating-2020-predictions-part1.md'
+    tags = ['MLB', 'Model Evaluations']
+    github_repo = 'mlb-statcast'
+    post_type = MarkdownPost
+    # consider incorporating the "rule of 40" in to the analysis
+
+
 class MLBPostseasonProjections2020(PostConfig):
     title = 'MLB 2020 Postseason Projections'
     date_created = '2020-09-29'

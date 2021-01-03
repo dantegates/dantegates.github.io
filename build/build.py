@@ -2,6 +2,14 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class PandasTimeseriesIndex(PostConfig):
+    title = 'Time Series With Pandas'
+    date_created = '2021-01-03'
+    filename = 'pandas-timeseries/pandas-timeseries-and-index.ipynb'
+    tags = ['pandas', 'Time Series']
+    github_repo = 'pandas-timeseries-demo'
+
+
 class EvaluatingMLBProjectionsPart2(PostConfig):
     title = 'Evaluating my 2020 MLB Predictions - Part 2, The Postseason'
     date_created = '2020-11-10'

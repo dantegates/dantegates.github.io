@@ -1,12 +1,16 @@
 ---
 layout: page
-title: Talks
+title: 
 permalink: /talks/
 ---
 
 <h2>The Power of Bayes in Industry</h2>
 <h3> PyMCon Web Series 2023</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7KrspD1TZNU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 <h3>Abstract</h3>
+
 <a href="{{ site.baseurl }}/slides/pymcon-2023-webseries.html">slides</a>
 
 This talk will attempt to answer the question “what is a Data Generating Process and why does it matter?” While we will begin our discussion with a bit of theory, don’t worry about this being too technical or inaccessible if you’re new to Bayesian Statistics. Our primary goal is to focus on the second half of the question and give you tools to use for real-world applications.

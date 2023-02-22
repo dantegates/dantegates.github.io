@@ -1,7 +1,7 @@
-FROM jekyll/builder
+FROM jekyll/builder:3.8
 
 ADD . /srv/jekyll
 
 RUN jekyll build
 
-ENTRYPOINT ["jekyll", "server"]
+ENTRYPOINT ["jekyll", "serve"]

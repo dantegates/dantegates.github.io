@@ -2,6 +2,15 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class PyMConAfterword(PostConfig):
+    title = 'PyMCon Afterword'
+    date_created = '2023-02-22'
+    filename = 'the-power-of-bayes-in-industry/Afterword.md'
+    tags = ['Bayesian Inference', 'pymc']
+    github_repo = 'the-power-of-bayes-in-industry'
+    post_type = MarkdownPost
+
+
 class PandasTimeseriesIndex(PostConfig):
     title = 'Time Series With Pandas'
     date_created = '2021-01-03'
@@ -82,13 +91,13 @@ class ScalingPredictions(PostConfig):
     post_type = MarkdownPost
 
 
-class DeepLearningForIndustry3(PostConfig):
-    title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
-    date_created = '2020-01-06'
-    filename = 'deep-ar/uncertainty-plots.md'
-    tags = ['Deep Learning', 'Time Series']
-    github_repo = 'deep-ar'
-    post_type = MarkdownPost
+# class DeepLearningForIndustry3(PostConfig):
+#     title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
+#     date_created = '2020-01-06'
+#     filename = 'deep-ar/uncertainty-plots.md'
+#     tags = ['Deep Learning', 'Time Series']
+#     github_repo = 'deep-ar'
+#     post_type = MarkdownPost
 
 
 class DeepLearningForTimeSeries(PostConfig):
@@ -136,7 +145,7 @@ class WorldSeriesProjections2019(PostConfig):
 
 
 class DeepLearningForIndustry2(PostConfig):
-    title = 'Deep Learning for Industry - Debunking the Myth of the Black Box'
+    title = 'Deep Learning for Tabular Data 2 - Debunking the Myth of the Black Box'
     date_created = '2019-06-14'
     filename = 'mlb-statcast/deep-learning-post.ipynb'
     tags = ['Deep Learning', 'MLB', 'Attention', 'Industry']
@@ -145,7 +154,7 @@ class DeepLearningForIndustry2(PostConfig):
 
 
 class DeepLearningForIndustry(PostConfig):
-    title = 'Deep Learning for Industry - Working With Tabular Data'
+    title = 'Deep Learning for Tabular Data'
     date_created = '2019-01-30'
     filename = 'deep-learning-for-tabular-data/post.ipynb'
     tags = ['Deep Learning', 'Industry']

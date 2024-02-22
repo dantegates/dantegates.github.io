@@ -4,6 +4,11 @@ title:
 permalink: /talks/
 ---
 
+<h2>What is optimization, why does it matter?</h2>
+<h3>Data Philly, Feb. 2024</h3>
+
+<a href="{{ site.baseurl }}/slides/data-philly-optimization.html">slides</a>
+
 <h2>The Power of Bayes in Industry</h2>
 <h3> PyMCon Web Series 2023</h3>
 

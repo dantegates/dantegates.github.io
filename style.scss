@@ -293,3 +293,16 @@ footer {
 @import "tags";
 // @import "pagenavigation";
 @import "tables";
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.talk-overview {
+  padding-bottom: 2em;
+  border-bottom: 1px solid $lightGray;
+}

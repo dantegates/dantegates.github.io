@@ -2,6 +2,14 @@ from .config import PostConfig
 from .posts import MarkdownPost
 
 
+class ForecastingMLBWins2024(PostConfig):
+    title = 'Forecasting the final 100 or so games of the 2024 MLB season'
+    date_created = '2024-05-27'
+    filename = 'mlb-statcast/2024-rankings/post.md'
+    tags = ['Bayesian Inference', 'MLB', 'pymc']
+    github_repo = 'mlb-statcast'
+    post_type = MarkdownPost
+
 class PyMConAfterword(PostConfig):
     title = 'PyMCon Afterword'
     date_created = '2023-02-22'

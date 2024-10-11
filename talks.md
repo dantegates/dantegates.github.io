@@ -9,7 +9,6 @@ permalink: /talks/
 	<h2>What is the posterior, why does it matter?</h2>
 	<div><em>Data Philly, Sept. 2024</em></div>
 	<div><a href="{{ site.baseurl }}/slides/what-is-the-posterior.html">Slides</a></div>
-</div>
 
 <details>
 <summary>Abstract</summary>
@@ -21,6 +20,8 @@ The primary goal of this talk is to answer the second half of its title: why sho
 
 </div>
 </details>
+
+</div>
 
 
 <div class="talk-overview">

@@ -4,6 +4,25 @@ title:
 permalink: /talks/
 ---
 
+
+<div class="talk-overview">
+	<h2>What is the posterior, why does it matter?</h2>
+	<div><em>Data Philly, Sept. 2024</em></div>
+	<div><a href="{{ site.baseurl }}/slides/what-is-the-posterior.html">Slides</a></div>
+</div>
+
+<details>
+<summary>Abstract</summary>
+<div markdown="1">
+
+We've all seen it. That neon sign hanging on the wall of some math department somewhere. Bayes' Rule. An expression of conditional probability. And when it's a model conditioned on data, it's Bayesian Inference. Evaluating the right hand side of that equation, transforming the left into a posterior distribution. Though often reduced to a point estimate or confidence interval, when left as a distribution interesting possibilities abound...
+
+The primary goal of this talk is to answer the second half of its title: why should you care? After providing a brief overview of how the posterior fits into Bayesian Inference we'll focus on application. Examples from domains such as finance, investing, E-commerce and baseball will drive the content and demonstrate the versatility this approach affords. Attendees should leave with an understanding of the role of the posterior distribution and ideas of how to apply this to their own work. 
+
+</div>
+</details>
+
+
 <div class="talk-overview">
 <h2>What is optimization, why does it matter?</h2>
 <div><em>Data Philly, Feb. 2024</em></div>

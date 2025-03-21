@@ -12,8 +12,8 @@ resource to data scientists who are just getting started it would be
 
 ## Blogs
 
-I'm probably guilty of visiting [Andrew Gelman's blog](https://statmodeling.stat.columbia.edu/)
-more than any other. Although most of the content is highly specific to Bayesian statistics
+I'm guilty of visiting [Andrew Gelman's blog](https://statmodeling.stat.columbia.edu/)
+more than any other. Although most of the content is highly specific to Bayesian statistics,
 I think his perspective on problem solving is relevant to a lot of machine learning.
 
 In no particular order, here are some other blogs I like to follow up on (although some haven't
@@ -32,11 +32,10 @@ posted new content in a while).
 
 Below are some great resources on getting started with Bayesian Inference.
 
+- I'm a big fan of the [Learning Bayesian Statistics](https://learnbayesstats.com/) podcast. The episodes interview guests from industry and academia on a wide range of topics and is great resource for learning something new or going deeper on a familiar topic.
 - Jake Vanderplaas has an excellent [talk](https://www.youtube.com/watch?v=KhAUfqhLakw) and corresponding [blog post](http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/) on
     highlighting the differences between statistics traditionally taught in undergraduate
     courses and Bayesian inference.
-- 
-
 - [Wikipedia's Conjugate Pior Cheat Sheet](https://en.wikipedia.org/wiki/Conjugate_prior)
 - [Stan has a great reference for choosing priors](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations)
 

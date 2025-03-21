@@ -1,5 +1,6 @@
-For those interested in other resources, this is a running list
-blogs, articles or talks that have either been foundational in how I think about
+I was inspired to keep this list of resources while writing [this post]({{ site.baseurl }}/2020/04/20/my-quarantine-playlist.html).
+
+This list of blogs, articles and talks are all resources that have either been foundational in how I think about
 data science and software or something that I routinely visit to stay
 in touch with where the industry is going and gain perspective on how others
 think about machine learning.

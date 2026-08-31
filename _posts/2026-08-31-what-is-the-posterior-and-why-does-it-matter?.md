@@ -1,6 +1,6 @@
 ---
 layout: post
-mathjax: true
+mathjax: false
 title: What is the posterior and why does it matter?
 github: https://github.com/dantegates/what-is-the-posterior
 creation_date: 2026-08-31

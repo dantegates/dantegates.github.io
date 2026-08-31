@@ -6,7 +6,9 @@ permalink: /tags/
 
 {% assign tags = site.tags | sort %}
 
-{% for tag in tags %} <div class="site-tag"><a href="#{{ tag[0] | slugify }}" class="tag">{{ tag[0] }}</a></div> {% endfor %}
+<div class="site-tag">
+{% for tag in tags %} <a href="#{{ tag[0] | slugify }}" class="tag">{{ tag[0] }}</a> {% endfor %}
+</div>
 
 {% for tag in tags %}
   <h1 id="{{ tag[0] | slugify }}">{{ tag[0] }}</h1>

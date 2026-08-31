@@ -60,7 +60,7 @@ In the note referenced above, Thorp demonstrated that Kelly's framework could be
 
 To get started, let's begin by taking a look at those returns between 1928 and 2024.[^fn:tbill-technicality]
 
-![](../assets/historical-returns.png)
+![]({{ "/assets/what-is-the-posterior/historical-returns.png" | absolute_url }})
 
 Following the Kelly criterion, Thorp too sought a fixed-fractional investment strategy, where an investor consistently reinvests their total wealth at a rate of $f$. The challenge is to avoid rates of $f$ that are too high and lead to eventual ruin (complete financial loss), or too low and diminish the potential of long-term gains.
 
@@ -84,7 +84,7 @@ Let's break down the integrand.
 
 We can visualize this optimization problem by plotting each investment strategy, $f$, against the corresponding expected geometric growth rate.
 
-![](../assets/visualizing-kelly-criterion.png)
+![]({{ "/assets/what-is-the-posterior/visualizing-kelly-criterion.png" | absolute_url }})
 
 Thorp spent a lot of time carefully building the mathematical justification for several attributes about this problem that can be seen in the chart above:
 
@@ -114,7 +114,7 @@ You can see this play out in the following chart. On the right, we show several 
 
 Thus, the risk of producing an estimate that is _slightly_ off could be the difference between massive over-investment (leading to ruin) or massive under-investment (leading to lost opportunity).
 
-![](../assets/motivating-bayesian-approach2.png)
+![]({{ "/assets/what-is-the-posterior/motivating-bayesian-approach2.png" | absolute_url }})
 
 On the other hand, a Bayesian model produces a nice compromise. By treating $\mu$ and $\sigma$ as random variables _while_ conditioning on past data, our estimates are informed by the data without being unduly committed to a single pair of model parameters.
 
@@ -220,7 +220,7 @@ f_star = minimize(expected_growth_rate, ...)
 
 Applying this process to our data set results in the following model fit and investment criteria:[^fn:footnote-on-finding-f_star]
 
-![](../assets/posterior-predictive.png)
+![]({{ "/assets/what-is-the-posterior/posterior-predictive.png" | absolute_url }})
 
 
 # Discussion

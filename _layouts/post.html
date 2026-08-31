@@ -5,6 +5,8 @@ layout: default
 <article class="post">
   {% if page.mathjax %}
     {% include mathjax_support %}
+  {% elsif page.katex %}
+    {% include katex_support %}
   {% endif %}
 
   <h1>{{ page.title }}</h1>

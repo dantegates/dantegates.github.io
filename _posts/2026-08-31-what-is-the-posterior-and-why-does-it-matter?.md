@@ -32,7 +32,7 @@ In practice, inference tends to be more interesting, because it accommodates a r
 
 This slight change in phrasing suddenly allows us to use data from previous games to consider questions like perhaps, every so often the game never had a prize, just to tilt the long-term odds in Monty's favor.
 
-In Bayesian Inference, <a href="#eq:bayes">(1)</a> can be broken down into pieces that each play a specific role. In our discussion, I want to explore the possibilities of the left-hand side, which is known as the posterior distribution.[^fn:theta-d]
+In Bayesian Inference, <a href="#eq:bayes">(1)</a> can be broken down into pieces that each play a specific role. In our discussion, I want to explore the possibilities of the left-hand side, which is known as the posterior distribution.[^theta-d]
 
 <div id="eq:posterior">
 
@@ -41,9 +41,9 @@ $$
 $$
 </div>
 
-The posterior makes Bayesian Inference truly unique. It doesn't give you just one predicted value. Instead, it produces _a probability distribution_ over all possible values, with each probability directly informed by data.[^fn:prediction-technicality]
+The posterior makes Bayesian Inference truly unique. It doesn't give you just one predicted value. Instead, it produces _a probability distribution_ over all possible values, with each probability directly informed by data.[^prediction-technicality]
 
-In my own experience, it took me quite a while to recognize the full potential of this property. For years I would reduce Bayesian models to a mean plus or minus a confidence interval,[^fn:credible-interval-technicality] and, voilà, problem solved.
+In my own experience, it took me quite a while to recognize the full potential of this property. For years I would reduce Bayesian models to a mean plus or minus a confidence interval,[^credible-interval-technicality] and, voilà, problem solved.
 
 While this can be a reasonable approach at times, more often, it ends up leaving value on the table, or it would simply be more prudent to use techniques that are designed to produce point estimates in the first place if that's what the job calls for.
 
@@ -51,13 +51,13 @@ In this post, I want to illustrate some of the unique opportunities the  posteri
 
 # An investing strategy
 
-As a physicist-turned-mathematician, Thorp turned his talents to Vegas, using an [ingenious device invented with Claude Shannon](https://exhibits.lib.uci.edu/thorp/spin), an original [card-counting theory](https://www.goodreads.com/en/book/show/891883.Beat_the_Dealer), and the [Kelly criterion](https://en.wikipedia.org/wiki/Kelly_criterion) to beat the house. After overstaying his welcome in the city of lost wages, he returned to academia, only to change careers once again. And, once again, he found success in his new venture as a hedge fund manager by leaning on his past experiences - in particular, probability theory, applied mathematics, and a working knowledge of the Kelly criterion.[^fn:thorp-biography]
+As a physicist-turned-mathematician, Thorp turned his talents to Vegas, using an [ingenious device invented with Claude Shannon](https://exhibits.lib.uci.edu/thorp/spin), an original [card-counting theory](https://www.goodreads.com/en/book/show/891883.Beat_the_Dealer), and the [Kelly criterion](https://en.wikipedia.org/wiki/Kelly_criterion) to beat the house. After overstaying his welcome in the city of lost wages, he returned to academia, only to change careers once again. And, once again, he found success in his new venture as a hedge fund manager by leaning on his past experiences - in particular, probability theory, applied mathematics, and a working knowledge of the Kelly criterion.[^thorp-biography]
 
 It turns out that the Kelly criterion is central to our conversation. Developed by John Kelly at the legendary Bell Labs, the Kelly criterion seeks to maximize long-term wealth by repeatedly employing a "fixed-fractional" betting strategy that optimizes for geometric growth.
 
 In the note referenced above, Thorp demonstrated that Kelly's framework could be extended from a betting strategy for events with discrete outcomes to an investment strategy for events with continuous ones, like the S&P 500. This investment strategy will form the basis of our discussion.
 
-To get started, let's begin by taking a look at those returns between 1928 and 2024.[^fn:tbill-technicality]
+To get started, let's begin by taking a look at those returns between 1928 and 2024.[^tbill-technicality]
 
 ![]({{ "/assets/what-is-the-posterior/historical-returns.png" | absolute_url }})
 
@@ -166,7 +166,7 @@ $$
 \end{align*}
 $$
 
-How these methods work warrants its own discussion[^fn:mcmc-references], but note that this idea leans into the recognition that the posterior is a _distribution_.
+How these methods work warrants its own discussion[^mcmc-references], but note that this idea leans into the recognition that the posterior is a _distribution_.
 
 With enough posterior samples, we can approximate the analytic solutions through simulation. For example, in our case, we can trade the integral in <a href="#eq:expected conditional growth rate">(5)</a> for a weighted average over the posterior predictive samples $\hat{s}_{i}$,
 
@@ -180,7 +180,7 @@ From there, the right-hand side can be optimized in a number of ways.
 
 With tools like `pymc`, the sampling procedure is rather straightforward.
 
-1. First, we define the model parameters and data-generating process[^fn:data-generating-process]
+1. First, we define the model parameters and data-generating process[^data-generating-process]
 2. Then we generate samples that approximate draws from the posterior, $(\mu_{i},\sigma_{i})$
 3. Each $(\mu_{i}, \sigma_{i})$ is used in turn to simulate a value from the posterior predictive, $\hat{s}_{i}$
 4. Last, we simulate growth rates with $\log(1+f\hat{s}_{i})$
@@ -213,7 +213,7 @@ def expected_growth_rate(f):
 f_star = minimize(expected_growth_rate, ...)
 ```
 
-Applying this process to our data set results in the following model fit and investment criteria:[^fn:footnote-on-finding-f_star]
+Applying this process to our data set results in the following model fit and investment criteria:[^footnote-on-finding-f_star]
 
 ![]({{ "/assets/what-is-the-posterior/posterior-predictive.png" | absolute_url }})
 
@@ -226,7 +226,7 @@ About a year ago I came across a quote from [Allen Downey](https://allendowney.b
 
 What is it that gives Bayesian methods these unique capabilities? Quoting Downey again, the posterior distribution is "exactly the information that makes Bayesian results more useful."
 
-However, I've taken this statement slightly out of context[^fn:downey-context], and perhaps it would be more fair to write
+However, I've taken this statement slightly out of context[^downey-context], and perhaps it would be more fair to write
 
 > Bayesian methods don't do the same things better; they do different things, which are [sometimes] better.
 
@@ -242,7 +242,7 @@ where $s^{*}$ is a point estimate produced by a more traditional ML model. In fa
 
 And if you have googols of data, that's probably fine. The variance on $s^{*}$ may be negligible, and the mean can provide a lot of mileage. But, if all you have are 106 data points, or you feel like you're dealing with some other meaningful source of uncertainty, Bayesian methods like we've described here can provide a robust data-driven solution.
 
-I hope that this recognition helps you resist the temptation to simply reduce the posterior to a mean $\pm$ some confidence interval and call it a day.[^fn:doing-the-same-thing-differently] Once this sinks in, and you've had an ["I know kung fu"](https://www.youtube.com/watch?v=6vMO3XmNXe4) moment, you'll begin to see that this post only scratches the surface.
+I hope that this recognition helps you resist the temptation to simply reduce the posterior to a mean $\pm$ some confidence interval and call it a day.[^doing-the-same-thing-differently] Once this sinks in, and you've had an ["I know kung fu"](https://www.youtube.com/watch?v=6vMO3XmNXe4) moment, you'll begin to see that this post only scratches the surface.
 
 In this example alone, it's not hard to imagine future extensions of what we put together:
 
@@ -253,23 +253,23 @@ In this example alone, it's not hard to imagine future extensions of what we put
 
 # Footnotes
 
-[^fn:theta-d]: In Bayesian Inference, it is customary to use $\theta$ to represent the parameter(s) of your model and $D$ for observed data.
+[^theta-d]: In Bayesian Inference, it is customary to use $\theta$ to represent the parameter(s) of your model and $D$ for observed data.
 
-[^fn:prediction-technicality]: This statement makes it seem as though the posterior distribution / Bayesian methods are exclusively focused on prediction. For reasons explained later, this isn't necessarily true and ignores applications like Bayesian Data Analysis. That said, we're getting ahead of ourselves, and at this stage I favored a naive statement for the sake of simplicity.
+[^prediction-technicality]: This statement makes it seem as though the posterior distribution / Bayesian methods are exclusively focused on prediction. For reasons explained later, this isn't necessarily true and ignores applications like Bayesian Data Analysis. That said, we're getting ahead of ourselves, and at this stage I favored a naive statement for the sake of simplicity.
 
-[^fn:credible-interval-technicality]: Err... technically a credible interval. But that doesn't quite roll off the tongue the same way.
+[^credible-interval-technicality]: Err... technically a credible interval. But that doesn't quite roll off the tongue the same way.
 
-[^fn:thorp-biography]: All of these details and more (apparently the mob cut his brakes to chase him out of town) are covered in his [autobiography](https://www.goodreads.com/en/book/show/25733505-a-man-for-all-markets), which I highly recommend.
+[^thorp-biography]: All of these details and more (apparently the mob cut his brakes to chase him out of town) are covered in his [autobiography](https://www.goodreads.com/en/book/show/25733505-a-man-for-all-markets), which I highly recommend.
 
-[^fn:tbill-technicality]: Technically we're talking about excess returns minus treasury bills, because the time value of money matters, but that's a mouthful. For our discussion, calling these "the returns" satisfies the conceptual need of our discussion.
+[^tbill-technicality]: Technically we're talking about excess returns minus treasury bills, because the time value of money matters, but that's a mouthful. For our discussion, calling these "the returns" satisfies the conceptual need of our discussion.
 
-[^fn:footnote-on-finding-f_star]: For some pseudocode for optimizing over the posterior, see [this slide](https://dantegates.github.io/slides/what-is-the-posterior.html#/solving-for-f-better) from my Data Philly talk.
+[^footnote-on-finding-f_star]: For some pseudocode for optimizing over the posterior, see [this slide](https://dantegates.github.io/slides/what-is-the-posterior.html#/solving-for-f-better) from my Data Philly talk.
 
-[^fn:mcmc-references]: For more information on this topic, I like Thomas Wiecki's post [MCMC sampling for dummies](https://twiecki.io/blog/2015/11/10/mcmc-sampling/). For a more advanced treatment you can't do better than Michael Betancourt's [A Conceptual Introduction to Hamiltonian Monte Carlo
+[^mcmc-references]: For more information on this topic, I like Thomas Wiecki's post [MCMC sampling for dummies](https://twiecki.io/blog/2015/11/10/mcmc-sampling/). For a more advanced treatment you can't do better than Michael Betancourt's [A Conceptual Introduction to Hamiltonian Monte Carlo
 ](https://arxiv.org/abs/1701.02434), although it's not for the faint of heart.
 
-[^fn:downey-context]: Downey was contrasting Bayesian methods with classical statistics in particular, and without that context his quote could be interpreted as a much broader critique.
+[^downey-context]: Downey was contrasting Bayesian methods with classical statistics in particular, and without that context his quote could be interpreted as a much broader critique.
 
-[^fn:doing-the-same-thing-differently]: What we might call "doing the same things differently" in the language of Downey's post.
+[^doing-the-same-thing-differently]: What we might call "doing the same things differently" in the language of Downey's post.
 
-[^fn:data-generating-process]: I covered this topic at length in the past for [PyMCon](https://www.youtube.com/watch?v=7KrspD1TZNU).
+[^data-generating-process]: I covered this topic at length in the past for [PyMCon](https://www.youtube.com/watch?v=7KrspD1TZNU).

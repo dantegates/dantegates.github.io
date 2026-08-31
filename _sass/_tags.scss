@@ -54,3 +54,15 @@
 .tag:hover::after {
    border-left-color: crimson; 
 }
+
+/* Reset global framework styles applied to KaTeX equation tag elements */
+.katex tag,
+tag {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}

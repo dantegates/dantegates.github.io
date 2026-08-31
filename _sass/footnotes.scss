@@ -1,0 +1,25 @@
+/* Updated selector to match class="footnote" */
+.footnote {
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: super;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: 600;
+  padding: 0 1px;
+  transition: color 0.15s ease-in-out;
+}
+
+.footnote::before {
+  content: "[";
+}
+
+.footnote::after {
+  content: "]";
+}
+
+.footnote:hover,
+.footnote:focus {
+  color: #004080;
+  text-decoration: underline;
+}

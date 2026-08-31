@@ -23,7 +23,6 @@ somewhere. Bayes' theorem:
 
 $$
 P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)} \,.
-\tag{1}
 $$
 </div>
 
@@ -39,7 +38,6 @@ In Bayesian Inference, <a href="#eq:bayes">(1)</a> can be broken down into piece
 
 $$
 \underbrace{P(\theta\mid D)}_{\mathrm{posterior}} = \color{grey}{\frac{\overbrace{P(D\mid \theta)}^{\mathrm{likelihood}}\ \overbrace{P(\theta)}^{\mathrm{priors}}}{\underbrace{P(D)}_{\mathrm{marginal\ likelihood}}}}
-\tag{2}
 $$
 </div>
 
@@ -73,7 +71,6 @@ $$
 \begin{equation}
 \operatorname*{argmax}_{f}{\int_{a}^{b}{p(s)\, \log(1+fs)\, ds}}\,.
 \end{equation}
-\tag{3}
 $$
 </div>
 
@@ -125,7 +122,6 @@ Revisiting <a href="#eq:posterior">(2)</a>, the posterior expresses a probabilit
 
 $$
 p(\mu,\sigma\vert s) = \frac{p(s\vert \mu,\sigma)p(\mu,\sigma)}{p(s)}\,.
-\tag{4}
 $$
 </div>
 
@@ -138,7 +134,6 @@ With the posterior on hand, we're ready to tackle Thorp's investing problem, but
 
 $$
 \operatorname*{argmax}_{f}\int_{}^{}{p(\hat{s}\vert s) \log(1+f\hat{s})\, d\hat{s}}\,.
-\tag{5}
 $$
 </div>
 
@@ -150,7 +145,6 @@ Using the [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_
 
 $$
 \operatorname*{argmax}_{f}\iint_{}^{}{\overset{\mathrm{posterior\ predictive}}{\overbrace{p(\hat{s}\vert\mu,\sigma)\ \underset{\mathrm{posterior}}{\underbrace{p(\mu,\sigma\vert s)}}}} \log(1+f\hat{s})\,  d\mu\, d\sigma}\,.
-\tag{6}
 $$
 </div>
 

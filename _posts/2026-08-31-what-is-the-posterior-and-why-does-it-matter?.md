@@ -31,7 +31,7 @@ I would wager that Bayes' Theorem is best known for calculating simple condition
 
 In practice, inference tends to be more interesting, because it accommodates a richer class of questions. Contrast the classic Monty Hall problem with the following: what is _the chance that a prize is behind door two, given a goat is behind door one_ **and the outcomes of past games**?
 
-This slight change in phrasing suddenly allows us to use data from previous games to consider questions like perhaps, every so often the game never had a prize, just to tilt the long-term odds in Monty's favor.
+This slight change in phrasing suddenly allows us to use data from previous games to consider the likelihood of scenarios, like, perhaps, every so often, the game never had a prize, just to tilt the long-term odds in Monty's favor.
 
 In Bayesian Inference, <a href="#eq:bayes">(1)</a> can be broken down into pieces that each play a specific role. In our discussion, I want to explore the possibilities of the left-hand side, which is known as the posterior distribution.[^theta-d]
 
@@ -254,6 +254,7 @@ In this example alone, it's not hard to imagine future extensions of what we put
 
 * What if we [modeled the returns as a time series](https://www.pymc.io/projects/examples/en/latest/time_series/stochastic_volatility.html) instead of a static distribution?
 * What if we fit the model to a portfolio of funds, accounting for the covariance between them?
+* What if we simulated the rates of return over an $n$ year period? How often does this strategy produces a loss after $n$ years?
 * How could we use [Bayesian decision theory](https://www.cambridge.org/core/books/bayesian-optimization/introduction/B855B6A81FA1DF897C389F8B017AE891) to learn a long-term strategy over time?
 * $\ldots$
 
